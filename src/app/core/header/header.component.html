@@ -1,1 +1,22 @@
-<p>header works!</p>
+<header [className]="home.isActive? 'home' :''">
+  <nav class="main-nav">
+    <div class="logo">
+      <i class="fa-solid fa-couch fa-2x"></i><span>DREAM-FURNITURE</span>
+    </div>
+    <ul>
+      <li><a routerLink="/home" routerLinkActive #home="routerLinkActive">Home</a></li>
+      <li><a routerLink="/products" routerLinkActive="active">Products</a></li>
+      <li><a routerLink="">Contacts</a></li>
+      <li><a routerLink="">Cart</a></li>
+    </ul>
+  </nav>
+  <div class="container" *ngIf="home.isActive">
+    <div class="banner-content">
+      <h2>
+        <p>Elevate your</p>
+        <p>Home</p>
+        <p>With us</p>
+      </h2>
+    </div>
+  </div>
+</header>
