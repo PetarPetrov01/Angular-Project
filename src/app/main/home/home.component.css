@@ -1,0 +1,64 @@
+.container {
+    background-color: transparent;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 6rem;
+    padding: 0 2em;
+}
+
+.spacer {
+    background: linear-gradient( #eee, #fefefe);
+    height: 10px;
+}
+
+.main{
+    margin: 3em 0;
+}
+
+.cards{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas: 'info img1 img2 img3';
+    min-height: 300px;
+}
+
+.main .card{
+    grid-area: 'info';
+    padding-right: 1em;
+    height: 100%;
+}
+
+.main .card:not(.info){
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card:hover:not(.info){
+    background-color: #eee;
+}
+
+.card.info p{
+    font-size: 16px;
+}
+.card.info h3{
+    font-size: 2em;
+}
+
+.media{
+    padding: 2em;
+}
+
+.main .media img{
+    width: 100%;
+    height: auto;
+}
+
+.main .content{
+    text-align: center;
+}
+.main .content h3{
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 1em 0;
+}
