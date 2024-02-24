@@ -19,10 +19,7 @@ header.home{
     margin: 0 auto;
 }
 
-.spacer {
-    background: linear-gradient(90deg, #eee, #fff);
-    height: 10px;
-}
+
 
 .main-nav{
     display: flex;

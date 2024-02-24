@@ -1,21 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
-html{
-    font: 16px 'PT Sans';
+html {
+  font: 16px "PT Sans";
 }
 
-h1,h2,h3,h4,h5{
-    font-family: 'PT Serif';
-    font-weight: 400;
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "PT Serif";
+  font-weight: 400;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-ul{
-    list-style: none;
+ul {
+  list-style: none;
+}
+
+body {
+  background: linear-gradient(90deg, #f1f1f1, #fff, #f1f1f1);
 }
