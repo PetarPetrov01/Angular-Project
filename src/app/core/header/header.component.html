@@ -4,10 +4,10 @@
       <i class="fa-solid fa-couch fa-2x"></i><span>DREAM-FURNITURE</span>
     </div>
     <ul>
-      <li><a routerLink="/home" routerLinkActive #home="routerLinkActive">Home</a></li>
+      <li><a routerLink="/home" routerLinkActive="active" #home="routerLinkActive">Home</a></li>
       <li><a routerLink="/products" routerLinkActive="active">Products</a></li>
-      <li><a routerLink="/auth/login">Login</a></li>
-      <li><a routerLink="">Cart</a></li>
+      <li><a routerLink="/auth/login" routerLinkActive="active">Login</a></li>
+      <li><a routerLink="/auth.register" routerLinkActive="active">Register</a></li>
     </ul>
   </nav>
   <div class="container" *ngIf="home.isActive">

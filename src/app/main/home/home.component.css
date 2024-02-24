@@ -1,7 +1,7 @@
 .container {
     max-width: 1200px;
     margin: 3em auto;
-    padding: 2em 2em;
+    padding: 1em 2em;
     background-color: #fff;
     box-shadow: 2px 0px 4px 5px #ddd;
 }
@@ -18,7 +18,6 @@
 }
 
 .main .card{
-    grid-area: 'info';
     padding-right: 1em;
     height: 100%;
 }
