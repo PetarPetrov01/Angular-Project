@@ -1,14 +1,13 @@
 .container {
     max-width: 1200px;
-    margin: 1em auto 2em auto;
+    margin: 0 auto 2em auto;
     padding: 2em 2em;
 }
-
 
 section.login{
     background-color: #fff;
     max-width: 1200px;
-    box-shadow: 4px 4px 4px 4px #aaa;
+    box-shadow: 3px 3px 5px 3px #aaa;
     display: flex;
     overflow: hidden;
     aspect-ratio: 2/1;
@@ -42,7 +41,7 @@ form.login{
     flex-direction: column;
     gap: 2em;
     font-size: 1.1em;
-    padding-top: 3em;
+    padding-top: 2.2em;
 }
 
 form.login::after{
@@ -59,9 +58,6 @@ form.login::after{
     gap: 0.5em;
 }
 
-input:focus{
-    outline: none;
-}
 
 h2{
     font-size: 2.5em;
@@ -78,6 +74,7 @@ label{
 }
 
 input{
+    background-color: #f9f9f9;
     border: 1px solid #ccc;
     font-family: 'PT Serif';
     padding: 0.5em;
@@ -86,6 +83,61 @@ input{
     width: 100%;
 }
 
+input:focus{
+    outline: none;
+    /* background-color: #ccc; */
+    border-color: #bbb;
+    /* box-shadow: 0 0 3px 2px #e8fbce; */
+    box-shadow: 0 0 3px 2px #ffe4c4;
+
+}
+
 input::placeholder{
-    color: #bbb;
+    color: #b3b3b3;
+}
+
+button{
+    font-family: 'PT Serif';
+    background-color: #E8B677;
+    color: #fff;
+    outline: none;
+    border: none;
+    width: 100%;
+    font-size: 1em;
+    padding: 0.5em;
+    border-radius: 0.2em;
+    transition: all 0.1s;
+}
+
+button:hover{
+    cursor: pointer;
+    background-color: #ba7b40;
+}
+
+.register-redirect{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 1em;
+    width: 70%;
+}
+
+.register-redirect a{
+    /* display: inline-block; */
+    background-color: #b0cd86;
+    color: #fff;
+    width: 100%;
+    font-size: 1em;
+    padding: 0.5em;
+    border-radius: 0.2em;
+    font-family: 'PT Serif';
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: all 0.1s;
+
+}
+
+.register-redirect a:hover{
+    background-color: #648930;
 }
