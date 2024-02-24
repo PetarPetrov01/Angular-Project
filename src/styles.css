@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import url("https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=PT+Serif:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap");
 
 html {
   font: 16px "PT Sans";
@@ -26,4 +26,24 @@ ul {
 
 body {
   background: linear-gradient(90deg, #f1f1f1, #fff, #f1f1f1);
+}
+
+
+
+@media (max-width: 1000px){
+    html{
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 800px){
+    html{
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 600px){
+    html{
+        font-size: 12px;
+    }
 }
