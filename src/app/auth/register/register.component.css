@@ -71,6 +71,9 @@ label{
 }
 
 input{
+    background-color: #fcfcfc;
+    border: 1px solid #ccc;
+    font-family: 'PT Serif';
     padding: 0.5em;
     font-size: 0.9em;
     border-radius: 2px;
@@ -86,4 +89,49 @@ input:focus{
 input::placeholder{
     color: #b3b3b3;
 }
+
+button{
+    font-family: 'PT Serif';
+    background-color: #7CA7D1;
+    color: #fff;
+    outline: none;
+    border: none;
+    width: 100%;
+    font-size: 1em;
+    padding: 0.5em;
+    border-radius: 0.2em;
+    transition: all 0.1s;
 }
+
+button:hover{
+    cursor: pointer;
+    background-color: #4b87c3;
+}
+
+.login-redirect{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 1em;
+    width: 70%;
+}
+
+.login-redirect a{
+    /* display: inline-block; */
+    background-color: #ECB678;
+    color: #fff;
+    width: 100%;
+    font-size: 1em;
+    padding: 0.5em;
+    border-radius: 0.2em;
+    font-family: 'PT Serif';
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: all 0.1s;
+
+}
+
+.login-redirect a:hover{
+    background-color: #e6a152;
+} 
