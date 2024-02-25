@@ -1,0 +1,34 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto 2em auto;
+    padding: 2em 2em;
+}
+
+section.register{
+    max-width: 1200px;
+    box-shadow: 3px 3px 5px 3px #98aabc;
+    display: flex;
+    overflow: hidden;
+    /* aspect-ratio: 2/1; */
+}
+
+.media{
+    min-height: 640px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.register-form{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+form.register{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
