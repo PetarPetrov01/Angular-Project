@@ -45,6 +45,11 @@ footer{
     flex: 1 1 20%;
     color: #fff;
     color: #000;
+    transition: all 0.1s;
+}
+
+.socials a:hover i{
+    transform: scale(1.18);
 }
 
 .credentials{
