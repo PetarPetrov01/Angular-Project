@@ -101,12 +101,21 @@ button{
     padding: 0.5em;
     border-radius: 0.2em;
     transition: all 0.1s;
+    cursor: pointer;
 }
 
 button:hover{
-    cursor: pointer;
     background-color: #4b87c3;
 }
+
+button:disabled{
+    cursor: auto;
+}
+
+button:disabled:hover{
+    background-color: #86a5c3;
+}
+
 
 .login-redirect{
     text-align: center;

@@ -17,15 +17,18 @@
               name="email"
               ngModel
               #email="ngModel"
-              required=""
+              required
+              email
             />
             <div class="errors">
-              <p
-                class="error"
-                *ngIf="email.touched && email.getError('required')"
-              >
-                LThis field is required
-              </p>
+              <ng-container *ngIf="email.touched">
+                <p class="error" *ngIf="email.getError('required')">
+                  Email is required!
+                </p>
+                <p class="error" *ngIf="email.getError('email')">
+                  Invalid email!
+                </p>
+              </ng-container>
             </div>
           </div>
 
@@ -36,39 +39,76 @@
               placeholder="Type your username"
               name="username"
               ngModel
+              #username="ngModel"
+              minlength="5"
+              required=""
             />
             <div class="errors">
-              <p class="error"></p>
+              <ng-container *ngIf="username.touched">
+                <p class="error" *ngIf="username.getError('required')">
+                  Username is required
+                </p>
+                <p class="error" *ngIf="username.getError('minlength')">
+                  Username must be atleast 5 characters long!
+                </p>
+              </ng-container>
+            </div>
+          </div>
+          <div
+            ngModelGroup="passwords"
+            #passwords="ngModelGroup"
+            appMatchPasswords
+          >
+            <div class="input-group">
+              <label for="">Password</label>
+              <input
+                type="password"
+                placeholder="Type your password"
+                name="password"
+                ngModel
+                #password="ngModel"
+                required
+                minlength="6"
+              />
+              <div class="errors">
+                <ng-container *ngIf="password.touched">
+                  <p class="error" *ngIf="password.getError('required')">
+                    Password is required
+                  </p>
+                  <p class="error" *ngIf="password.getError('minlength')">
+                    Password must be atleast 6 characters long
+                  </p>
+                </ng-container>
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label for="">Repeat password</label>
+              <input
+                type="password"
+                placeholder="Type your password again"
+                name="rePassword"
+                ngModel
+                #rePassword="ngModel"
+                required
+                [class]="passwords.getError('passwords') ? 'ng-invalid' : ''"
+              />
+              <div class="errors">
+                <ng-container *ngIf="password.touched && rePassword.touched">
+                  <p class="error" *ngIf="passwords.getError('passwords')">
+                    Passwords do not match!
+                  </p>
+                </ng-container>
+              </div>
             </div>
           </div>
 
-          <div class="input-group">
-            <label for="">Password</label>
-            <input
-              type="text"
-              placeholder="Type your password"
-              name="password"
-              ngModel
-            />
-            <div class="errors">
-                <p class="error"></p>
-              </div>
-          </div>
-
-          <div class="input-group">
-            <label for="">Repeat password</label>
-            <input
-              type="text"
-              placeholder="Type your password again"
-              name="rePassword"
-              ngModel
-            />
-            <div class="errors">
-                <p class="error"></p>
-              </div>
-          </div>
-
-          <button class="register-btn">Register</button>
+          <button
+            class="register-btn"
+            [disabled]="registerForm.invalid ? true : false"
+          >
+            Register
+          </button>
         </form>
         <div class="login-redirect">
           <p>Or</p>
