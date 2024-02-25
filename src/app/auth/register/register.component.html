@@ -1,39 +1,80 @@
 <div class="container">
+  <section class="register">
+    <div class="media">
+      <article class="register-form">
+        <h2>Register an account</h2>
 
-    <section class="register">
-        <div class="media">
-            <article class="register-form">
-                <h2>Register an account</h2>
-                
-                <form action="" class="register">
-                    <div class="input-group">
-                        <label for="">Email</label>
-                        <input type="text" placeholder="Type your email" />
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="">Username</label>
-                        <input type="text" placeholder="Type your username" />
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="">Password</label>
-                        <input type="text" placeholder="Type your password" />
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="">Repeat password</label>
-                        <input type="text" placeholder="Type your password again" />
-                    </div>
-                    
-                    <button class="register-btn">Register</button>
-                </form>
-                <div class="login-redirect">
-                    <p>Or</p>
-                    <a routerLink="../login">Login</a>
-                </div>
-                
-            </article>
+        <form
+          class="register"
+          #registerForm="ngForm"
+          (ngSubmit)="handleRegister(registerForm)"
+        >
+          <div class="input-group">
+            <label for="email">Email</label>
+            <input
+              type="text"
+              placeholder="Type your email"
+              name="email"
+              ngModel
+              #email="ngModel"
+              required=""
+            />
+            <div class="errors">
+              <p
+                class="error"
+                *ngIf="email.touched && email.getError('required')"
+              >
+                LThis field is required
+              </p>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              placeholder="Type your username"
+              name="username"
+              ngModel
+            />
+            <div class="errors">
+              <p class="error"></p>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="">Password</label>
+            <input
+              type="text"
+              placeholder="Type your password"
+              name="password"
+              ngModel
+            />
+            <div class="errors">
+                <p class="error"></p>
+              </div>
+          </div>
+
+          <div class="input-group">
+            <label for="">Repeat password</label>
+            <input
+              type="text"
+              placeholder="Type your password again"
+              name="rePassword"
+              ngModel
+            />
+            <div class="errors">
+                <p class="error"></p>
+              </div>
+          </div>
+
+          <button class="register-btn">Register</button>
+        </form>
+        <div class="login-redirect">
+          <p>Or</p>
+          <a routerLink="../login">Login</a>
         </div>
-    </section>
+      </article>
+    </div>
+  </section>
 </div>
