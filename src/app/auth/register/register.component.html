@@ -18,7 +18,7 @@
               ngModel
               #email="ngModel"
               required
-              email
+              appEmailValidate
             />
             <div class="errors">
               <ng-container *ngIf="email.touched">
@@ -45,11 +45,11 @@
             />
             <div class="errors">
               <ng-container *ngIf="username.touched">
-                <p class="error" *ngIf="username.getError('required')">
-                  Username is required
-                </p>
                 <p class="error" *ngIf="username.getError('minlength')">
                   Username must be atleast 5 characters long!
+                </p>
+                <p class="error" *ngIf="username.getError('required')">
+                  Username is required
                 </p>
               </ng-container>
             </div>
