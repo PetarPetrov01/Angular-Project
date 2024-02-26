@@ -25,9 +25,8 @@ export class RegisterComponent implements OnChanges{
 
   ngOnChanges(changes: SimpleChanges): void {
 
-    console.log(this.email.errors)
   }
   handleRegister(form: NgForm) {
-    // console.log(form.getControl(this.passwords));
+    console.log(form.getControl(this.passwords));
   }
 }

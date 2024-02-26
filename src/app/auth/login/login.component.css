@@ -28,6 +28,7 @@ img{
 }
 
 .login-form{
+    /* background: linear-gradient(270deg, #a29f90,rgb(215, 215, 211)); */
     padding: 3em;
     flex: 1 1 50%;
     display: flex;
