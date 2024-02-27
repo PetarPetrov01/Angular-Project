@@ -56,7 +56,7 @@ form.login::after{
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-    gap: 0.5em;
+    gap: 0.4em;
 }
 
 
@@ -108,11 +108,16 @@ button{
     padding: 0.5em;
     border-radius: 0.2em;
     transition: all 0.1s;
+    cursor: pointer;
 }
 
 button:hover{
-    cursor: pointer;
     background-color: #ba7b40;
+}
+
+button:disabled{
+    cursor: default;
+    background-color: #e1c19c;
 }
 
 .register-redirect{

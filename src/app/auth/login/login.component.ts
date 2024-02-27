@@ -23,4 +23,8 @@ export class LoginComponent {
     email: ['', [Validators.required]],
     password: ['', [Validators.required]],
   });
+
+  handleLoginSubmit(){
+    console.log(this.loginForm.value)
+  }
 }

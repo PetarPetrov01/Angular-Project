@@ -43,13 +43,13 @@
                 class="error"
                 *ngIf="loginForm.get('password')?.errors?.['required']"
               >
-                Password is required
+                Password is required!
               </p>
             </ng-container>
           </div>
         </div>
 
-        <button class="login-btn">Login</button>
+        <button class="login-btn" [disabled]="loginForm.invalid" (click)="handleLoginSubmit()">Login</button>
       </form>
       <div class="register-redirect">
         <p>Or</p>
