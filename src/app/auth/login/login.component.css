@@ -40,7 +40,7 @@ form.login{
     width: 70%;
     display: flex;
     flex-direction: column;
-    gap: 2em;
+    gap: 1.3em;
     font-size: 1.1em;
     padding-top: 2.2em;
 }
@@ -141,4 +141,17 @@ button:hover{
 
 .register-redirect a:hover{
     background-color: #648930;
+}
+
+.errors{
+    min-height: 19px;
+}
+
+p.error{
+    font-size: 0.8em;
+    color: #f44;
+}
+
+input.ng-touched.ng-invalid{
+    border-color: #f55;
 }
