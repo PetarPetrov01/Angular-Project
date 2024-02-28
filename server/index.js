@@ -7,6 +7,10 @@ async function start() {
 
   await config(app)
 
+  app.get('/',(req,res)=>{
+    res.send('Server works!')
+  })
+
   app.listen(3030, () => {
     console.log(`Listening on port 3030`);
   });
