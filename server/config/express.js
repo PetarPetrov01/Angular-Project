@@ -13,5 +13,6 @@ module.exports = async (app) => {
   app.use(express.json());
   app.use(cors());
   //session middleware
+  //app.use(session());
   //queryParams middleware
 };
