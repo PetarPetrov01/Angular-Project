@@ -1,5 +1,5 @@
-const authCookie = 'auth-cookie'
+const authCookieName = 'auth-cookie'
 
 module.exports = {
-    authCookie
+    authCookieName
 }
