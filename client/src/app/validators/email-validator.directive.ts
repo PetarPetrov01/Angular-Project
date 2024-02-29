@@ -23,7 +23,7 @@ export class EmailValidateDirective implements Validator {
 
   validate(control: AbstractControl<any, any>): ValidationErrors | null {
     const value = control.value;
-    if (value == '' || value.match(this.pattern)) {
+    if (value == '' || value?.match(this.pattern)) {
       return null;
     }
 
