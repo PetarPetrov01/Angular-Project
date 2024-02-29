@@ -16,6 +16,5 @@ module.exports = async (app) => {
   app.use(express.json());
   app.use(cookieParser(cookieSecret))
   app.use(cors());
-  //Maybe use the parser here?
   app.use(session());
 };

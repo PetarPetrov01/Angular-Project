@@ -1,5 +1,6 @@
 const authService = require("../services/authService");
 const { authCookieName } = require("../config/cookie.js");
+const errorParser = require("../util/errorParser.js");
 
 const authController = require("express").Router();
 
@@ -19,8 +20,8 @@ authController.post("/login", async (req, res) => {
 
     res.json(user);
   } catch (error) {
-    //Error parser
-    console.log(error);
+    const errorMessage = errorParser(error);
+    res.status(400).json({message: errorMessage});
   }
 });
 
@@ -44,8 +45,8 @@ authController.post("/register", async (req, res) => {
 
     res.json(user)
   } catch (error) {
-    //Error parser
-    console.log(error);
+    const errorMessage = errorParser(error);
+    res.status(400).json({message: errorMessage});
   }
 });
 
