@@ -19,7 +19,7 @@ authController.post("/login", async (req, res) => {
         sameSite: "none",
       }); // secure: true
     } else {
-      res.cookie(authCookieName, authToken, { httpOnly: true });
+      res.cookie(authCookieName, authToken, { httpOnly: false });
     }
 
     res.json(user);
@@ -54,7 +54,7 @@ authController.post(
           sameSite: "none",
         }); // secure: true
       } else {
-        res.cookie(authCookieName, authToken, { httpOnly: true });
+        res.cookie(authCookieName, authToken, { httpOnly: false });
       }
 
       res.json(user);

@@ -12,7 +12,6 @@ async function start() {
 
   app.get("/", (req, res) => {
     try {
-      
       res.json('Hello');
     } catch (error) {
       console.log(error)

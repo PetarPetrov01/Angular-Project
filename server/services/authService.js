@@ -56,7 +56,7 @@ function createToken(user) {
       email: user.email,
       username: user.username,
     },
-    authToken: jwt.sign(payload, secret),
+    authToken: jwt.sign(payload, secret, {expiresIn: '30s'}),
   };
 }
 
