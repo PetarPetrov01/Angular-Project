@@ -2,11 +2,10 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
-const secret =
-  process.env.JWT_SECRET || (Math.random() * 10000).toFixed(0).toString(16);
+const secret = process.env.JWT_SECRET || "whg73hdgw6";
 
 async function login(email, password) {
-  const existingUser = User.find({ email }).collation({
+  const existingUser = await User.findOne({ email }).collation({
     locale: "en",
     strength: 2,
   });
@@ -15,7 +14,7 @@ async function login(email, password) {
   }
 
   const matchPass = await bcrypt.compare(password, existingUser.hashedPassword);
-  if (matchPass) {
+  if (!matchPass) {
     throw new Error("Invalid email or password");
   }
 
@@ -23,7 +22,7 @@ async function login(email, password) {
 }
 
 async function register(username, email, password) {
-  const existingUser = User.find({ email }).collation({
+  const existingUser = await User.findOne({ email }).collation({
     locale: "en",
     strength: 2,
   });
@@ -51,17 +50,20 @@ function createToken(user) {
     email: user.email,
   };
 
-  const token = jwt.sign(payload);
-
   return {
-    _id: user._id,
-    email: user.email,
-    authToken: jwt.sign(token, secret, { expiresIn: "2d" }),
+    user: {
+      _id: user._id,
+      email: user.email,
+      username: user.username,
+    },
+    authToken: jwt.sign(payload, secret),
   };
 }
 
-module.exports = {
+const authService = {
   login,
   register,
   verifyToken,
 };
+
+module.exports = authService;
