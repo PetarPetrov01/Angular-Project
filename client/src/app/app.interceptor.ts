@@ -8,17 +8,25 @@ import {
 import { Injectable, Provider } from '@angular/core';
 import { Observable, catchError } from 'rxjs';
 import { environment } from '../environments/environment.development';
+import { CookieService } from 'ngx-cookie-service';
+import { cookieName } from './auth/auth.component';
+import { AuthService } from './auth/auth.service';
+import { Router } from '@angular/router';
 
 const { appUrl } = environment;
 
 @Injectable()
 export class AppInterceptor implements HttpInterceptor {
+  constructor(
+    private cookieService: CookieService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
+
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    console.log('intercept')
-
     req = req.clone({
       url: req.url.replace('/api', appUrl),
       withCredentials: true,
@@ -28,9 +36,9 @@ export class AppInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       catchError((err) => {
         if (err.status === 401) {
-          //ToDo relocate
-          //ToDo install ngx-cookie-service to handle cookie deletion
-          console.log('Unauthorizied');
+          this.cookieService.delete(cookieName, '/');
+          this.authService.clearUser();
+          this.router.navigate(['/auth/login'])
         } else {
           console.error(err);
         }
