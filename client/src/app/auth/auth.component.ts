@@ -27,15 +27,13 @@ export class AuthComponent implements OnInit {
       //Both credentials intact
 
       this.authService.setUserSubject(user);
-      console.log('credentials intact')
     } else if(authCookie){
       //No user in the storage, but token is intact, needs to be verified
 
-      console.log('missing user')
+      this.authService.getProfile()
     } else {
       //Either the cookie is missing or both are missing
 
-      console.log('Token is missing')
       this.authService.clearUserSession();
     }
   }

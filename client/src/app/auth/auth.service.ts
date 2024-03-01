@@ -50,6 +50,13 @@ export class AuthService {
       );
   }
 
+  getProfile() {
+    return this.http.get<User>('/api/auth/profile').subscribe((user) => {
+      this.setUserSubject(user);
+      this.setUserStorage(user);
+    });
+  }
+
   setUserSubject(user: User) {
     this.user$$.next(user);
   }
