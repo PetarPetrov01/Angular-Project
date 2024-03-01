@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subscription, tap } from 'rxjs';
 import { User } from '../types/User';
@@ -20,10 +20,17 @@ export class AuthService {
     });
   }
 
+  get isLogged(): boolean {
+    return !!this.user;
+  }
+
   login(email: string, password: string) {
-    return this.http
-      .post<User>('/api/auth/login', { email, password })
-      .pipe(tap((user) => this.user$$.next(user)));
+    return this.http.post<User>('/api/auth/login', { email, password }).pipe(
+      tap((user) => {
+        this.user$$.next(user);
+        this.setUser(user);
+      })
+    );
   }
 
   register(email: string, username: string, password: string) {
@@ -33,12 +40,6 @@ export class AuthService {
         username,
         password,
       })
-      .subscribe({
-        next: (user) => this.user$$.next(user),
-        error: (err)=>{
-          console.log(err)
-        }
-      });
       .pipe(
         tap((user) => {
           this.user$$.next(user);

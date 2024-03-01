@@ -1,9 +1,17 @@
 import { JsonPipe, NgIf } from '@angular/common';
-import { Component, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+  ViewChild,
+  inject,
+} from '@angular/core';
 import { FormsModule, NgForm, NgModel } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import {  Router, RouterLink } from '@angular/router';
 import { MatchPasswordsDirective } from '../../validators/match-passwords.directive';
 import { EmailValidateDirective } from '../../validators/email-validator.directive';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-register',
@@ -14,19 +22,26 @@ import { EmailValidateDirective } from '../../validators/email-validator.directi
     NgIf,
     MatchPasswordsDirective,
     EmailValidateDirective,
-    JsonPipe
+    JsonPipe,
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
-export class RegisterComponent implements OnChanges{
+export class RegisterComponent implements OnChanges {
   @ViewChild('passwords', { static: false }) passwords!: NgModel;
   @ViewChild('email', { static: false }) email!: NgModel;
 
-  ngOnChanges(changes: SimpleChanges): void {
+  constructor(private authService: AuthService, private router: Router) {}
 
-  }
+  ngOnChanges(changes: SimpleChanges): void {}
   handleRegister(form: NgForm) {
-    console.log(form.getControl(this.passwords));
+    if(form.invalid){
+      return;
+    }
+
+    const { email, username, passwords: {password} } = form.value;
+    this.authService.register(email, username, password).subscribe(()=>{
+      this.router.navigate(['/'])
+    })
   }
 }
