@@ -11,6 +11,7 @@ module.exports = () => (req, res, next) => {
       // req.token = token;
     } catch (error) {
       res.status(401).json({ message: "Invalid auth token" })
+      return;
     }
   }
 

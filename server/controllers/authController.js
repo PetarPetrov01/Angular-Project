@@ -32,8 +32,12 @@ authController.post("/login", async (req, res) => {
 authController.post(
   "/register",
   body("email").matches(emailPattern).withMessage("Invalid email"),
-  body("username").isLength({min:5}).withMessage('Username must be atleast 5 characters long'),
-  body("password").isLength({min:6}).withMessage('Password must be atleast 6 characters long'),
+  body("username")
+    .isLength({ min: 5 })
+    .withMessage("Username must be atleast 5 characters long"),
+  body("password")
+    .isLength({ min: 6 })
+    .withMessage("Password must be atleast 6 characters long"),
   async (req, res) => {
     try {
       const errors = validationResult(req).errors;
@@ -64,5 +68,17 @@ authController.post(
     }
   }
 );
+
+authController.get("/profile", async (req, res) => {
+  try {
+    const userId = req.user?._id;
+
+    const user = await authService.getUser(userId);
+    res.status(200).json(user);
+  } catch (error) {
+    const errorMessage = errorParser(error);
+    res.status(400).json({ message: errorMessage });
+  }
+});
 
 module.exports = authController;

@@ -40,6 +40,15 @@ async function register(username, email, password) {
   return createToken(user);
 }
 
+async function getUser(userId) {
+  const user = await User.findOne({ _id: userId });
+  return {
+    email: user.email,
+    username: user.username,
+    _id: user._id,
+  };
+}
+
 function verifyToken(token) {
   return jwt.verify(token, secret);
 }
@@ -56,13 +65,14 @@ function createToken(user) {
       email: user.email,
       username: user.username,
     },
-    authToken: jwt.sign(payload, secret, {expiresIn: '30s'}),
+    authToken: jwt.sign(payload, secret, { expiresIn: "30s" }),
   };
 }
 
 const authService = {
   login,
   register,
+  getUser,
   verifyToken,
 };
 
