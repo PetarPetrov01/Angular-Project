@@ -1,13 +1,25 @@
-<header [className]="home.isActive? 'home' :''">
+<header [className]="home.isActive ? 'home' : ''">
   <nav class="main-nav">
     <div class="logo">
       <i class="fa-solid fa-couch fa-2x"></i><span>DREAM-FURNITURE</span>
     </div>
     <ul>
-      <li><a routerLink="/home" routerLinkActive="active" #home="routerLinkActive">Home</a></li>
+      <li>
+        <a routerLink="/home" routerLinkActive="active" #home="routerLinkActive"
+          >Home</a
+        >
+      </li>
       <li><a routerLink="/products" routerLinkActive="active">Products</a></li>
-      <li><a routerLink="/auth/login" routerLinkActive="active">Login</a></li>
-      <li><a routerLink="/auth/register" routerLinkActive="active">Register</a></li>
+      <ng-container *ngIf="!isLogged">
+        <li><a routerLink="/auth/login" routerLinkActive="active">Login</a></li>
+        <li>
+          <a routerLink="/auth/register" routerLinkActive="active">Register</a>
+        </li>
+      </ng-container>
+      <ng-container *ngIf="isLogged">
+        <li><a routerLinkActive="active">Create</a></li>
+        <li><a routerLinkActive="active">Logout</a></li>
+      </ng-container>
     </ul>
   </nav>
   <div class="container" *ngIf="home.isActive">

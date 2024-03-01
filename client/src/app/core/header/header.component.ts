@@ -1,6 +1,7 @@
 import { NgIf } from '@angular/common';
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,14 +10,10 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
-export class HeaderComponent implements OnChanges{
-  activatedRouter: any;
-  
-  constructor(private router: Router){};
+export class HeaderComponent {
+  constructor(private router: Router, private authService: AuthService) {}
 
-  ngOnChanges(): void {
-    this.activatedRouter = this.router.url;
-    console.log(this.activatedRouter)
+  get isLogged(){
+    return this.authService.isLogged;
   }
-  
 }
