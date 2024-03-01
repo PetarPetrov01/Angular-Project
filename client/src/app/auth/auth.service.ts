@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subscription, tap } from 'rxjs';
 import { User } from '../types/User';
+import { CookieService } from 'ngx-cookie-service';
+import { cookieName } from './auth.component';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +16,7 @@ export class AuthService {
 
   subscription: Subscription;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private cookieService: CookieService) {
     this.subscription = this.user$$.subscribe((user) => {
       this.user = user;
     });
@@ -27,8 +29,8 @@ export class AuthService {
   login(email: string, password: string) {
     return this.http.post<User>('/api/auth/login', { email, password }).pipe(
       tap((user) => {
-        this.user$$.next(user);
-        this.setUser(user);
+        this.setUserSubject(user);
+        this.setUserStorage(user);
       })
     );
   }
@@ -42,29 +44,32 @@ export class AuthService {
       })
       .pipe(
         tap((user) => {
-          this.user$$.next(user);
-          this.setUser(user);
+          this.setUserSubject(user);
+          this.setUserStorage(user);
         })
       );
   }
 
-  setUser(user: User) {
+  setUserSubject(user: User) {
+    this.user$$.next(user);
+  }
+
+  setUserStorage(user: User) {
     localStorage.setItem('[user]', JSON.stringify(user));
   }
 
-  getUser() {
+  getUserStorage() {
     const user = localStorage.getItem('[user]');
-    if(user){
-      const parsedUser = JSON.parse(user)
-      this.user$$.next(parsedUser)
-      return parsedUser;
+    if (user) {
+      return JSON.parse(user);
     } else {
-      return null
+      return null;
     }
   }
 
-  clearUser() {
+  clearUserSession() {
     localStorage.removeItem('[user]');
-    this.user$$.next(undefined)
+    this.user$$.next(undefined);
+    this.cookieService.delete(cookieName, '/');
   }
 }
