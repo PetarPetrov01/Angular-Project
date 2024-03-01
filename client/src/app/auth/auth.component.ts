@@ -20,17 +20,23 @@ export class AuthComponent implements OnInit {
     private router: Router
   ) {}
   ngOnInit(): void {
-    const user = this.authService.getUser();
+    const user = this.authService.getUserStorage();
     const authCookie = this.cookieService.get(cookieName);
 
     if (user && authCookie) {
       //Both credentials intact
+
+      this.authService.setUserSubject(user);
       console.log('credentials intact')
     } else if(authCookie){
-      //Check if token is valid
+      //No user in the storage, but token is intact, needs to be verified
+
       console.log('missing user')
     } else {
+      //Either the cookie is missing or both are missing
+
       console.log('Token is missing')
+      this.authService.clearUserSession();
     }
   }
 }

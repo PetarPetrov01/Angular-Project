@@ -36,8 +36,7 @@ export class AppInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       catchError((err) => {
         if (err.status === 401) {
-          this.cookieService.delete(cookieName, '/');
-          this.authService.clearUser();
+          this.authService.clearUserSession();
           this.router.navigate(['/auth/login'])
         } else {
           console.error(err);
