@@ -39,5 +39,31 @@ export class AuthService {
           console.log(err)
         }
       });
+      .pipe(
+        tap((user) => {
+          this.user$$.next(user);
+          this.setUser(user);
+        })
+      );
+  }
+
+  setUser(user: User) {
+    localStorage.setItem('[user]', JSON.stringify(user));
+  }
+
+  getUser() {
+    const user = localStorage.getItem('[user]');
+    if(user){
+      const parsedUser = JSON.parse(user)
+      this.user$$.next(parsedUser)
+      return parsedUser;
+    } else {
+      return null
+    }
+  }
+
+  clearUser() {
+    localStorage.removeItem('[user]');
+    this.user$$.next(undefined)
   }
 }
