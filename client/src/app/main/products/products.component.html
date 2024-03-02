@@ -11,7 +11,17 @@
       </ul>
     </div>
     <div class="products-wrapper">
-      <div class="card">
+      <div class="card" *ngFor="let prod of mockProds">
+        <div class="media">
+          <img [src]="prod.img" alt="" />
+        </div>
+        <div class="info">
+            <p>Product name</p>
+            <p>Type</p>
+            <span>${{prod.price}} </span>
+        </div>
+      </div>
+      <!-- <div class="card">
         <div class="media">
           <img src="assets/images/chair-modern.png" alt="" />
         </div>
@@ -30,7 +40,7 @@
         <div class="media">
           <img src="assets/images/chair-modern.png" alt="" />
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </section>
