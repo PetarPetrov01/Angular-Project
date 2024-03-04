@@ -17,7 +17,10 @@ const productSchema = new Schema({
     required: true,
     validate: {
       validator: (v) => v.every((category) => categories.includes(category)),
-      message: (props) => `${props.value} contains invalid categories.`,
+      message: (props) =>
+        props.value.length > 1
+          ? "Some of the categories are invalid"
+          : `Invalid category - ${props.value.join()}`,
     },
   },
   style: { type: String, required: true },

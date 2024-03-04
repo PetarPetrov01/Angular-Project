@@ -1,6 +1,7 @@
 const express = require("express");
 const config = require("./config/express.js");
 const authController = require("./controllers/authController.js");
+const productController = require("./controllers/productController.js");
 
 start();
 async function start() {
@@ -9,6 +10,7 @@ async function start() {
   await config(app);
 
   app.use("/auth", authController);
+  app.use("/products", productController);
 
   app.get("/", (req, res) => {
     try {
