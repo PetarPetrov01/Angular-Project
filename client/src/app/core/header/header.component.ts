@@ -1,5 +1,5 @@
 import { NgIf } from '@angular/common';
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
 
@@ -13,7 +13,12 @@ import { AuthService } from '../../auth/auth.service';
 export class HeaderComponent {
   constructor(private router: Router, private authService: AuthService) {}
 
-  get isLogged(){
+  get isLogged() {
     return this.authService.isLogged;
+  }
+
+  handleLogout() {
+    this.authService.clearUserSession();
+    this.router.navigate(['/']);
   }
 }
