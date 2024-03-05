@@ -3,18 +3,18 @@
     <div class="form-wrapper">
       <h1>Add product</h1>
       <form action="" class="add-product" [formGroup]="addProductForm">
-        <div class="column">
+        <div class="column left">
           <mat-form-field>
             <mat-label>Name</mat-label>
-            <input matInput placeholder="Name" />
+            <input matInput placeholder="Name" formControlName="name" />
           </mat-form-field>
           <mat-form-field>
             <mat-label for="">Description</mat-label>
-            <textarea matInput type="text" style="max-height: 200px;"></textarea>
+            <textarea matInput type="text" style="max-height: 200px" formControlName="description"></textarea>
           </mat-form-field>
           <mat-form-field>
             <mat-label for="">Image</mat-label>
-            <input matInput type="text" />
+            <input matInput type="text" formControlName="image"/>
           </mat-form-field>
           <mat-form-field>
             <mat-label>Category</mat-label>
@@ -24,27 +24,35 @@
               }
             </mat-select>
           </mat-form-field>
+          <mat-form-field>
+            <mat-label for="">Style</mat-label>
+            <input matInput type="text" formControlName="style"/>
+          </mat-form-field>
         </div>
-        <div class="column">
+        <div class="column right">
           <mat-form-field>
             <mat-label>Height</mat-label>
-            <input matInput type="number" />
+            <input matInput type="number" formControlName="height"/>
           </mat-form-field>
           <mat-form-field>
             <mat-label>Width</mat-label>
-            <input matInput type="number" />
+            <input matInput type="number" formControlName="width"/>
           </mat-form-field>
           <mat-form-field>
             <mat-label>Depth</mat-label>
-            <input matInput type="number" />
+            <input matInput type="number" formControlName="depth"/>
           </mat-form-field>
           <mat-form-field>
             <mat-label for="">Material</mat-label>
-            <input matInput type="text" />
+            <mat-select formControlName="material" multiple>
+              @for (material of materialList; track material) {
+              <mat-option [value]="material">{{ material }}</mat-option>
+              }
+            </mat-select>
           </mat-form-field>
           <mat-form-field>
             <mat-label for="">Price</mat-label>
-            <input matInput type="number" />
+            <input matInput type="number" formControlName="price"/>
           </mat-form-field>
         </div>
       </form>

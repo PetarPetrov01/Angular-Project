@@ -26,9 +26,25 @@ export class AddProductComponent {
     'Outdoor',
   ];
 
+  materialList = [
+    'Wood',
+    'Metal',
+    'Plastic',
+    'Glass',
+    'Other'
+  ]
+
   constructor(private fb: FormBuilder) {}
   addProductForm = this.fb.group({
+    name: [''],
+    description: [''],
+    image: [''],
     category: [''],
+    height: [''],
+    width: [''],
+    depth: [''],
+    material: [''],
+    price: [''],
   });
 
   handleClick() {

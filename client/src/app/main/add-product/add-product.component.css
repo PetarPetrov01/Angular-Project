@@ -29,7 +29,6 @@ form.add-product{
     min-height: 400px;
     padding: 3em 2em;
     display: flex;
-    align-items: center;
     gap: 2em;
     width: 90%;
 }
@@ -38,12 +37,17 @@ form.add-product{
     flex: 1 1 50%;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
     align-items: flex-start;
+    justify-content: space-between;
 }
+
 
 mat-form-field{
     width: 100%;
+}
+
+textarea{
+    max-height: 100px;
 }
 
 input{
