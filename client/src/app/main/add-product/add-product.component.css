@@ -5,29 +5,33 @@ section.add-product{
 
 .container{
     max-width: 1600px;
+    margin: 0 auto;
 }
 
 .form-wrapper{
-    width: 70%;
+    width: 60%;
     margin: 0 auto;
     padding: 2em;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #fff;
-    box-shadow: 2px 2px 4px 1px #bbb;
+    background-color: #fff4;
+    box-shadow: 2px 2px 4px 1px #616fbd;;
 }
 
-h2{
+h1{
     text-align: center;
+    color: #3f51b5;
+    font-size: 1.9em;
 }
 
 form.add-product{
     min-height: 400px;
-    padding: 3em;
+    padding: 3em 2em;
     display: flex;
-    gap: 5em;
-    width: 80%;
+    align-items: center;
+    gap: 2em;
+    width: 90%;
 }
 
 .column{
@@ -36,21 +40,77 @@ form.add-product{
     flex-direction: column;
     justify-content: space-evenly;
     align-items: flex-start;
-    gap: 1em;
 }
 
-label{
-    font-family: 'PT Serif';
-    font-weight: 500;
-    letter-spacing: 1px;
+mat-form-field{
+    width: 100%;
 }
 
 input{
-    background-color: #fcfcfc;
-    border: 1px solid #ccc;
-    font-family: 'PT Serif';
-    padding: 0.5em;
-    font-size: 0.9em;
-    border-radius: 2px;
     width: 100%;
-} 
+}  
+
+button{
+    font-size: 1.1em;
+    padding: 0.8em 2em;
+    background-color: #6374d5;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+button:hover{
+    background-color: #3f51b5;
+}
+
+
+@media (max-width:1200px){
+    .form-wrapper{
+        width: 80%;
+    }
+
+    form.add-product{
+        padding: 3em 0.8em;
+    }
+}
+
+@media (max-width:800px){
+    .form-wrapper{
+        padding: 2em 0.8em;
+    }
+
+    form.add-product{
+        width: 95%;
+    }
+}
+
+@media (max-width: 650px){
+    form.add-product{
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .column{
+        flex: none;
+        width: 80%;
+    }
+}
+
+@media (max-width: 500px){
+    .form-wrapper{
+        width: 90%;
+    }
+
+    form.add-product{
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .column{
+        flex: none;
+        width: 90%;
+    }
+}
