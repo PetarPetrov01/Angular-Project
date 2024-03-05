@@ -1,8 +1,14 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-add-product',
@@ -13,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     FormsModule,
     MatInputModule,
+    NgIf
   ],
   templateUrl: './add-product.component.html',
   styleUrl: './add-product.component.css',
@@ -26,28 +33,24 @@ export class AddProductComponent {
     'Outdoor',
   ];
 
-  materialList = [
-    'Wood',
-    'Metal',
-    'Plastic',
-    'Glass',
-    'Other'
-  ]
+  materialList = ['Wood', 'Metal', 'Plastic', 'Glass', 'Other'];
 
   constructor(private fb: FormBuilder) {}
   addProductForm = this.fb.group({
-    name: [''],
-    description: [''],
-    image: [''],
-    category: [''],
-    height: [''],
-    width: [''],
-    depth: [''],
-    material: [''],
-    price: [''],
+    name: ['', Validators.required],
+    description: ['', Validators.required],
+    image: ['', Validators.required],
+    category: ['', Validators.required],
+    style: ['', Validators.required],
+    height: ['', Validators.required],
+    width: ['', Validators.required],
+    depth: ['', Validators.required],
+    material: ['', Validators.required],
+    price: ['', Validators.required],
   });
 
   handleClick() {
-    console.log(this.addProductForm.value);
+    console.log(this.addProductForm.get('width')?.errors);
+    // console.log(this.addProductForm.value);
   }
 }
