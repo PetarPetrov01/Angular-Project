@@ -2,7 +2,7 @@
   <div class="container">
     <div class="form-wrapper">
       <h2>Add product</h2>
-      <form action="" class="add-product">
+      <form action="" class="add-product" [formGroup]="addProductForm">
         <div class="column">
           <label for="">Name</label>
           <input type="text" />
@@ -11,8 +11,16 @@
           <label for="">Image</label>
           <input type="text" />
           <label for="">Category</label>
+          <mat-form-field>
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="category" multiple>
+              @for (category of categoryList; track category) {
+                <mat-option [value]="category">{{category}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
           <input type="text" />
-          <input type="text" />
+          <input type="text" /> 
         </div>
         <div class="column">
           <label for="">Dimensions</label>
@@ -25,7 +33,7 @@
           <input type="text" />
         </div>
       </form>
-      <button>Submit</button>
+      <button (click)="handleClick()">Submit</button>
     </div>
   </div>
-</section>
+</section>  
