@@ -1,39 +1,54 @@
 <section class="add-product">
   <div class="container">
     <div class="form-wrapper">
-      <h2>Add product</h2>
+      <h1>Add product</h1>
       <form action="" class="add-product" [formGroup]="addProductForm">
         <div class="column">
-          <label for="">Name</label>
-          <input type="text" />
-          <label for="">Description</label>
-          <input type="text" />
-          <label for="">Image</label>
-          <input type="text" />
-          <label for="">Category</label>
+          <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Name" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label for="">Description</mat-label>
+            <textarea matInput type="text" style="max-height: 200px;"></textarea>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label for="">Image</mat-label>
+            <input matInput type="text" />
+          </mat-form-field>
           <mat-form-field>
             <mat-label>Category</mat-label>
             <mat-select formControlName="category" multiple>
               @for (category of categoryList; track category) {
-                <mat-option [value]="category">{{category}}</mat-option>
+              <mat-option [value]="category">{{ category }}</mat-option>
               }
             </mat-select>
           </mat-form-field>
-          <input type="text" />
-          <input type="text" /> 
         </div>
         <div class="column">
-          <label for="">Dimensions</label>
-          <input type="text" />
-          <input type="text" />
-          <input type="text" />
-          <label for="">Material</label>
-          <input type="text" />
-          <label for="">Price</label>
-          <input type="text" />
+          <mat-form-field>
+            <mat-label>Height</mat-label>
+            <input matInput type="number" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Width</mat-label>
+            <input matInput type="number" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Depth</mat-label>
+            <input matInput type="number" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label for="">Material</mat-label>
+            <input matInput type="text" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label for="">Price</mat-label>
+            <input matInput type="number" />
+          </mat-form-field>
         </div>
       </form>
       <button (click)="handleClick()">Submit</button>
     </div>
   </div>
-</section>  
+</section>
