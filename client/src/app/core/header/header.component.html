@@ -17,7 +17,7 @@
         </li>
       </ng-container>
       <ng-container *ngIf="isLogged">
-        <li><a routerLinkActive="active">Create</a></li>
+        <li><a routerLink="add-product" routerLinkActive="active">Create</a></li>
         <li><a routerLinkActive="active" (click)="handleLogout()">Logout</a></li>
       </ng-container>
     </ul>
