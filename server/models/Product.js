@@ -31,6 +31,7 @@ const productSchema = new Schema({
       depth: Number,
     },
     required: true,
+    _id: false
   },
   material: { type: [String], required: true },
   color: {
