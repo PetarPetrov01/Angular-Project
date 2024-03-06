@@ -1,7 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import {
   FormBuilder,
-  FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';

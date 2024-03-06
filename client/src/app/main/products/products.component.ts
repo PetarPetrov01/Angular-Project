@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { APIProduct } from '../../types/Product';
 
 @Component({
@@ -12,11 +12,10 @@ import { APIProduct } from '../../types/Product';
   styleUrl: './products.component.css',
 })
 export class ProductsComponent {
-  
-products$: Observable<APIProduct[]>;
+  products$: Observable<APIProduct[]> | null;
 
-  constructor(apiService: ApiService){
-    this.products$ = apiService.getProducts();
+  constructor(apiService: ApiService) {
+    this.products$ = apiService.getProducts()
+    // this.products$ = null // Test empty arr;
   }
-
 }

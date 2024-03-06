@@ -11,12 +11,13 @@
       </ul>
     </div>
     <div class="products-wrapper">
+      <h1 class="no-products" *ngIf="(products$ | async)?.length == 0 || !products$">There are currently no products to show!</h1>
       <div class="card" *ngFor="let prod of products$ | async">
         <div class="media">
           <img [src]="prod.image" alt="" />
         </div>
-        <div class="info">
-          <p>Product name</p>
+        <div class="info">c
+          <p>{{prod.name}}</p>
           <p>Type</p>
           <span>${{ prod.price }} </span>
         </div>
