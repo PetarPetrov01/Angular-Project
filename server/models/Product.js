@@ -1,4 +1,4 @@
-const { Schema, model, trusted } = require("mongoose");
+const { Schema, model, Types } = require("mongoose");
 
 const categories = [
   "Living room",
@@ -41,6 +41,10 @@ const productSchema = new Schema({
     type: Number,
     required: true,
   },
+  _ownerId: {
+    type: Types.ObjectId,
+    ref: 'User'
+  }
 });
 
 const Product = model("Product", productSchema);
