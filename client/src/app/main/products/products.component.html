@@ -11,9 +11,9 @@
       </ul>
     </div>
     <div class="products-wrapper">
-      <div class="card" *ngFor="let prod of mockProds">
+      <div class="card" *ngFor="let prod of products$ | async">
         <div class="media">
-          <img [src]="prod.img" alt="" />
+          <img [src]="prod.image" alt="" />
         </div>
         <div class="info">
           <p>Product name</p>

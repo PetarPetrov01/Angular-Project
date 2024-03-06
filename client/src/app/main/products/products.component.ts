@@ -1,5 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
+import { Observable } from 'rxjs';
+import { APIProduct } from '../../types/Product';
 
 @Component({
   selector: 'app-products',
@@ -9,10 +12,11 @@ import { Component } from '@angular/core';
   styleUrl: './products.component.css',
 })
 export class ProductsComponent {
-  mockProds = [
-    { img: 'assets/images/chair-modern.png', price: 199 },
-    { img: 'assets/images/stool.png', price: 199 },
-    { img: 'assets/images/lamp.png', price: 199 },
-    { img: 'assets/images/chair-modern.png', price: 199 },
-  ];
+  
+products$: Observable<APIProduct[]>;
+
+  constructor(apiService: ApiService){
+    this.products$ = apiService.getProducts();
+  }
+
 }
