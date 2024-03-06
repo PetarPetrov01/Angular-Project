@@ -76,6 +76,14 @@
             </mat-select>
           </mat-form-field>
           <mat-form-field>
+            <mat-label for="">Color</mat-label>
+            <mat-select formControlName="color">
+              @for (color of colorList; track color) {
+              <mat-option [value]="color"><i class="fa-solid fa-square fa-lg" [style.color]="color"></i>   {{ color }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
             <mat-label for="">Price</mat-label>
             <input matInput type="number" formControlName="price" min="0"/>
             <mat-error *ngIf="addProductForm.get('price')?.hasError('required')">Price is required and must be a number</mat-error>

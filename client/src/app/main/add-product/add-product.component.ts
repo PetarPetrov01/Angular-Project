@@ -20,6 +20,7 @@ import { NgIf } from '@angular/common';
     FormsModule,
     MatInputModule,
     NgIf
+    NgIf,
   ],
   templateUrl: './add-product.component.html',
   styleUrl: './add-product.component.css',
@@ -36,6 +37,9 @@ export class AddProductComponent {
   materialList = ['Wood', 'Metal', 'Plastic', 'Glass', 'Other'];
 
   constructor(private fb: FormBuilder) {}
+  colorList = ['White','Black','Grey','Red','Green','Blue','Orange','Yellow','Brown','Purple','Pink']
+
+
   addProductForm = this.fb.group({
     name: ['', Validators.required],
     description: ['', Validators.required],
@@ -46,6 +50,7 @@ export class AddProductComponent {
     width: ['', Validators.required],
     depth: ['', Validators.required],
     material: ['', Validators.required],
+    color: ['',Validators.required],
     price: ['', Validators.required],
   });
 
