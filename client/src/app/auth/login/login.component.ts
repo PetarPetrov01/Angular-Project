@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import {
   FormBuilder,
   FormsModule,
@@ -9,6 +9,7 @@ import { Router, RouterLink } from '@angular/router';
 import { EmailValidateDirective } from '../../validators/email-validator.directive';
 import { NgIf } from '@angular/common';
 import { AuthService } from '../auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -17,12 +18,16 @@ import { AuthService } from '../auth.service';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy{
+  subscription: Subscription | null;
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService
-  ) {}
+  ) {
+    this.subscription = null;
+  }
 
   loginForm = this.fb.group({
     email: ['', [Validators.required]],
@@ -39,5 +44,9 @@ export class LoginComponent {
     this.authService.login(email!, password!).subscribe(() => {
       this.router.navigate(['/']);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 }

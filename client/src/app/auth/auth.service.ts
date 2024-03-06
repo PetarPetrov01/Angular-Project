@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Subscription, tap } from 'rxjs';
 import { User } from '../types/User';
 import { CookieService } from 'ngx-cookie-service';
@@ -8,7 +8,7 @@ import { cookieName } from './auth.component';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
+export class AuthService implements OnDestroy{
   private user$$ = new BehaviorSubject<User | undefined>(undefined);
   public user$ = this.user$$.asObservable();
 
@@ -78,5 +78,9 @@ export class AuthService {
     localStorage.removeItem('[user]');
     this.user$$.next(undefined);
     this.cookieService.delete(cookieName, '/');
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

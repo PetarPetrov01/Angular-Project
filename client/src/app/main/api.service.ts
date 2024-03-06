@@ -9,7 +9,7 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   getProducts() {
-    // this.http.get
+    return this.http.get<APIProduct[]>('/api/products');
   }
 
   addProduct(data: Product) {

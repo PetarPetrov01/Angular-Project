@@ -2,6 +2,7 @@ import { JsonPipe, NgIf } from '@angular/common';
 import {
   Component,
   OnChanges,
+  OnDestroy,
   OnInit,
   SimpleChanges,
   ViewChild,
@@ -12,6 +13,7 @@ import {  Router, RouterLink } from '@angular/router';
 import { MatchPasswordsDirective } from '../../validators/match-passwords.directive';
 import { EmailValidateDirective } from '../../validators/email-validator.directive';
 import { AuthService } from '../auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -27,21 +29,25 @@ import { AuthService } from '../auth.service';
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
-export class RegisterComponent implements OnChanges {
-  @ViewChild('passwords', { static: false }) passwords!: NgModel;
-  @ViewChild('email', { static: false }) email!: NgModel;
+export class RegisterComponent implements OnDestroy{
+  subscription: Subscription | null;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {
+    this.subscription = null;
+  }
 
-  ngOnChanges(changes: SimpleChanges): void {}
   handleRegister(form: NgForm) {
     if(form.invalid){
       return;
     }
 
     const { email, username, passwords: {password} } = form.value;
-    this.authService.register(email, username, password).subscribe(()=>{
+    this.subscription = this.authService.register(email, username, password).subscribe(()=>{
       this.router.navigate(['/'])
     })
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 }
