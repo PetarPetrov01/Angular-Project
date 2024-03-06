@@ -5,6 +5,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AddProductComponent } from './main/add-product/add-product.component';
 import { isUserGuard } from './guards/auth.guard';
+import { ProductDetailsComponent } from './main/product-details/product-details.component';
 
 export const routes: Routes = [
   {
@@ -18,7 +19,13 @@ export const routes: Routes = [
   },
   {
     path: 'products',
-    component: ProductsComponent,
+    children: [
+      {
+        path: '',
+        component: ProductsComponent,
+      },
+      { path: ':id', component: ProductDetailsComponent },
+    ],
   },
   {
     path: 'add-product',
