@@ -9,6 +9,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { NgIf } from '@angular/common';
+import { ApiService } from '../api.service';
+import { Product } from '../../types/Product';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-product',
@@ -19,7 +22,6 @@ import { NgIf } from '@angular/common';
     MatFormFieldModule,
     FormsModule,
     MatInputModule,
-    NgIf
     NgIf,
   ],
   templateUrl: './add-product.component.html',
@@ -36,9 +38,25 @@ export class AddProductComponent {
 
   materialList = ['Wood', 'Metal', 'Plastic', 'Glass', 'Other'];
 
-  constructor(private fb: FormBuilder) {}
-  colorList = ['White','Black','Grey','Red','Green','Blue','Orange','Yellow','Brown','Purple','Pink']
+  colorList = [
+    'white',
+    'black',
+    'grey',
+    'red',
+    'green',
+    'blue',
+    'orange',
+    'yellow',
+    'brown',
+    'purple',
+    'pink',
+  ];
 
+  constructor(
+    private fb: FormBuilder,
+    private apiService: ApiService,
+    private router: Router
+  ) {}
 
   addProductForm = this.fb.group({
     name: ['', Validators.required],
@@ -50,12 +68,41 @@ export class AddProductComponent {
     width: ['', Validators.required],
     depth: ['', Validators.required],
     material: ['', Validators.required],
-    color: ['',Validators.required],
+    color: ['', Validators.required],
     price: ['', Validators.required],
   });
 
   handleClick() {
-    console.log(this.addProductForm.get('width')?.errors);
-    // console.log(this.addProductForm.value);
+    if (this.addProductForm.invalid) {
+      return;
+    }
+
+    const { width, height, depth, ...values } = this.addProductForm.value;
+    const dimensions = {
+      width: Number(width),
+      height: Number(height),
+      depth: Number(depth),
+    };
+
+    const safeValues = {
+      name: values.name || '',
+      description: values.description || '',
+      image: values.image || '',
+      category: Array.isArray(values.category) ? values.category : [],
+      style: values.style || '',
+      material: Array.isArray(values.material) ? values.material : [],
+      color: values.color || '',
+      price: Number(values.price) || 0,
+    };
+
+    const data: Product = {
+      ...safeValues,
+      dimensions,
+    };
+
+    this.apiService.addProduct(data).subscribe((prod) => {
+      console.log(prod);
+      this.router.navigate(['/products']);
+    });
   }
 }
