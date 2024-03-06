@@ -1,120 +1,131 @@
-section.add-product{
-    background: linear-gradient(90deg, #eee,#fff,#eee);
-    padding: 3em 0;
+section.add-product {
+  background: linear-gradient(90deg, #eee, #fff, #eee);
 }
 
-.container{
-    max-width: 1600px;
-    margin: 0 auto;
+.container {
+  padding: 3em 0;
+  max-width: 1600px;
+  margin: 0 auto;
+  background-image: url("../../../assets/images/add-prod-back.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
-.form-wrapper{
-    width: 60%;
-    margin: 0 auto;
-    padding: 2em;
-    display: flex;
+.form-wrapper {
+  width: 60%;
+  margin: 0 auto;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff7;
+  background: radial-gradient(#eee4 40%, #8f83c844);
+  box-shadow: 0px 0px 4px 1px #909ed6;
+}
+
+h1 {
+  text-align: center;
+  color: #4659c9;
+  color: #ffffff;
+  font-size: 2.5em;
+  text-shadow: 2px 1px 2px #4659c9;
+  /* text-shadow: 1px 0px 3px #e2dcf1; */
+}
+
+form.add-product {
+  min-height: 400px;
+  padding: 3em 2em;
+  display: flex;
+  gap: 2em;
+  width: 90%;
+}
+
+.column {
+  flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+div.mat-mdc-text-field-wrapper {
+  background-color: transparent;
+  width: 70%;
+}
+
+textarea {
+  max-height: 100px;
+}
+
+input {
+  width: 100%;
+}
+
+button {
+  font-size: 1.1em;
+  padding: 0.8em 2em;
+  background-color: #6374d5;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  transition: all 0.3s;
+}
+
+button:hover {
+  background-color: #3f51b5;
+}
+
+@media (max-width: 1200px) {
+  .form-wrapper {
+    width: 80%;
+  }
+
+  form.add-product {
+    padding: 3em 0.8em;
+  }
+}
+
+@media (max-width: 800px) {
+  .form-wrapper {
+    padding: 2em 0.8em;
+  }
+
+  form.add-product {
+    width: 95%;
+  }
+}
+
+@media (max-width: 650px) {
+  form.add-product {
     flex-direction: column;
     align-items: center;
-    background-color: #fff4;
-    box-shadow: 2px 2px 4px 1px #616fbd;;
+    gap: 0;
+  }
+
+  .column {
+    flex: none;
+    width: 80%;
+  }
 }
 
-h1{
-    text-align: center;
-    color: #3f51b5;
-    font-size: 1.9em;
-}
-
-form.add-product{
-    min-height: 400px;
-    padding: 3em 2em;
-    display: flex;
-    gap: 2em;
+@media (max-width: 500px) {
+  .form-wrapper {
     width: 90%;
-}
+  }
 
-.column{
-    flex: 1 1 50%;
-    display: flex;
+  form.add-product {
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-}
+    gap: 0;
+  }
 
-
-mat-form-field{
-    width: 100%;
-}
-
-textarea{
-    max-height: 100px;
-}
-
-input{
-    width: 100%;
-}  
-
-button{
-    font-size: 1.1em;
-    padding: 0.8em 2em;
-    background-color: #6374d5;
-    outline: none;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    color: #fff;
-    transition: all 0.3s;
-}
-
-button:hover{
-    background-color: #3f51b5;
-}
-
-
-@media (max-width:1200px){
-    .form-wrapper{
-        width: 80%;
-    }
-
-    form.add-product{
-        padding: 3em 0.8em;
-    }
-}
-
-@media (max-width:800px){
-    .form-wrapper{
-        padding: 2em 0.8em;
-    }
-
-    form.add-product{
-        width: 95%;
-    }
-}
-
-@media (max-width: 650px){
-    form.add-product{
-        flex-direction: column;
-        gap: 0;
-    }
-
-    .column{
-        flex: none;
-        width: 80%;
-    }
-}
-
-@media (max-width: 500px){
-    .form-wrapper{
-        width: 90%;
-    }
-
-    form.add-product{
-        flex-direction: column;
-        gap: 0;
-    }
-
-    .column{
-        flex: none;
-        width: 90%;
-    }
+  .column {
+    flex: none;
+    width: 90%;
+  }
 }

@@ -7,7 +7,9 @@
           <mat-form-field>
             <mat-label>Name</mat-label>
             <input matInput placeholder="Name" formControlName="name" />
-            <mat-error *ngIf="addProductForm.get('name')?.hasError('required')">Name is required</mat-error>
+            <mat-error *ngIf="addProductForm.get('name')?.hasError('required')"
+              >Name is required</mat-error
+            >
           </mat-form-field>
           <mat-form-field>
             <mat-label for="">Description</mat-label>
@@ -16,56 +18,70 @@
               type="text"
               style="max-height: 200px"
               formControlName="description"
-              ></textarea>
-              <mat-error *ngIf="addProductForm.get('description')?.hasError('required')">Description is required</mat-error>
-            </mat-form-field>
-            <mat-form-field>
-              <mat-label for="">Image</mat-label>
-              <input matInput type="text" formControlName="image" />
-              <mat-error *ngIf="addProductForm.get('image')?.hasError('required')">Image is required</mat-error>
-            </mat-form-field>
-            <mat-form-field>
-              <mat-label>Category</mat-label>
-              <mat-select formControlName="category" multiple>
-                @for (category of categoryList; track category) {
-                  <mat-option [value]="category">{{ category }}</mat-option>
-                }
-              </mat-select>
-              <mat-error *ngIf="addProductForm.get('category')?.hasError('required')">Category is required</mat-error>
-            </mat-form-field>
-            <mat-form-field>
-              <mat-label for="">Style</mat-label>
-              <input matInput type="text" formControlName="style" />
-              <mat-error *ngIf="addProductForm.get('style')?.hasError('required')">Style is required</mat-error>
+            ></textarea>
+            <mat-error
+              *ngIf="addProductForm.get('description')?.hasError('required')"
+              >Description is required</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label for="">Image</mat-label>
+            <input matInput type="text" formControlName="image" />
+            <mat-error *ngIf="addProductForm.get('image')?.hasError('required')"
+              >Image is required</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="category" multiple>
+              @for (category of categoryList; track category) {
+              <mat-option [value]="category">{{ category }}</mat-option>
+              }
+            </mat-select>
+            <mat-error
+              *ngIf="addProductForm.get('category')?.hasError('required')"
+              >Category is required</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label for="">Style</mat-label>
+            <input matInput type="text" formControlName="style" />
+            <mat-error *ngIf="addProductForm.get('style')?.hasError('required')"
+              >Style is required</mat-error
+            >
           </mat-form-field>
         </div>
         <div class="column right">
           <mat-form-field>
             <mat-label>Height</mat-label>
-            <input matInput type="number" formControlName="height" min="0"/>
-            <mat-error *ngIf="addProductForm.get('height')?.hasError('required')"
+            <input matInput type="number" formControlName="height" min="0" />
+            <mat-error
+              *ngIf="addProductForm.get('height')?.hasError('required')"
               >Height is required and must be a number</mat-error
             >
-            <mat-error *ngIf="addProductForm.get('height')?.hasError('min')">Height must be a positive number</mat-error>
-
+            <mat-error *ngIf="addProductForm.get('height')?.hasError('min')"
+              >Height must be a positive number</mat-error
+            >
           </mat-form-field>
           <mat-form-field>
             <mat-label>Width</mat-label>
-            <input matInput type="number" formControlName="width" min="0"/>
+            <input matInput type="number" formControlName="width" min="0" />
             <mat-error *ngIf="addProductForm.get('width')?.hasError('required')"
               >Width is required and must be a number</mat-error
             >
-            <mat-error *ngIf="addProductForm.get('width')?.hasError('min')">Width must be a positive number</mat-error>
-
+            <mat-error *ngIf="addProductForm.get('width')?.hasError('min')"
+              >Width must be a positive number</mat-error
+            >
           </mat-form-field>
           <mat-form-field>
             <mat-label>Depth</mat-label>
-            <input matInput type="number" formControlName="depth" min="0"/>
+            <input matInput  type="number" formControlName="depth" min="0" />
             <mat-error *ngIf="addProductForm.get('depth')?.hasError('required')"
               >Depth is required and must be a number</mat-error
             >
-            <mat-error *ngIf="addProductForm.get('depth')?.hasError('min')">Depth must be a positive number</mat-error>
-
+            <mat-error *ngIf="addProductForm.get('depth')?.hasError('min')"
+              >Depth must be a positive number</mat-error
+            >
           </mat-form-field>
           <mat-form-field>
             <mat-label for="">Material</mat-label>
@@ -79,16 +95,22 @@
             <mat-label for="">Color</mat-label>
             <mat-select formControlName="color">
               @for (color of colorList; track color) {
-              <mat-option [value]="color"><i class="fa-solid fa-square fa-lg" [style.color]="color"></i>   {{ color }}</mat-option>
+              <mat-option [value]="color"
+                ><i class="fa-solid fa-square fa-lg" [style.color]="color"></i>
+                {{ color.charAt(0).toUpperCase() + color.slice(1) }}</mat-option
+              >
               }
             </mat-select>
           </mat-form-field>
           <mat-form-field>
             <mat-label for="">Price</mat-label>
-            <input matInput type="number" formControlName="price" min="0"/>
-            <mat-error *ngIf="addProductForm.get('price')?.hasError('required')">Price is required and must be a number</mat-error>
-            <mat-error *ngIf="addProductForm.get('price')?.hasError('min')">Price must be a positive number</mat-error>
-
+            <input matInput type="number" formControlName="price" min="0" />
+            <mat-error *ngIf="addProductForm.get('price')?.hasError('required')"
+              >Price is required and must be a number</mat-error
+            >
+            <mat-error *ngIf="addProductForm.get('price')?.hasError('min')"
+              >Price must be a positive number</mat-error
+            >
           </mat-form-field>
         </div>
       </form>

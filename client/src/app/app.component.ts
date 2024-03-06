@@ -20,7 +20,6 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    console.log('init');
     this.http.get('/api').subscribe({
       next: (p) => console.log(p),
     });

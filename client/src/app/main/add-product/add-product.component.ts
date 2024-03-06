@@ -100,6 +100,8 @@ export class AddProductComponent {
       dimensions,
     };
 
+    console.log(data);
+
     this.apiService.addProduct(data).subscribe((prod) => {
       console.log(prod);
       this.router.navigate(['/products']);
