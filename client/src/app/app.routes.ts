@@ -4,7 +4,7 @@ import { ProductsComponent } from './main/products/products.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AddProductComponent } from './main/add-product/add-product.component';
-import { isUserGuard } from './guards/auth.guard';
+import { isGuestGuard, isUserGuard } from './guards/auth.guard';
 import { ProductDetailsComponent } from './main/product-details/product-details.component';
 
 export const routes: Routes = [
@@ -35,8 +35,12 @@ export const routes: Routes = [
   {
     path: 'auth',
     children: [
-      { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent },
+      { path: 'login', component: LoginComponent, canActivate: [isGuestGuard] },
+      {
+        path: 'register',
+        component: RegisterComponent,
+        canActivate: [isGuestGuard],
+      },
     ],
   },
 ];

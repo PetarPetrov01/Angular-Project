@@ -13,3 +13,15 @@ export const isUserGuard: CanActivateFn = function () {
     return false;
   }
 };
+
+export const isGuestGuard: CanActivateFn = function (){
+  const userService = inject(AuthService);
+  const router = inject(Router);
+
+  if (userService.isLogged) {
+    router.navigate(['/']);
+    return false;
+  } else {
+    return true;
+  }
+}
