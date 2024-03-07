@@ -18,6 +18,10 @@ async function getProducts(query) {
     products = await Product.find({});
   }
 
+  if(query.sort) {
+    products = products.sort(query.sort);
+  }
+
   console.log(products);
   return products;
 }
