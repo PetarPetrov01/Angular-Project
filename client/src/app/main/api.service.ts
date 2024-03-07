@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { APIProduct, Product } from '../types/Product';
+import { APIProduct, PopulatedProduct, Product } from '../types/Product';
+import { tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +11,14 @@ export class ApiService {
 
   getProducts() {
     return this.http.get<APIProduct[]>('/api/products');
+  }
+
+  getProduct(productId: string){
+    console.log(productId);
+    return this.http.get<PopulatedProduct>(`/api/products/${productId}`).pipe(tap(res=>{
+      console.log('From api')
+      console.log(res);
+    }))
   }
 
   addProduct(data: Product) {
