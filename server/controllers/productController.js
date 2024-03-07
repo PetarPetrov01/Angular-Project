@@ -1,3 +1,4 @@
+const { isUser } = require("../middlewares/guards");
 const productService = require("../services/productService");
 const errorParser = require("../util/errorParser");
 
@@ -30,7 +31,7 @@ productController.get("/:id", async (req, res) => {
   }
 });
 
-productController.post("/", async (req, res) => {
+productController.post("/", isUser(),async (req, res) => {
   try {
     const data = req.body;
     data._ownerId = req.user._id;

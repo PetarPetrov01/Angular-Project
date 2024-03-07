@@ -3,12 +3,13 @@ const { authCookieName } = require("../config/cookie.js");
 const errorParser = require("../util/errorParser.js");
 
 const { body, validationResult } = require("express-validator");
+const { isGuest } = require("../middlewares/guards.js");
 
 const authController = require("express").Router();
 
 const emailPattern = "[a-zA-Z0-9]{5,}@[a-zA-Z]+.[a-zA-Z]{2,}$";
 
-authController.post("/login", async (req, res) => {
+authController.post("/login", isGuest(), async (req, res) => {
   try {
     const { email, password } = req.body;
     const { user, authToken } = await authService.login(email, password);
@@ -31,6 +32,7 @@ authController.post("/login", async (req, res) => {
 
 authController.post(
   "/register",
+  isGuest(),
   body("email").matches(emailPattern).withMessage("Invalid email"),
   body("username")
     .isLength({ min: 5 })

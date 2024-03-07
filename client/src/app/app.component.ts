@@ -14,14 +14,7 @@ import { tap } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'dreamFurniture';
-
-  constructor(private http: HttpClient) {}
-
-  ngOnInit(): void {
-    this.http.get('/api').subscribe({
-      next: (p) => console.log(p),
-    });
-  }
+  constructor() {}
 }
