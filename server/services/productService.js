@@ -2,13 +2,22 @@ const Product = require("../models/Product");
 
 async function getProducts(query) {
   let products;
-  let options = {};
+  const optionsArr = [];
 
   if (query.category) {
-    options = { category: { $in: query.category } };
+    optionsArr.push({ category: { $in: query.category } });
   }
 
-  products = await Product.find(options);
+  if (query.search) {
+    optionsArr.push({ name: { $regex: new RegExp(query.search, "i") } });
+  }
+
+  if (optionsArr.length > 0) {
+    products = await Product.find({ $and: optionsArr });
+  } else {
+    products = await Product.find({});
+  }
+
   console.log(products);
   return products;
 }
