@@ -22,7 +22,6 @@ async function getProducts(query) {
     products = products.sort(query.sort);
   }
 
-  console.log(products);
   return products;
 }
 

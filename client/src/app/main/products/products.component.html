@@ -2,22 +2,29 @@
   <div class="container">
     <div class="options">
       <ul>
-        <li><a href="">All</a></li>
-        <li><a href="">Living room</a></li>
-        <li><a href="">Bedroom</a></li>
-        <li><a href="">Dining room</a></li>
-        <li><a href="">Home office</a></li>
-        <li><a href="">Outdoor</a></li>
+        <li><a (click)="changeCategory('')">All</a></li>
+        <li>
+          <a (click)="changeCategory('Living room')">Living room</a>
+        </li>
+        <li>
+          <a (click)="changeCategory('Bedroom')">Bedroom</a>
+        </li>
+        <li>
+          <a (click)="changeCategory('Dining room')">Dining room</a>
+        </li>
+        <li>
+          <a (click)="changeCategory('Home office')">Home office</a>
+        </li>
+        <li>
+          <a (click)="changeCategory('Outdoor')">Outdoor</a>
+        </li>
       </ul>
     </div>
     <div class="products-wrapper">
-      <h1
-        class="no-products"
-        *ngIf="(products$ | async)?.length == 0 || !products$"
-      >
+      <h1 class="no-products" *ngIf="products?.length == 0 || !products">
         There are currently no products to show!
       </h1>
-      <div class="card" *ngFor="let prod of products$ | async">
+      <div class="card" *ngFor="let prod of products">
         <div class="media">
           <a [routerLink]="prod._id">
             <img [src]="prod.image" alt="" />

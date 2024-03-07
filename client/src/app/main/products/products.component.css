@@ -25,6 +25,7 @@ li a {
   color: #000;
   font-size: 1.1em;
   transition: transform 0.3s;
+  cursor: pointer;
 }
 
 li a:hover {

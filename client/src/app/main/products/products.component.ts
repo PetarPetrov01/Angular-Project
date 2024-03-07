@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-import { Observable, tap } from 'rxjs';
+import { Observable, Subscription, tap } from 'rxjs';
 import { APIProduct } from '../../types/Product';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -12,11 +12,48 @@ import { RouterLink } from '@angular/router';
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
 })
-export class ProductsComponent {
-  products$: Observable<APIProduct[]> | null;
+export class ProductsComponent implements OnInit, OnDestroy {
+  // products$: Observable<APIProduct[]> | null;
+  products: APIProduct[] | null = null;
+  queryParams: any = {};
 
-  constructor(apiService: ApiService) {
-    this.products$ = apiService.getProducts()
+  querySubcsription: Subscription | null = null;
+  apiSubscription: Subscription | null = null;
+
+  constructor(
+    private apiService: ApiService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
     // this.products$ = null // Test empty arr;
+  }
+
+  ngOnInit(): void {
+    this.querySubcsription = this.route.queryParams.subscribe((params) => {
+      this.queryParams = params;
+      this.fetchProduts();
+    });
+  }
+
+  fetchProduts() {
+    this.apiSubscription = this.apiService
+      .getProducts(this.queryParams)
+      .subscribe((prods) => {
+        this.products = prods;
+      });
+  }
+
+  changeCategory(category: string) {
+    if (category){
+      this.router.navigate(['/products'], { queryParams: { category } });
+    } else {
+      this.router.navigate(['/products']);
+    }
+    this.fetchProduts()
+  }
+
+  ngOnDestroy(): void {
+    this.querySubcsription?.unsubscribe();
+    this.apiSubscription?.unsubscribe();
   }
 }
