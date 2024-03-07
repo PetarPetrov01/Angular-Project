@@ -44,6 +44,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   changeCategory(category: string) {
+    if(category == this.queryParams['category']){
+      return;
+    }
+
     if (category){
       this.router.navigate(['/products'], { queryParams: { category } });
     } else {

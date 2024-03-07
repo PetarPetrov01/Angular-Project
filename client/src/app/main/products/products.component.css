@@ -28,7 +28,8 @@ li a {
   cursor: pointer;
 }
 
-li a:hover {
+li a.active,
+li a:hover:not(.active) {
   transform: scale(1.2);
 }
 
@@ -50,7 +51,7 @@ li a:hover {
 
 .products-wrapper {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   gap: 2em;
   padding: 1em;
@@ -72,9 +73,14 @@ li a:hover {
 }
 
 .card .info {
-  padding-top: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  font-size: 1.05em;
+  padding: 1em ;
 }
 
 .card span {
+  font-size: 1.2em;
   font-weight: bold;
 }

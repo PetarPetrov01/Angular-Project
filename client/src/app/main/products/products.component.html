@@ -2,21 +2,47 @@
   <div class="container">
     <div class="options">
       <ul>
-        <li><a (click)="changeCategory('')">All</a></li>
         <li>
-          <a (click)="changeCategory('Living room')">Living room</a>
+          <a
+            (click)="changeCategory('')"
+            [ngClass]="!queryParams['category'] ? 'active' : ''"
+            >All</a
+          >
         </li>
         <li>
-          <a (click)="changeCategory('Bedroom')">Bedroom</a>
+          <a
+            (click)="changeCategory('Living room')"
+            [ngClass]="queryParams['category'] == 'Living room' ? 'active' : ''"
+            >Living room</a
+          >
         </li>
         <li>
-          <a (click)="changeCategory('Dining room')">Dining room</a>
+          <a
+            (click)="changeCategory('Bedroom')"
+            [ngClass]="queryParams['category'] == 'Bedroom' ? 'active' : ''"
+            >Bedroom</a
+          >
         </li>
         <li>
-          <a (click)="changeCategory('Home office')">Home office</a>
+          <a
+            (click)="changeCategory('Dining room')"
+            [ngClass]="queryParams['category'] == 'Dining room' ? 'active' : ''"
+            >Dining room</a
+          >
         </li>
         <li>
-          <a (click)="changeCategory('Outdoor')">Outdoor</a>
+          <a
+            (click)="changeCategory('Home office')"
+            [ngClass]="queryParams['category'] == 'Home office' ? 'active' : ''"
+            >Home office</a
+          >
+        </li>
+        <li>
+          <a
+            (click)="changeCategory('Outdoor')"
+            [ngClass]="queryParams['category'] == 'Outdoor' ? 'active' : ''"
+            >Outdoor</a
+          >
         </li>
       </ul>
     </div>
@@ -31,8 +57,8 @@
           </a>
         </div>
         <div class="info">
-          <p>{{ prod.name }}</p>
-          <p>Type</p>
+          <h3>{{ prod.name }}</h3>
+          <p>{{prod.material}}</p>
           <span>${{ prod.price }} </span>
         </div>
       </div>
