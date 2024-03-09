@@ -16,13 +16,19 @@
         <p class="shipping">Free shipping and express delivery across Europe in just 3-5 working days.</p>
         <p>Color: {{product?.color}}</p>
         <div class="controls">
-            <a href="">Add to cart</a>
-            <a href=""><i class="fa-regular fa-heart"></i></a>
+            <a href="" id="button-cart">Add to cart</a>
+            <a href="" id="button-wishlist"><i class="fa-regular fa-heart"></i></a>
+        </div>
+        <div class="keypoints">
+            <p><i class="fa-solid fa-truck"></i><span>Free delivery</span></p>
+            <p><i class="fa-solid fa-rotate-left"></i><span>365 days guaranteed return</span></p>
+            <p><i class="fa-solid fa-hand-holding-dollar"></i><span>Cash on delivery</span></p>
         </div>
       </div>
 
       <div class="info-section">
         <h2 id="info-heading">Dimensions and characteristics</h2>
+        <p id="description">Description: {{product?.description}}</p>
         <div class="column">
           <div class="row">
             <p class="row-label">Categories:</p>
