@@ -1,31 +1,61 @@
 <section class="product-details">
-    <div class="container">
-        <div class="wrapper">
-
-            <div class="image-section">
-                <div class="media">
-                    <img [src]="product?.image" [alt]="product?.name">
-                </div>
-            </div>
-            <div class="buy-section">
-                <h2>{{product?.name}}</h2>
-                <p>{{product?.category}}</p>
-                <h1>{{product?.price}}</h1>
-            </div>
-
-            <div class="info-section">
-                <div class="column">
-                    <p>Categroies: {{product?.category?.join(', ')}}</p>
-                    <p>Width: {{product?.dimensions?.width}}</p>
-                    <p>Height: {{product?.dimensions?.height}}</p>
-                    <p>Depth: {{product?.dimensions?.depth}}</p>
-                </div>
-                <div class="column">
-                   <p>Material: {{product?.material}}</p>
-                   <p>Style: {{product?.style}}</p>
-                   <p>Color: {{product?.color}}</p>
-                </div>
-            </div>
+  <div class="container">
+    <div class="wrapper">
+      <div class="image-section">
+        <div class="media">
+          <img [src]="product?.image" [alt]="product?.name" />
         </div>
+      </div>
+      <div class="buy-section">
+        <h1>{{ product?.name}}</h1>
+        <p>{{ product?.category }}</p>
+        <h1 id="price">
+          ${{ product?.price }}
+          <span>or ~ 12 x ${{ monthlyPrice(product?.price) }}</span>
+        </h1>
+        <p class="shipping">Free shipping and express delivery across Europe in just 3-5 working days.</p>
+        <p>Color: {{product?.color}}</p>
+        <div class="controls">
+            <a href="">Add to cart</a>
+            <a href=""><i class="fa-regular fa-heart"></i></a>
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h2 id="info-heading">Dimensions and characteristics</h2>
+        <div class="column">
+          <div class="row">
+            <p class="row-label">Categories:</p>
+            <p>{{ product?.category?.join(", ") }}</p>
+          </div>
+          <div class="row">
+            <p class="row-label">Width:</p>
+            <p>{{ product?.dimensions?.width }} mm</p>
+          </div>
+          <div class="row">
+            <p class="row-label">Height:</p>
+            <p>{{ product?.dimensions?.height }} mm</p>
+          </div>
+          <div class="row">
+            <p class="row-label">Depth:</p>
+            <p>{{ product?.dimensions?.depth }} mm</p>
+          </div>
+        </div>
+        <div class="column">
+          <div class="row">
+            <p class="row-label">Material:</p>
+            <p>{{ product?.material }}</p>
+          </div>
+          <div class="row">
+            <p class="row-label">Style:</p>
+            <p>{{ product?.style }}</p>
+          </div>
+          <div class="row">
+            <p class="row-label">Color:</p>
+            <p>{{ product?.color }}</p>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
