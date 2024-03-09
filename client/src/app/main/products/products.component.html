@@ -51,15 +51,17 @@
         There are currently no products to show!
       </h1>
       <div class="card" *ngFor="let prod of products">
-        <div class="media">
-          <a [routerLink]="prod._id">
-            <img [src]="prod.image" alt="" />
-          </a>
-        </div>
-        <div class="info">
-          <h3>{{ prod.name }}</h3>
-          <p>{{prod.material}}</p>
-          <span>${{ prod.price }} </span>
+        <div class="filler">
+          <div class="media">
+            <a [routerLink]="prod._id">
+              <img [src]="prod.image" alt="" />
+            </a>
+          </div>
+          <div class="info">
+            <h3>{{ prod.name }}</h3>
+            <p>{{prod.material}}</p>
+            <span>${{ prod.price }} </span>
+          </div>
         </div>
       </div>
     </div>
