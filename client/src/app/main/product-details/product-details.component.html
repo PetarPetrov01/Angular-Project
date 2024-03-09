@@ -1,2 +1,31 @@
-<p>product-details works!</p>
-{{ product | json }}
+<section class="product-details">
+    <div class="container">
+        <div class="wrapper">
+
+            <div class="image-section">
+                <div class="media">
+                    <img [src]="product?.image" [alt]="product?.name">
+                </div>
+            </div>
+            <div class="buy-section">
+                <h2>{{product?.name}}</h2>
+                <p>{{product?.category}}</p>
+                <h1>{{product?.price}}</h1>
+            </div>
+
+            <div class="info-section">
+                <div class="column">
+                    <p>Categroies: {{product?.category?.join(', ')}}</p>
+                    <p>Width: {{product?.dimensions?.width}}</p>
+                    <p>Height: {{product?.dimensions?.height}}</p>
+                    <p>Depth: {{product?.dimensions?.depth}}</p>
+                </div>
+                <div class="column">
+                   <p>Material: {{product?.material}}</p>
+                   <p>Style: {{product?.style}}</p>
+                   <p>Color: {{product?.color}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
