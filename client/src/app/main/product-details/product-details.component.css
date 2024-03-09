@@ -1,0 +1,48 @@
+.product-details {
+  min-height: 500px;
+}
+
+.container {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.wrapper {
+    max-width: 1240px;
+    padding: 0 20px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    padding: 4em 0;
+}
+
+.image-section{
+    display: inline-block;
+    width: 60%;
+    padding: 4em;
+}
+
+.media{
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.buy-section{
+    width: 40;
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+}
+
+.info-section{
+    width: 100%;
+    padding: 1em 2em;
+    display: flex;
+}
+
+.column{
+    flex: 1 1 49%;
+    display:  flex;
+    flex-direction: column;
+}
