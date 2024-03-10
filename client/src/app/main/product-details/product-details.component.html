@@ -7,28 +7,49 @@
         </div>
       </div>
       <div class="buy-section">
-        <h1>{{ product?.name}}</h1>
+        <h1>{{ product?.name }}</h1>
         <p>{{ product?.category }}</p>
         <h1 id="price">
           ${{ product?.price }}
           <span>or ~ 12 x ${{ monthlyPrice(product?.price) }}</span>
         </h1>
-        <p class="shipping">Free shipping and express delivery across Europe in just 3-5 working days.</p>
-        <p>Color: {{product?.color}}</p>
+        <p class="shipping">
+          Free shipping and express delivery across Europe in just 3-5 working
+          days.
+        </p>
+        <p>Color: {{ product?.color }}</p>
+        <div class="quantity">
+          <div class="input-group">
+            <p>Quantity:</p>
+            <input type="number" id="qty" [(ngModel)]="buyQty" (blur)="onInputBlur()"/>
+          </div>
+          <div class="update-qty">
+            <a (click)="removeQty()">-</a>
+            <a (click)="addQty()">+</a>
+          </div>
+        </div>
         <div class="controls">
-            <a href="" id="button-cart">Add to cart</a>
-            <a href="" id="button-wishlist"><i class="fa-regular fa-heart"></i></a>
+          <a href="" id="button-cart">Add to cart</a>
+          <a href="" id="button-wishlist"
+            ><i class="fa-regular fa-heart"></i
+          ></a>
         </div>
         <div class="keypoints">
-            <p><i class="fa-solid fa-truck"></i><span>Free delivery</span></p>
-            <p><i class="fa-solid fa-rotate-left"></i><span>365 days guaranteed return</span></p>
-            <p><i class="fa-solid fa-hand-holding-dollar"></i><span>Cash on delivery</span></p>
+          <p><i class="fa-solid fa-truck"></i><span>Free delivery</span></p>
+          <p>
+            <i class="fa-solid fa-rotate-left"></i
+            ><span>365 days guaranteed return</span>
+          </p>
+          <p>
+            <i class="fa-solid fa-hand-holding-dollar"></i
+            ><span>Cash on delivery</span>
+          </p>
         </div>
       </div>
 
       <div class="info-section">
         <h2 id="info-heading">Dimensions and characteristics</h2>
-        <p id="description">Description: {{product?.description}}</p>
+        <p id="description">Description: {{ product?.description }}</p>
         <div class="column">
           <div class="row">
             <p class="row-label">Categories:</p>

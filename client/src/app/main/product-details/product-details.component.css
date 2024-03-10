@@ -66,6 +66,53 @@
   font-weight: 600;
 }
 
+.input-group p {
+  display: inline;
+  margin-right: 2px;
+}
+
+.input-group input{
+  max-width: 30px;
+  background-color: transparent;
+  color: #000;
+  border: none;
+  outline: none;
+  padding-left: 2px;
+}
+
+.input-group input:hover{
+  outline: none;
+}
+
+.quantity{
+  padding: 1em;
+  background: #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quantity #qty{
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+}
+
+.update-qty{
+  display: flex;
+  gap: 1em;
+  font-size: 1.5em;
+}
+
+.update-qty a{
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+  user-select: none;
+}
+.update-qty a:hover{
+  color: #38aa6d;
+}
+
 .controls {
   display: flex;
   justify-content: space-between;
@@ -83,48 +130,59 @@
 #button-cart {
   flex: 1 1 100%;
   background-color: #38aa6d;
+  transition: all 0.2s;
 }
+
+#button-cart:hover {
+  background-color: #444;
+  color: #fff;
+}
+
 #button-wishlist {
   background-color: #eee;
 }
 
+#button-wishlist:hover {
+  background-color: #444;
+  color: #fff;
+}
 #button-wishlist i {
   color: #38aa6d;
 }
 
 .keypoints {
-    padding: 1em;
-    background-color: #eee;
-    font-size: 0.9em;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
+  padding: 1em;
+  background-color: #eee;
+  font-size: 0.9em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
 }
 
-.keypoints p{
-    display: flex;
-    justify-content: flex-start;
-    gap: 1.2em;
+.keypoints p {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1.2em;
 }
 
-.keypoints i{
-    max-width: 10px;
+.keypoints i {
+  max-width: 10px;
 }
 
 .info-section {
-    width: 100%;
-    padding: 1em 2em;
-    display: flex;
-    flex-wrap: wrap;
+  width: 100%;
+  padding: 1em 2em;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 #info-heading {
-    width: 100%;
+  width: 100%;
 }
 
-#description{
-    padding: 1em 0;
-    width: 100%;
+#description {
+  padding: 1em 0;
+  width: 100%;
 }
 
 .column {
