@@ -53,6 +53,9 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   }
 
   addQty() {
+    if( this.buyQty >=50){
+      return
+    }
     this.buyQty += 1;
   }
 
@@ -67,7 +70,8 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     if (
       !this.buyQty ||
       this.buyQty < 1 ||
-      Number.isInteger(this.buyQty) == false
+      this.buyQty > 50 ||
+      Number.isInteger(this.buyQty) == false 
     ) {
       this.buyQty = 1;
     }

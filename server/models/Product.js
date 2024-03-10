@@ -8,10 +8,12 @@ const categories = [
   "Outdoor",
 ];
 
+const imagePattern = /^(https?:\/\/|assets\/images\/)[^ ]+\.?(png|jpg)$/;
+
 const productSchema = new Schema({
   name: { type: String, required: true },
   description: { type: String, required: true },
-  image: { type: String, required: true },
+  image: { type: String, required: true, match: [imagePattern, 'Invalid image URL'] },
   category: {
     type: [String],
     required: true,
