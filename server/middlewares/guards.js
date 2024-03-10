@@ -1,24 +1,37 @@
 function isUser() {
   return (req, res, next) => {
     if (req.user) {
-      next()
+      next();
     } else {
-        res.status(403).json({message: 'You must be logged in!'})
+      res.status(403).json({ message: "You must be logged in!" });
     }
   };
 }
 
-function isGuest(){
-    return (req, res, next) => {
-        if (req.user) {
-            res.status(403).json({message: 'You are already logged in!'})
-        } else {
-            next()
-        }
-      };
+function isGuest() {
+  return (req, res, next) => {
+    if (req.user) {
+      res.status(403).json({ message: "You are already logged in!" });
+    } else {
+      next();
+    }
+  };
+}
+
+function isOwner() {
+  return (req, res, next) => {
+    const userId = req.user?._id;
+
+    if (res.locals.item?._ownerId == userId) {
+      next();
+    } else {
+      res.status(403).json({ message: "You are not the owner of this post" });
+    }
+  };
 }
 
 module.exports = {
-    isUser,
-    isGuest
-}
+  isUser,
+  isGuest,
+  isOwner
+};
