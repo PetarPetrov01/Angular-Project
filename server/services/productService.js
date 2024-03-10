@@ -18,7 +18,7 @@ async function getProducts(query) {
     products = await Product.find({});
   }
 
-  if(query.sort) {
+  if (query.sort) {
     products = products.sort(query.sort);
   }
 
@@ -33,10 +33,32 @@ async function addProduct(data) {
   return await Product.create(data);
 }
 
+async function updateProduct(productId, data) {
+  const product = await Product.findById(productId);
+
+  product.name = data.name;
+  product.name = data.name;
+  product.description = data.description;
+  product.image = data.image;
+  product.category = data.category;
+  product.style = data.style;
+  product.dimensions = {
+    width: Number(data.dimensions.width),
+    height: Number(data.dimensions.height),
+    depth: Number(data.dimensions.depth)
+  };
+  product.material = data.material;
+  product.color = data.color;
+  product.price = Number(data.price);
+
+  return await product.save();
+}
+
 const productService = {
   getProducts,
   getProductById,
   addProduct,
+  updateProduct,
 };
 
 module.exports = productService;
