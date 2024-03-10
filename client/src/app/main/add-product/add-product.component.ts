@@ -1,4 +1,3 @@
-import { Component } from '@angular/core';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -62,7 +61,6 @@ export class AddProductComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private apiService: ApiService,
-    private router: Router
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {}
@@ -140,10 +138,24 @@ export class AddProductComponent implements OnInit, OnDestroy {
     };
 
     console.log(data);
+    if (this.isEditing && this.editProductId) {
+      this.apiService.updateProduct(this.editProductId,data).subscribe((prod)=>{
+        console.log('EDITED');
+        console.log(prod);
+        this.router.navigate([`/products/${this.editProductId}`]);
+      })
+    } else {
+      this.apiService.addProduct(data).subscribe((prod) => {
+        console.log('CREATED');
+        console.log(prod);
+        this.router.navigate(['/products']);
+      });
+    }
+  }
 
-    this.apiService.addProduct(data).subscribe((prod) => {
-      console.log(prod);
-      this.router.navigate(['/products']);
-    });
+  ngOnDestroy(): void {
+    if (this.editProdSubscription) {
+      this.editProdSubscription.unsubscribe();
+    }
   }
 }
