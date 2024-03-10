@@ -8,7 +8,7 @@
       </div>
       <div class="buy-section">
         <h1>{{ product?.name }}</h1>
-        <p>{{ product?.category }}</p>
+        <p>{{ product?.category?.join(", ") }}</p>
         <h1 id="price">
           ${{ product?.price }}
           <span>or ~ 12 x ${{ monthlyPrice(product?.price) }}</span>
@@ -18,22 +18,43 @@
           days.
         </p>
         <p>Color: {{ product?.color }}</p>
-        <div class="quantity">
-          <div class="input-group">
-            <p>Quantity:</p>
-            <input type="number" id="qty" [(ngModel)]="buyQty" (blur)="onInputBlur()"/>
+        <ng-container *ngIf="isUser">
+          <ng-container *ngIf="!isOwner">
+            <div class="quantity">
+              <div class="input-group">
+                <p>Quantity:</p>
+                <input
+                  type="number"
+                  id="qty"
+                  [(ngModel)]="buyQty"
+                  (blur)="onInputBlur()"
+                />
+              </div>
+              <div class="update-qty">
+                <a (click)="removeQty()">-</a>
+                <a (click)="addQty()">+</a>
+              </div>
+            </div>
+            <div class="controls">
+              <a href="" id="button-cart">Add to cart</a>
+              <a href="" id="button-wishlist"
+                ><i class="fa-regular fa-heart"></i
+              ></a>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="isOwner">
+            <div class="controls owner">
+              <a href="" id="edit-btn">Edit</a>
+              <a href="" id="del-btn">Delete</a>
+            </div>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="!isUser">
+          <div class="controls guest">
+            <a routerLink="/auth/login">Login</a>
+            <a routerLink="/auth/register">Register</a>
           </div>
-          <div class="update-qty">
-            <a (click)="removeQty()">-</a>
-            <a (click)="addQty()">+</a>
-          </div>
-        </div>
-        <div class="controls">
-          <a href="" id="button-cart">Add to cart</a>
-          <a href="" id="button-wishlist"
-            ><i class="fa-regular fa-heart"></i
-          ></a>
-        </div>
+        </ng-container>
         <div class="keypoints">
           <p><i class="fa-solid fa-truck"></i><span>Free delivery</span></p>
           <p>

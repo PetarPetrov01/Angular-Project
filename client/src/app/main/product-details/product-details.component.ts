@@ -1,15 +1,16 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ApiService } from '../api.service';
-import { Observable, Subscription, take, tap } from 'rxjs';
+import {  Subscription, take, tap } from 'rxjs';
 import { PopulatedProduct } from '../../types/Product';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css',
 })
@@ -17,11 +18,13 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   product: PopulatedProduct | null = null;
   productId: string = '';
   subscription: Subscription | null = null;
+
   buyQty: number = 1;
 
   constructor(
     private activated: ActivatedRoute,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -33,6 +36,14 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
           this.product = prod;
         });
     });
+  }
+
+  get isUser(){
+    return this.authService.isLogged;
+  }
+
+  get isOwner(){
+    return this.product?._ownerId._id == this.authService.user?._id;
   }
 
   monthlyPrice(price: number | undefined): string {

@@ -13,7 +13,7 @@
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
-  padding: 4em 0;
+  padding: 3em 0;
 }
 
 .image-section {
@@ -117,6 +117,30 @@
   display: flex;
   justify-content: space-between;
   gap: 1em;
+  font-size: 1.1em;
+}
+
+.controls.guest a,
+.controls.owner a{
+  flex: 1 1 50%;
+  background-color: #51a076;
+  transition: all 0.2s;
+}
+
+.controls.guest a:hover,
+.controls.owner a:hover{
+  background-color: #000;
+  color: #fff;
+}
+
+#del-btn{
+  background-color: #f18b8b;
+}
+
+#del-btn:hover{
+    background-color: #ea5858;
+    border: 1px solid #222;
+    /* color: #000; */
 }
 
 .controls a {
