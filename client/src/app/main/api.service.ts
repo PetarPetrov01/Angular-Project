@@ -11,16 +11,22 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   getProducts(params: Params) {
-    return this.http.get<APIProduct[]>('/api/products', {params});
+    return this.http.get<APIProduct[]>('/api/products', { params });
   }
 
-  getProduct(productId: string){
-    return this.http.get<PopulatedProduct>(`/api/products/${productId}`).pipe(tap(res=>{
-      console.log(res);
-    }))
+  getProduct(productId: string) {
+    return this.http.get<PopulatedProduct>(`/api/products/${productId}`).pipe(
+      tap((res) => {
+        console.log(res);
+      })
+    );
   }
 
   addProduct(data: Product) {
-   return this.http.post<APIProduct>('/api/products', data);
+    return this.http.post<APIProduct>('/api/products', data);
+  }
+
+  updateProduct(productId: string, data: Product) {
+    return this.http.put<APIProduct>(`/api/products/${productId}`, data);
   }
 }

@@ -1,7 +1,7 @@
 <section class="add-product">
   <div class="container">
     <div class="form-wrapper">
-      <h1>Add product</h1>
+      <h1>{{isEditing?'Edit':'Add'}} product</h1>
       <form action="" class="add-product" [formGroup]="addProductForm">
         <div class="column left">
           <mat-form-field>
