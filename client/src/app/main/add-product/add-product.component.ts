@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   FormBuilder,
+  FormControl,
   FormsModule,
   ReactiveFormsModule,
   Validators,
@@ -10,8 +12,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { NgIf } from '@angular/common';
 import { ApiService } from '../api.service';
-import { Product } from '../../types/Product';
-import { Router } from '@angular/router';
+import { PopulatedProduct, Product } from '../../types/Product';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-add-product',
@@ -27,7 +30,11 @@ import { Router } from '@angular/router';
   templateUrl: './add-product.component.html',
   styleUrl: './add-product.component.css',
 })
-export class AddProductComponent {
+export class AddProductComponent implements OnInit, OnDestroy {
+  editProdSubscription: Subscription | null = null;
+  editProductId: string | null = null;
+  isEditing: boolean = false;
+
   categoryList = [
     'Living room',
     'Bedroom',
@@ -56,18 +63,50 @@ export class AddProductComponent {
     private fb: FormBuilder,
     private apiService: ApiService,
     private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {}
+
+  ngOnInit(): void {
+    this.activatedRoute.params.subscribe((params) => {
+      const editedProductId = params['id'] || null;
+      if (editedProductId) {
+        this.editProductId = editedProductId;
+        this.isEditing = true;
+
+        this.editProdSubscription = this.apiService
+          .getProduct(editedProductId)
+          .subscribe((currentProd) => {
+            const { dimensions, ...editProduct } = currentProd;
+
+            this.addProductForm.patchValue({
+              width: String(dimensions.width),
+              height: String(dimensions.height),
+              depth: String(dimensions.depth),
+              name: editProduct.name,
+              category: editProduct.category ? editProduct.category : [],
+              color: editProduct.color,
+              description: editProduct.description,
+              image: editProduct.image,
+              material: editProduct.material,
+              price: String(editProduct.price),
+              style: editProduct.style,
+            });
+          });
+      }
+    });
+  }
 
   addProductForm = this.fb.group({
     name: ['', Validators.required],
     description: ['', Validators.required],
     image: ['', Validators.required],
-    category: ['', Validators.required],
+    category: [[''], Validators.required],
     style: ['', Validators.required],
     height: ['', Validators.required],
     width: ['', Validators.required],
     depth: ['', Validators.required],
-    material: ['', Validators.required],
+    material: [[''], Validators.required],
     color: ['', Validators.required],
     price: ['', Validators.required],
   });
