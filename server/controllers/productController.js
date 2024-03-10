@@ -1,4 +1,5 @@
-const { isUser } = require("../middlewares/guards");
+const { isUser, isOwner } = require("../middlewares/guards");
+const preload = require("../middlewares/preload");
 const productService = require("../services/productService");
 const errorParser = require("../util/errorParser");
 
@@ -24,19 +25,29 @@ productController.get("/:id", async (req, res) => {
       username: product._ownerId.username,
     };
 
-    res.json({...product, _ownerId: safeUser});
+    res.json({ ...product, _ownerId: safeUser });
   } catch (error) {
     const errorMessage = errorParser(error);
     res.status(400).json({ message: errorMessage });
   }
 });
 
-productController.post("/", isUser(),async (req, res) => {
+productController.post("/", isUser(), async (req, res) => {
   try {
     const data = req.body;
     data._ownerId = req.user._id;
 
     const product = await productService.addProduct(data);
+    res.json(product);
+  } catch (error) {
+    const errorMessage = errorParser(error);
+    res.status(400).json({ message: errorMessage });
+  }
+});
+
+productController.put("/:id", preload(), isOwner(), async (req, res) => {
+  try {
+    const product = await productService.updateProduct(req.params.id, req.body);
     res.json(product);
   } catch (error) {
     const errorMessage = errorParser(error);

@@ -22,7 +22,7 @@ function isOwner() {
   return (req, res, next) => {
     const userId = req.user?._id;
 
-    if (res.locals.item?._ownerId == userId) {
+    if (res.locals.product?._ownerId?._id == userId) {
       next();
     } else {
       res.status(403).json({ message: "You are not the owner of this post" });

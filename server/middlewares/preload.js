@@ -5,7 +5,7 @@ module.exports = () => {
     const itemId = req.params.id;
 
     const item = await productService.getProductById(itemId);
-    res.locals.item = item;
+    res.locals.product = item;
 
     next();
   };
