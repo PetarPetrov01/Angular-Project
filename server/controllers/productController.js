@@ -1,5 +1,6 @@
 const { isUser, isOwner } = require("../middlewares/guards");
 const preload = require("../middlewares/preload");
+const cartService = require("../services/cartService");
 const productService = require("../services/productService");
 const errorParser = require("../util/errorParser");
 
@@ -55,7 +56,7 @@ productController.put("/:id", preload(), isOwner(), async (req, res) => {
   }
 });
 
-productController.delete('/:id', preload(), isOwner(), async(req,res)=>{
+productController.delete("/:id", preload(), isOwner(), async (req, res) => {
   try {
     await productService.deleteProduct(req.params.id);
     res.status(204).end();
@@ -63,6 +64,21 @@ productController.delete('/:id', preload(), isOwner(), async(req,res)=>{
     const errorMessage = errorParser(error);
     res.status(400).json({ message: errorMessage });
   }
-})
+});
+
+productController.post("/:id/add", isUser(), async (req, res) => {
+  try {
+    const productId = req.params.id;
+    const userId = req.user?._id;
+
+    const quantity = req.body.quantity;
+
+    await cartService.addToCart(userId, { productId, quantity });
+    res.status(200).end();
+  } catch (error) {
+    const errorMessage = errorParser(error);
+    res.status(400).json({ message: errorMessage });
+  }
+});
 
 module.exports = productController;
