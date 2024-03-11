@@ -58,3 +58,11 @@ header.home{
     font-weight: 300;
 }
 
+
+::ng-deep .custom-class a{
+    max-height: 30px;
+    overflow: hidden;
+    /* padding: 2px; */
+}
+
+

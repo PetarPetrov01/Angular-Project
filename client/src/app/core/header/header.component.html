@@ -17,9 +17,22 @@
         </li>
       </ng-container>
       <ng-container *ngIf="isLogged">
-        <li><a routerLink="add-product" routerLinkActive="active">Create</a></li>
-        <li><a routerLinkActive="active" (click)="handleLogout()">Logout</a></li>
-        <li><a routerLinkActive="active"><i class="fa-solid fa-cart-shopping"></i></a></li>
+        <li>
+          <a routerLink="add-product" routerLinkActive="active">Create</a>
+        </li>
+        <li>
+          <a routerLink="/profile" [matMenuTriggerFor]="menu" routerLinkActive="active">Profile</a>
+          <mat-menu #menu="matMenu" xPosition="before" class="custom-class">
+            <a mat-menu-item>Profile page</a>
+            <a mat-menu-item>Wishlist</a>
+            <a mat-menu-item (click)="handleLogout()">Logout</a>
+          </mat-menu>
+        </li>
+        <li>
+          <a routerLinkActive="active" routerLink="/cart"
+            ><i class="fa-solid fa-cart-shopping"></i
+          ></a>
+        </li>
       </ng-container>
     </ul>
   </nav>
