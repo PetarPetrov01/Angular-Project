@@ -45,7 +45,7 @@
           <ng-container *ngIf="isOwner">
             <div class="controls owner">
               <a [routerLink]="'edit'" id="edit-btn">Edit</a>
-              <a href="" id="del-btn">Delete</a>
+              <a id="del-btn" (click)="onDelete('200ms','100ms')">Delete</a>
             </div>
           </ng-container>
         </ng-container>

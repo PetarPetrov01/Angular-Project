@@ -1,16 +1,20 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { ApiService } from '../api.service';
-import {  Subscription, take, tap } from 'rxjs';
-import { PopulatedProduct } from '../../types/Product';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Subscription } from 'rxjs';
+
+import { ApiService } from '../api.service';
 import { AuthService } from '../../auth/auth.service';
+import { PopulatedProduct } from '../../types/Product';
+
+import { DeleteDialogComponent } from './delete-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, DeleteDialogComponent],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css',
 })
@@ -24,7 +28,8 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   constructor(
     private activated: ActivatedRoute,
     private apiService: ApiService,
-    private authService: AuthService
+    private authService: AuthService,
+    private matDialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -38,11 +43,11 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
-  get isUser(){
+  get isUser() {
     return this.authService.isLogged;
   }
 
-  get isOwner(){
+  get isOwner() {
     return this.product?._ownerId._id == this.authService.user?._id;
   }
 
@@ -53,8 +58,8 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   }
 
   addQty() {
-    if( this.buyQty >=50){
-      return
+    if (this.buyQty >= 50) {
+      return;
     }
     this.buyQty += 1;
   }
@@ -71,10 +76,21 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
       !this.buyQty ||
       this.buyQty < 1 ||
       this.buyQty > 50 ||
-      Number.isInteger(this.buyQty) == false 
+      Number.isInteger(this.buyQty) == false
     ) {
       this.buyQty = 1;
     }
+  }
+
+  onDelete(enterAnimationDuration: string, exitAnimationDuration: string) {
+    this.matDialog.open(DeleteDialogComponent, {
+      width: '300px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data: {
+        productName: this.product?.name
+      }
+    });
   }
 
   ngOnDestroy(): void {
