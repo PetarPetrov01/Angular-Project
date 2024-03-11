@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnDestroy } from '@angular/core';
 import {
   MatDialogRef,
   MatDialogClose,
@@ -8,10 +8,12 @@ import {
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { ApiService } from '../api.service';
+import { Subscription } from 'rxjs';
 
-
-export interface DialogData{
-    productName: string;
+export interface DialogData {
+  productName: string;
+  _id: string;
 }
 
 @Component({
@@ -27,14 +29,24 @@ export interface DialogData{
     MatDialogContent,
   ],
 })
-export class DeleteDialogComponent {
+export class DeleteDialogComponent implements OnDestroy {
+  subscription: Subscription | null = null;
+
   constructor(
     public dialogRef: MatDialogRef<DeleteDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    private apiService: ApiService
   ) {}
 
-    onConfirm(){
-        console.log('Deleting...');
-    }
+  onConfirm() {
+    this.subscription = this.apiService
+      .deleteProduct(this.data._id)
+      .subscribe();
+  }
 
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
 }

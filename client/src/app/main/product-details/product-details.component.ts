@@ -88,8 +88,9 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
       enterAnimationDuration,
       exitAnimationDuration,
       data: {
-        productName: this.product?.name
-      }
+        productName: this.product?.name,
+        _id: this.product?._id,
+      },
     });
   }
 

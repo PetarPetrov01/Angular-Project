@@ -29,4 +29,8 @@ export class ApiService {
   updateProduct(productId: string, data: Product) {
     return this.http.put<APIProduct>(`/api/products/${productId}`, data);
   }
+
+  deleteProduct(productId: string) {
+    return this.http.delete(`/api/products/${productId}`);
+  }
 }
