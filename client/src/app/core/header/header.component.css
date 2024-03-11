@@ -38,6 +38,7 @@ header.home{
     background-color: #4441;
     letter-spacing: 1px;
     font-size: 1.1em;
+    cursor: pointer;
 }
 
 .main-nav a:hover{

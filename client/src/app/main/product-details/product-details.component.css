@@ -109,6 +109,7 @@
   cursor: pointer;
   user-select: none;
 }
+
 .update-qty a:hover{
   color: #38aa6d;
 }
@@ -125,6 +126,7 @@
   flex: 1 1 50%;
   background-color: #51a076;
   transition: all 0.2s;
+  cursor: pointer;;
 }
 
 .controls.guest a:hover,

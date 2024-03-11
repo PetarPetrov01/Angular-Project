@@ -51,17 +51,18 @@ li a:hover:not(.active) {
 }
 
 .products-wrapper {
+  max-width: 90%;
+  margin: 0 auto;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: stretch;
-  align-content: flex-start;
   flex-wrap: wrap;
-  gap: 2em;
-  padding: 1em;
+  gap: 6%;
+  padding: 2em;
 }
 
 .card {
-  flex: 0 0 20%;
+  flex: 0 0 20.5%;
   align-self: stretch;
   border: 1px solid #ccc;
   background: radial-gradient(#fff 25%, #e4e4e4);
