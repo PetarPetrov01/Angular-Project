@@ -6,6 +6,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { AddProductComponent } from './main/add-product/add-product.component';
 import { isGuestGuard, isUserGuard } from './guards/auth.guard';
 import { ProductDetailsComponent } from './main/product-details/product-details.component';
+import { CartComponent } from './main/cart/cart.component';
 
 export const routes: Routes = [
   {
@@ -28,7 +29,11 @@ export const routes: Routes = [
         path: ':id',
         children: [
           { path: '', component: ProductDetailsComponent },
-          { path: 'edit', component: AddProductComponent },
+          {
+            path: 'edit',
+            component: AddProductComponent,
+            canActivate: [isUserGuard],
+          },
         ],
       },
     ],
@@ -38,6 +43,7 @@ export const routes: Routes = [
     component: AddProductComponent,
     canActivate: [isUserGuard],
   },
+  { path: 'cart', component: CartComponent, canActivate: [isUserGuard] },
   {
     path: 'auth',
     children: [
