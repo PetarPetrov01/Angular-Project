@@ -55,4 +55,13 @@ productController.put("/:id", preload(), isOwner(), async (req, res) => {
   }
 });
 
+productController.delete('/:id', preload(), isOwner(), async(req,res)=>{
+  try {
+    await productService.deleteProduct(req.params.id);
+  } catch (error) {
+    const errorMessage = errorParser(error);
+    res.status(400).json({ message: errorMessage });
+  }
+})
+
 module.exports = productController;

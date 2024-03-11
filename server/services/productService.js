@@ -54,11 +54,16 @@ async function updateProduct(productId, data) {
   return await product.save();
 }
 
+async function deleteProduct(productId){
+  return await Product.findByIdAndDelete(productId);
+}
+
 const productService = {
   getProducts,
   getProductById,
   addProduct,
   updateProduct,
+  deleteProduct
 };
 
 module.exports = productService;
