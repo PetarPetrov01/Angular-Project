@@ -1,6 +1,6 @@
 const { isUser, isOwner } = require("../middlewares/guards");
 const preload = require("../middlewares/preload");
-const cartService = require("../services/cartService");
+const wishlistService = require("../services/wishlistService");
 const productService = require("../services/productService");
 const errorParser = require("../util/errorParser");
 
@@ -71,9 +71,7 @@ productController.post("/:id/add", isUser(), async (req, res) => {
     const productId = req.params.id;
     const userId = req.user?._id;
 
-    const quantity = req.body.quantity;
-
-    await cartService.addToCart(userId, { productId, quantity });
+    await wishlistService.addToCart(userId, productId);
     res.status(200).end();
   } catch (error) {
     const errorMessage = errorParser(error);

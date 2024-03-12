@@ -3,13 +3,10 @@ const { Schema, model, Types } = require("mongoose");
 const userSchema = new Schema({
   email: { type: String, required: true, unique: true },
   username: { type: String, required: true },
-  cart: {
-    type: [
-      {
-        productId: { type: Types.ObjectId, ref: "Product" },
-        quantity: { type: Number },
-      },
-    ],
+  wishlist: {
+    type: [Types.ObjectId],
+    ref: "Product",
+    default: []
   },
   hashedPassword: { type: String, required: true },
 });
