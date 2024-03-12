@@ -4,6 +4,7 @@ const errorParser = require("../util/errorParser.js");
 
 const { body, validationResult } = require("express-validator");
 const { isGuest } = require("../middlewares/guards.js");
+const wishlistService = require("../services/wishlistService.js");
 
 const authController = require("express").Router();
 
@@ -77,6 +78,18 @@ authController.get("/profile", async (req, res) => {
 
     const user = await authService.getUser(userId);
     res.status(200).json(user);
+  } catch (error) {
+    const errorMessage = errorParser(error);
+    res.status(400).json({ message: errorMessage });
+  }
+});
+
+authController.get("/wishlist", async (req, res) => {
+  try {
+    const userId = req.user?._id;
+    const wishlist = await wishlistService.getWishlist(userId);
+    console.log(wishlist);
+    res.json(wishlist);
   } catch (error) {
     const errorMessage = errorParser(error);
     res.status(400).json({ message: errorMessage });

@@ -25,8 +25,15 @@ async function toggleItemInWishlist(userId, productId) {
   return newUser;
 }
 
+async function getWishlist(userId) {
+  const user = await User.findById(userId).lean().populate("wishlist");
+
+  return user.wishlist;
+}
+
 const wishlistService = {
-  toggleItemInWishlist: toggleItemInWishlist,
+  toggleItemInWishlist,
+  getWishlist,
 };
 
 module.exports = wishlistService;
