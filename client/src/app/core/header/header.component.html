@@ -1,7 +1,9 @@
 <header [className]="home.isActive ? 'home' : ''">
   <nav class="main-nav">
     <div class="logo">
-      <i class="fa-solid fa-couch fa-2x"></i><span>DREAM-FURNITURE</span>
+      <!-- <i class="fa-solid fa-couch fa-2x"></i> -->
+      <img src="/assets/images/logo2.png" alt="">
+      <span>DREAM-FURNITURE</span>
     </div>
     <ul>
       <li>
@@ -21,7 +23,7 @@
           <a routerLink="add-product" routerLinkActive="active">Create</a>
         </li>
         <li>
-          <a routerLink="/profile" [matMenuTriggerFor]="menu" routerLinkActive="active">Profile</a>
+          <a [matMenuTriggerFor]="menu" [class.active]="isProfileActive()"><i class="fa-solid fa-user"></i></a>
           <mat-menu #menu="matMenu" xPosition="before" class="custom-class">
             <a mat-menu-item routerLink="/profile">Profile page</a>
             <a mat-menu-item routerLink="/profile/wishlist">Wishlist</a>
