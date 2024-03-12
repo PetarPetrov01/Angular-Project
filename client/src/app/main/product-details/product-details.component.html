@@ -36,10 +36,11 @@
               </div>
             </div>
             <div class="controls">
-              <a href="" id="button-cart">Add to cart</a>
-              <a href="" id="button-wishlist"
+              <a id="button-cart">Add to cart</a>
+              <a id="button-wishlist" (click)="toggleWishlist()"
                 ><i class="fa-regular fa-heart"></i
               ></a>
+              {{isInWishList}}
             </div>
           </ng-container>
           <ng-container *ngIf="isOwner">

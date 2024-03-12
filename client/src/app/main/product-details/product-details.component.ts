@@ -33,6 +33,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    console.log(this.authService.user?.wishlist);
     this.activated.params.subscribe((params) => {
       this.productId = params['id'];
       this.subscription = this.apiService
@@ -49,6 +50,10 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
 
   get isOwner() {
     return this.product?._ownerId._id == this.authService.user?._id;
+  }
+
+  get isInWishList(){
+    return this.authService.user?.wishlist.some((prodId)=> prodId == this.productId);
   }
 
   monthlyPrice(price: number | undefined): string {
@@ -69,6 +74,10 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
       return;
     }
     this.buyQty -= 1;
+  }
+
+  toggleWishlist(){
+    this.apiService.toggleWishList(this.productId).subscribe();
   }
 
   onInputBlur() {

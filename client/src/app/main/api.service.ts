@@ -33,4 +33,8 @@ export class ApiService {
   deleteProduct(productId: string) {
     return this.http.delete(`/api/products/${productId}`);
   }
+
+  toggleWishList(productId: string) {
+    return this.http.post(`/api/products/${productId}/wishlist`, {});
+  }
 }

@@ -17,7 +17,6 @@ export class AuthComponent implements OnInit {
   constructor(
     private cookieService: CookieService,
     private authService: AuthService,
-    private router: Router
   ) {}
   ngOnInit(): void {
     const user = this.authService.getUserStorage();

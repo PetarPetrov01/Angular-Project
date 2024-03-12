@@ -33,10 +33,18 @@ li a:hover:not(.active) {
   transform: scale(1.2);
 }
 
+.products-wrapper {
+  max-width: 90%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(20%, 1fr));
+  gap: 2em;
+  padding: 2em;
+}
 
 .no-products {
   margin: 2.5em auto;
-  /* position: absolute; */
+  grid-column: span 4;
 }
 
 .no-products::after {
@@ -50,32 +58,20 @@ li a:hover:not(.active) {
   background: linear-gradient(90deg, #eee, #333, #eee);
 }
 
-.products-wrapper {
-  max-width: 90%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: flex-start;
-  align-items: stretch;
-  flex-wrap: wrap;
-  gap: 6%;
-  padding: 2em;
-}
-
 .card {
-  flex: 0 0 20.5%;
-  align-self: stretch;
+  /* flex: 0 0 20.5%; */
+  /* align-self: stretch; */
   border: 1px solid #ccc;
   background: radial-gradient(#fff 25%, #e4e4e4);
 }
 
-
-.filler{
+.filler {
   padding: 1em 2em;
   background: #fff;
   height: 100%;
 }
 
-.card:hover .filler{
+.card:hover .filler {
   transition: all 0.2s ease-in-out;
   background: transparent;
 }
