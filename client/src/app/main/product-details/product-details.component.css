@@ -140,7 +140,7 @@
 
 #del-btn:hover{
   background-color: #ea5858;
-  border: 1px solid #222;
+  /* border: 1px solid #222; */
   /* color: #000; */
 }
 
