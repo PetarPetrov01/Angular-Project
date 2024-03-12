@@ -71,8 +71,16 @@ productController.post("/:id/wishlist", isUser(), async (req, res) => {
     const productId = req.params.id;
     const userId = req.user?._id;
 
-    await wishlistService.toggleItemInWishlist(userId, productId);
-    res.status(200).end();
+    //const {hashedPassword, __v, ...user}
+    const user = await wishlistService.toggleItemInWishlist(userId, productId);
+    const safeUser = {
+      _id: user._id,
+      email: user.email,
+      username: user.username,
+      wishlist: user.wishlist
+    };
+
+    res.json(safeUser);
   } catch (error) {
     const errorMessage = errorParser(error);
     res.status(400).json({ message: errorMessage });

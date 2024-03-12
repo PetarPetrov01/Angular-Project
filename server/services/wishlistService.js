@@ -21,7 +21,8 @@ async function toggleItemInWishlist(userId, productId) {
     user.wishlist.push(productId);
   }
 
-  await user.save();
+  const newUser = await user.save();
+  return newUser;
 }
 
 const wishlistService = {
