@@ -86,7 +86,7 @@
 
 .quantity{
   padding: 1em;
-  background: #eee;
+  background: #e8e8e8;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -126,7 +126,6 @@
   flex: 1 1 50%;
   background-color: #51a076;
   transition: all 0.2s;
-  cursor: pointer;;
 }
 
 .controls.guest a:hover,
@@ -140,17 +139,17 @@
 }
 
 #del-btn:hover{
-    background-color: #ea5858;
-    border: 1px solid #222;
-    /* color: #000; */
+  background-color: #ea5858;
+  border: 1px solid #222;
+  /* color: #000; */
 }
 
 .controls a {
   color: #000;
   padding: 1em;
-  border: 1px solid #77977b;
   text-decoration: none;
   text-align: center;
+  cursor: pointer;
 }
 
 #button-cart {
@@ -165,7 +164,7 @@
 }
 
 #button-wishlist {
-  background-color: #eee;
+  background-color: #e8e8e8;
 }
 
 #button-wishlist:hover {
@@ -178,7 +177,7 @@
 
 .keypoints {
   padding: 1em;
-  background-color: #eee;
+  background-color: #e8e8e8;
   font-size: 0.9em;
   display: flex;
   flex-direction: column;

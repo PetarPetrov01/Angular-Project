@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { APIProduct, PopulatedProduct, Product } from '../types/Product';
 import { tap } from 'rxjs';
 import { Params } from '@angular/router';
+import { User } from '../types/User';
 
 @Injectable({
   providedIn: 'root',
@@ -35,6 +36,6 @@ export class ApiService {
   }
 
   toggleWishList(productId: string) {
-    return this.http.post(`/api/products/${productId}/wishlist`, {});
+    return this.http.post<User>(`/api/products/${productId}/wishlist`, {});
   }
 }

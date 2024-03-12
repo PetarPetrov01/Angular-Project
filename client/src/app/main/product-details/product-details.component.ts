@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Route, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -10,6 +10,7 @@ import { PopulatedProduct } from '../../types/Product';
 
 import { DeleteDialogComponent } from './delete-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { User } from '../../types/User';
 
 @Component({
   selector: 'app-product-details',
@@ -29,11 +30,11 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     private activated: ActivatedRoute,
     private apiService: ApiService,
     private authService: AuthService,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    console.log(this.authService.user?.wishlist);
     this.activated.params.subscribe((params) => {
       this.productId = params['id'];
       this.subscription = this.apiService
@@ -52,8 +53,10 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     return this.product?._ownerId._id == this.authService.user?._id;
   }
 
-  get isInWishList(){
-    return this.authService.user?.wishlist.some((prodId)=> prodId == this.productId);
+  get isInWishList() {
+    return this.authService.user?.wishlist.some(
+      (prodId) => prodId == this.productId
+    );
   }
 
   monthlyPrice(price: number | undefined): string {
@@ -76,8 +79,12 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     this.buyQty -= 1;
   }
 
-  toggleWishlist(){
-    this.apiService.toggleWishList(this.productId).subscribe();
+  toggleWishlist() {
+    this.apiService.toggleWishList(this.productId).subscribe((user) => {
+      this.router.navigate([`/products/${this.productId}`]);
+      this.authService.setUserStorage(user);
+      this.authService.setUserSubject(user);
+    });
   }
 
   onInputBlur() {
