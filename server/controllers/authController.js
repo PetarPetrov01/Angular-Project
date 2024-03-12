@@ -88,7 +88,6 @@ authController.get("/wishlist", async (req, res) => {
   try {
     const userId = req.user?._id;
     const wishlist = await wishlistService.getWishlist(userId);
-    console.log(wishlist);
     res.json(wishlist);
   } catch (error) {
     const errorMessage = errorParser(error);

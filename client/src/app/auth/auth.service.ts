@@ -4,6 +4,7 @@ import { BehaviorSubject, Subscription, tap } from 'rxjs';
 import { User } from '../types/User';
 import { CookieService } from 'ngx-cookie-service';
 import { cookieName } from './auth.component';
+import { APIProduct, Product } from '../types/Product';
 
 @Injectable({
   providedIn: 'root',
@@ -55,6 +56,10 @@ export class AuthService implements OnDestroy{
       this.setUserSubject(user);
       this.setUserStorage(user);
     });
+  }
+
+  getWishlist(){
+    return this.http.get<[APIProduct]>('/api/auth/wishlist');
   }
 
   setUserSubject(user: User) {

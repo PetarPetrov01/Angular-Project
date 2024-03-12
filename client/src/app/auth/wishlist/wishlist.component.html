@@ -1,1 +1,43 @@
-<p>wishlist works!</p>
+<section class="wishlist">
+  <div class="container">
+    <div class="wrapper">
+      <div class="header">
+        <h2>Wishlist <span>{{wishlist.length}} products</span></h2>
+      </div>
+      <div class="prodcuts-wrapper">
+
+        <div class="no-products" *ngIf="wishlist.length < 1">
+            <h2>
+                No products in the wishlist
+            </h2>
+            <p>Your wishlist is empty. Let's change that! Browse our products and add your favorites.</p>
+            <a routerLink="/products">Products</a>
+        </div>
+
+        @for (product of wishlist; track $index) {
+        <div class="card">
+          <div class="media">
+            <a href="">
+              <img [src]="product.image" [alt]="product.name" />
+            </a>
+          </div>
+          <div class="content">
+            <div class="info">
+              <h1>{{ product.name }}</h1>
+              <p>{{ product.category.join(", ") }}</p>
+              <p>{{ product.material.join(", ") }}</p>
+            </div>
+            <div class="pad">
+              <h2>${{ product.price }}</h2>
+              <a id="cart-btn">Add to cart</a>
+              <a id="remove-btn" (click)="onRemove(product._id)"
+                >Remove <i class="fa-regular fa-trash-can"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
