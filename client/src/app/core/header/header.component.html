@@ -23,8 +23,8 @@
         <li>
           <a routerLink="/profile" [matMenuTriggerFor]="menu" routerLinkActive="active">Profile</a>
           <mat-menu #menu="matMenu" xPosition="before" class="custom-class">
-            <a mat-menu-item>Profile page</a>
-            <a mat-menu-item>Wishlist</a>
+            <a mat-menu-item routerLink="/profile">Profile page</a>
+            <a mat-menu-item routerLink="/profile/wishlist">Wishlist</a>
             <a mat-menu-item (click)="handleLogout()">Logout</a>
           </mat-menu>
         </li>

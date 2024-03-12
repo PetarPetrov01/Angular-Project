@@ -7,6 +7,8 @@ import { AddProductComponent } from './main/add-product/add-product.component';
 import { isGuestGuard, isUserGuard } from './guards/auth.guard';
 import { ProductDetailsComponent } from './main/product-details/product-details.component';
 import { CartComponent } from './main/cart/cart.component';
+import { WishlistComponent } from './auth/wishlist/wishlist.component';
+import { ProfileComponent } from './auth/profile/profile.component';
 
 export const routes: Routes = [
   {
@@ -52,6 +54,17 @@ export const routes: Routes = [
         path: 'register',
         component: RegisterComponent,
         canActivate: [isGuestGuard],
+      },
+    ],
+  },
+  {
+    path: 'profile',
+    canActivate: [isUserGuard],
+    children: [
+      { path: '', component: ProfileComponent },
+      {
+        path: 'wishlist',
+        component: WishlistComponent,
       },
     ],
   },
