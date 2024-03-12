@@ -66,12 +66,12 @@ productController.delete("/:id", preload(), isOwner(), async (req, res) => {
   }
 });
 
-productController.post("/:id/add", isUser(), async (req, res) => {
+productController.post("/:id/wishlist", isUser(), async (req, res) => {
   try {
     const productId = req.params.id;
     const userId = req.user?._id;
 
-    await wishlistService.addToCart(userId, productId);
+    await wishlistService.toggleItemInWishlist(userId, productId);
     res.status(200).end();
   } catch (error) {
     const errorMessage = errorParser(error);

@@ -46,6 +46,7 @@ async function getUser(userId) {
     email: user.email,
     username: user.username,
     _id: user._id,
+    wishlist: user.wishlist
   };
 }
 
@@ -64,6 +65,7 @@ function createToken(user) {
       _id: user._id,
       email: user.email,
       username: user.username,
+      wishlist: user.wishlist
     },
     authToken: jwt.sign(payload, secret/*,{ expiresIn: "30s" }*/),
   };
