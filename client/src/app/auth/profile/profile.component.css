@@ -1,0 +1,93 @@
+.profile {
+    min-height: 500px;
+  /* background-color: #f2f2f2; */
+  /* background: linear-gradient(#f2f2f2, #eee, #f2f2f2); */
+}
+
+.container {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+}
+
+.aside-info {
+  min-height: 500px;
+  flex: 0 0 28%;
+  background-color: #bbb;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+
+.aside-info a {
+  display: inline-block;
+  padding: 1em 2em;
+  background-color: #eee;
+}
+
+.products {
+  height: 100%;
+  flex: 0 0 72%;
+  padding: 1em;
+  background-color: #eee;
+}
+
+.posted-products {
+  background-color: #fff;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  align-items: stretch;
+}
+
+.wrapper .card {
+  height: 200px;
+  display: flex;
+  padding: 1.5em;
+}
+
+.media {
+  height: 100%;
+  flex: 0 0 25%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.media img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+.content {
+  flex: 0 0 75%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.info {
+  flex: 0 0 65%;
+}
+
+.controls {
+  display: flex;
+  flex: 0 0 30%;
+  flex-direction: column;
+  gap: 1em;
+  align-items: center;
+}
+
+.controls a {
+  padding: 1em 2em;
+  text-decoration: none;
+  color: #000;
+  background-color: #bbb;
+}

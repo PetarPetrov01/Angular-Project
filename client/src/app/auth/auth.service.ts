@@ -4,12 +4,12 @@ import { BehaviorSubject, Subscription, tap } from 'rxjs';
 import { User } from '../types/User';
 import { CookieService } from 'ngx-cookie-service';
 import { cookieName } from './auth.component';
-import { APIProduct, Product } from '../types/Product';
+import { APIProduct } from '../types/Product';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService implements OnDestroy{
+export class AuthService implements OnDestroy {
   private user$$ = new BehaviorSubject<User | undefined>(undefined);
   public user$ = this.user$$.asObservable();
 
@@ -58,8 +58,12 @@ export class AuthService implements OnDestroy{
     });
   }
 
-  getWishlist(){
+  getWishlist() {
     return this.http.get<[APIProduct]>('/api/auth/wishlist');
+  }
+
+  getOwnProducts() {
+    return this.http.get<[APIProduct]>('/api/auth/posts');
   }
 
   setUserSubject(user: User) {
