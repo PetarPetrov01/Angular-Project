@@ -1,1 +1,33 @@
-<p>profile works!</p>
+<section class="profile">
+  <div class="container">
+    <aside class="aside-info">
+      <h2>{{ user?.username }}</h2>
+      <p>Email: {{ user?.email }}</p>
+      <a>Wishlist</a>
+      <a>Logout</a>
+    </aside>
+    <div class="products">
+      <div class="posted-products">
+        <h1>Posted products</h1>
+        <div class="wrapper" *ngIf="products?.length != 0 || !products">
+            <div class="card" *ngFor="let product of products">
+                <div class="media">
+                    <img [src]="product.image" [alt]="product.name">
+                </div>
+                <div class="content">
+                    <div class="info">
+                        <h2>{{product.name}}</h2>
+                        <h3>{{product.category.join(', ')}}</h3>
+                        <h3>{{product}}</h3>
+                    </div>
+                    <div class="controls">
+                        <a href="">Edit</a>
+                        <a href="">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
