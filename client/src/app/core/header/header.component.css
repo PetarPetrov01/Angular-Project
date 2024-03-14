@@ -18,6 +18,7 @@ header.home{
     display: flex;
     align-items: center;
     gap: 0.5em;
+    user-select: none;
 }
 
 .logo img{
@@ -27,6 +28,7 @@ header.home{
 .logo span{
     font-size: 1.2em;
     font-weight: 600;
+    cursor: default;
 }
 
 .container {

@@ -36,10 +36,14 @@ li a:hover:not(.active) {
 .products-wrapper {
   max-width: 90%;
   margin: 0 auto;
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6%;
+  padding: 2em;
+  /* display: grid;
   grid-template-columns: repeat(4, minmax(20%, 1fr));
   gap: 2em;
-  padding: 2em;
+  padding: 2em; */
 }
 
 .no-products {
@@ -59,8 +63,8 @@ li a:hover:not(.active) {
 }
 
 .card {
-  /* flex: 0 0 20.5%; */
-  /* align-self: stretch; */
+  flex: 0 0 20.5%;
+  align-self: stretch;
   border: 1px solid #ccc;
   background: radial-gradient(#fff 25%, #e4e4e4);
 }

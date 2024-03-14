@@ -2,7 +2,7 @@
   <div class="container">
     <div class="wrapper">
       <div class="header">
-        <h2>Wishlist <span>{{wishlist.length}} products</span></h2>
+        <h2>Wishlist <span>{{wishlist.length}} product{{wishlist.length!=1? 's' : ''}}</span></h2>
       </div>
       <div class="prodcuts-wrapper">
 
@@ -17,7 +17,7 @@
         @for (product of wishlist; track $index) {
         <div class="card">
           <div class="media">
-            <a href="">
+            <a [routerLink]="'/products/' + product._id">
               <img [src]="product.image" [alt]="product.name" />
             </a>
           </div>
