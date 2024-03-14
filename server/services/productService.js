@@ -54,8 +54,13 @@ async function updateProduct(productId, data) {
   return await product.save();
 }
 
+
 async function deleteProduct(productId){
   return await Product.findByIdAndDelete(productId);
+}
+
+async function getOwn(userId){
+  return await Product.find({_ownerId: userId});
 }
 
 const productService = {
@@ -63,7 +68,8 @@ const productService = {
   getProductById,
   addProduct,
   updateProduct,
-  deleteProduct
+  deleteProduct,
+  getOwn
 };
 
 module.exports = productService;
