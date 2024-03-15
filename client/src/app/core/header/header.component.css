@@ -1,5 +1,11 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
 
+:host{
+    display: block;
+background-color: #555;
+background: linear-gradient(90deg, #c8c8c8,#eeeeee);
+}
+
 header {
     background-image: url("../../../assets/images/back.jpg");
     background-size: cover;

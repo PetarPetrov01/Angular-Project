@@ -1,5 +1,5 @@
 .products {
-  min-height: 500px;
+  min-height: 70vh;
 }
 
 .container {
@@ -10,6 +10,7 @@
 .options {
   background-color: #eee;
   padding: 1.1em;
+  max-width: none;
 }
 
 .options ul {
@@ -34,7 +35,7 @@ li a:hover:not(.active) {
 }
 
 .products-wrapper {
-  max-width: 90%;
+  max-width: 1500px;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;

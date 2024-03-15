@@ -1,53 +1,65 @@
 <section class="products">
-  <div class="container">
     <div class="options">
-      <ul>
-        <li>
-          <a
-            (click)="changeCategory('')"
-            [ngClass]="!queryParams['category'] ? 'active' : ''"
-            >All</a
-          >
-        </li>
-        <li>
-          <a
-            (click)="changeCategory('Living room')"
-            [ngClass]="queryParams['category'] == 'Living room' ? 'active' : ''"
-            >Living room</a
-          >
-        </li>
-        <li>
-          <a
-            (click)="changeCategory('Bedroom')"
-            [ngClass]="queryParams['category'] == 'Bedroom' ? 'active' : ''"
-            >Bedroom</a
-          >
-        </li>
-        <li>
-          <a
-            (click)="changeCategory('Dining room')"
-            [ngClass]="queryParams['category'] == 'Dining room' ? 'active' : ''"
-            >Dining room</a
-          >
-        </li>
-        <li>
-          <a
-            (click)="changeCategory('Home office')"
-            [ngClass]="queryParams['category'] == 'Home office' ? 'active' : ''"
-            >Home office</a
-          >
-        </li>
-        <li>
-          <a
-            (click)="changeCategory('Outdoor')"
-            [ngClass]="queryParams['category'] == 'Outdoor' ? 'active' : ''"
-            >Outdoor</a
-          >
-        </li>
-      </ul>
+      <div class="container">
+        <ul>
+          <li>
+            <a
+              (click)="changeCategory('')"
+              [ngClass]="!queryParams['category'] ? 'active' : ''"
+              >All</a
+            >
+          </li>
+          <li>
+            <a
+              (click)="changeCategory('Living room')"
+              [ngClass]="
+                queryParams['category'] == 'Living room' ? 'active' : ''
+              "
+              >Living room</a
+            >
+          </li>
+          <li>
+            <a
+              (click)="changeCategory('Bedroom')"
+              [ngClass]="queryParams['category'] == 'Bedroom' ? 'active' : ''"
+              >Bedroom</a
+            >
+          </li>
+          <li>
+            <a
+              (click)="changeCategory('Dining room')"
+              [ngClass]="
+                queryParams['category'] == 'Dining room' ? 'active' : ''
+              "
+              >Dining room</a
+            >
+          </li>
+          <li>
+            <a
+              (click)="changeCategory('Home office')"
+              [ngClass]="
+                queryParams['category'] == 'Home office' ? 'active' : ''
+              "
+              >Home office</a
+            >
+          </li>
+          <li>
+            <a
+              (click)="changeCategory('Outdoor')"
+              [ngClass]="queryParams['category'] == 'Outdoor' ? 'active' : ''"
+              >Outdoor</a
+            >
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="products-wrapper"  
-    [ngStyle]="{'justify-content': products?.length && products?.length!>4? 'flex-start':'center'}">
+    <div
+      class="products-wrapper"
+      [ngStyle]="{
+        'justify-content':
+          products?.length && products?.length! > 4 ? 'flex-start' : 'center'
+      }"
+    >
       <h1 class="no-products" *ngIf="products?.length == 0 || !products">
         There are currently no products to show!
       </h1>
@@ -60,11 +72,10 @@
           </div>
           <div class="info">
             <h3>{{ prod.name }}</h3>
-            <p>{{prod.material}}</p>
+            <p>{{ prod.material }}</p>
             <span>${{ prod.price }} </span>
           </div>
         </div>
       </div>
     </div>
-  </div>
 </section>

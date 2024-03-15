@@ -6,6 +6,10 @@ html {
   font: 16px "PT Sans";
 }
 
+body{
+  min-height: 100vh;
+}
+
 h1,
 h2,
 h3,
