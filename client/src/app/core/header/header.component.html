@@ -2,7 +2,7 @@
   <nav class="main-nav">
     <div class="logo">
       <!-- <i class="fa-solid fa-couch fa-2x"></i> -->
-      <img src="/assets/images/logo2.png" alt="">
+      <img src="/assets/images/logo2.png" alt="" />
       <span>DREAM-FURNITURE</span>
     </div>
     <ul>
@@ -23,7 +23,9 @@
           <a routerLink="add-product" routerLinkActive="active">Create</a>
         </li>
         <li>
-          <a [matMenuTriggerFor]="menu" [class.active]="isProfileActive()"><i class="fa-solid fa-user"></i></a>
+          <a [matMenuTriggerFor]="menu" [class.active]="isProfileActive()"
+            ><i class="fa-solid fa-user"></i
+          ></a>
           <mat-menu #menu="matMenu" xPosition="before" class="custom-class">
             <a mat-menu-item routerLink="/profile">Profile page</a>
             <a mat-menu-item routerLink="/profile/wishlist">Wishlist</a>
@@ -32,7 +34,13 @@
         </li>
         <li>
           <a routerLinkActive="active" routerLink="/cart"
-            ><i class="fa-solid fa-cart-shopping"></i
+            ><i
+              class="fa-solid fa-cart-shopping"
+              [matBadge]="cartQuantity > 9 ? '9+' : cartQuantity"
+              [matBadgeHidden]="cartQuantity == 0"
+              matBadgeColor="warn"
+              matBadgeSize="small"
+            ></i
           ></a>
         </li>
       </ng-container>
