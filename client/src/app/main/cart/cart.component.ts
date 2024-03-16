@@ -6,15 +6,15 @@ import { Observable, Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
 
 import * as CartActions from '../cart/cart.actions';
-import { PopulatedProduct } from '../../types/Product';
 import { MatDialog } from '@angular/material/dialog';
 import { RemoveDialogComponent } from './remove-dialog/remove-dialog.component';
 import { AuthService } from '../../auth/auth.service';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css',
 })
@@ -27,7 +27,9 @@ export class CartComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store<CartState>,
     private matDialog: MatDialog,
-    private authService: AuthService
+    private authService: AuthService,
+    private apiService: ApiService,
+    private router: Router
   ) {
     this.products$ = this.store.select('cart');
     this.prodsSubscription = this.products$.subscribe((prods) => {
@@ -57,6 +59,14 @@ export class CartComponent implements OnInit, OnDestroy {
         CartActions.decreaseQuantity({ productId: currentProduct._id })
       );
     }
+  }
+
+  toggleWishlist(currentProduct: StateProduct) {
+    this.apiService.toggleWishList(currentProduct._id).subscribe((user) => {
+      this.router.navigate([`/cart}`]);
+      this.authService.setUserStorage(user);
+      this.authService.setUserSubject(user);
+    });
   }
 
   handleRemove(currentProduct: StateProduct){

@@ -1,6 +1,6 @@
 <section class="cart">
   <div class="container">
-    <div class="products-wrapper">
+    <div class="products-wrapper" *ngIf="totalCount">
       <div class="header">
         <h2>
           Cart <span>Products: {{ totalCount }}</span>
@@ -14,8 +14,8 @@
           </div>
           <div class="card-info">
             <h3>{{ product.name }}</h3>
-            <p>{{ product.category.join(', ') }}</p>
-            <p>Material: {{ product.material.join(', ') }}</p>
+            <p>{{ product.category.join(", ") }}</p>
+            <p>Material: {{ product.material.join(", ") }}</p>
           </div>
           <div class="controls">
             <h3>${{ product.quantity * product.price }}</h3>
@@ -28,7 +28,7 @@
                 ><i class="fa-solid fa-circle-plus"></i
               ></a>
             </div>
-            <a class="wishlist"
+            <a class="wishlist" (click)="toggleWishlist(product)"
               >{{ isInWishList(product) ? "Remove from " : "Add to " }}wishlist
               <i
                 class="fa-heart"
@@ -45,14 +45,28 @@
         }
       </div>
     </div>
-    <div class="order">
+    <div class="order" *ngIf="totalCount">
       <h2>Order info</h2>
       <div class="final-price">
-        <h4>Products: <span>${{ totalPrice }}</span></h4>
+        <h4>
+          Products: <span>${{ totalPrice }}</span>
+        </h4>
         <h4>Delivery: <span>FREE</span></h4>
         <h2>Total: ${{ totalPrice }}</h2>
       </div>
       <a>Complete order</a>
+    </div>
+    <div class="no-products" *ngIf="!totalCount">
+        <div class="div">
+            <img src="assets/images/empty-cart.png" alt="">
+            <h2>No items in the cart</h2>
+        </div>
+      <p>
+        Your cart is currently empty! We offer a wide variety of products to
+        suit your needs. Take a look at our featured categories or browse by
+        brand to find the perfect items.
+      </p>
+      <a routerLink="/products">Browse products</a>
     </div>
   </div>
 </section>
