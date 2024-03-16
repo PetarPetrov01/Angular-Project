@@ -14,8 +14,8 @@
           </div>
           <div class="card-info">
             <h3>{{ product.name }}</h3>
-            <p>{{ product.category }}</p>
-            <p>Material: {{ product.material }}</p>
+            <p>{{ product.category.join(', ') }}</p>
+            <p>Material: {{ product.material.join(', ') }}</p>
           </div>
           <div class="controls">
             <h3>${{ product.quantity * product.price }}</h3>
@@ -37,7 +37,7 @@
                 }}"
               ></i
             ></a>
-            <a class="remove-btn"
+            <a class="remove-btn" (click)="handleRemove(product)"
               >Remove <i class="fa-regular fa-trash-can"></i
             ></a>
           </div>

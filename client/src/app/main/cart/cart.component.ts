@@ -59,6 +59,18 @@ export class CartComponent implements OnInit, OnDestroy {
     }
   }
 
+  handleRemove(currentProduct: StateProduct){
+    this.matDialog.open(RemoveDialogComponent, {
+      width: '300px',
+      enterAnimationDuration: '300ms',
+      exitAnimationDuration: '200ms',
+      data: {
+        productName: currentProduct?.name,
+        _id: currentProduct?._id,
+      },
+    });
+  }
+
   get totalCount() {
     return this.products?.reduce((acc, prod) => acc + prod.quantity, 0);
   }

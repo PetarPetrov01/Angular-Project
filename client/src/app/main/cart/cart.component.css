@@ -30,10 +30,10 @@
 }
 
 .order a {
-    display: block;
-    align-self: center;
-    padding: 1em 1.5em;
-    background: #38aa6d;
+  display: block;
+  align-self: center;
+  padding: 1em 1.5em;
+  background: #38aa6d;
 }
 
 .header {
@@ -43,26 +43,26 @@
   position: relative;
 }
 
-.header span{
-    font-size: 0.6em;
-    color: #666;
-    padding-left: 2em;
+.header span {
+  font-size: 0.6em;
+  color: #666;
+  padding-left: 2em;
 }
 
-.header::after{
-    content: "";
-    display: block;
-    position: absolute;
-    top: 100%;
-    left: calc(5% / 2);
-    width: 95%;
-    height: 1px;
-    background: #d3d3d3;
-  }
+.header::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: calc(5% / 2);
+  width: 95%;
+  height: 1px;
+  background: #d3d3d3;
+}
 .cards-container {
-    display: flex;
-    flex-direction: column;
-gap: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
 }
 
 .card {
@@ -73,7 +73,7 @@ gap: 2em;
 }
 
 .media {
-    flex: 0 0 20%;
+  flex: 0 0 20%;
   height: 100%;
   overflow: hidden;
 }
@@ -84,55 +84,67 @@ gap: 2em;
   object-fit: contain;
 }
 
-.card-info{
-    flex: 0 0 60%;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
+.card-info {
+  flex: 0 0 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
 }
 
-.controls{
-    flex: 0 0 20%;
-    display: flex;
-    align-items: flex-end;
-    flex-direction: column;
-    gap: 0.8em;
+.controls {
+  flex: 0 0 20%;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  gap: 0.8em;
 }
 
 .controls a {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .increase,
-.decrease{
-    border-radius: 50%;
-    color: #888;
-    font-size: 1.4em;
+.decrease {
+  border-radius: 50%;
+  color: #888;
+  font-size: 1.4em;
 }
 
-.wishlist i{
-    color: #38aa6d;
+.wishlist i {
+  color: #38aa6d;
+  font-size: 1.2em;
 }
 
-.remove-btn{
-    color: #d37676;
+.remove-btn {
+  color: #d37676;
 }
 
-.decrease{
-    /* color: #c24848; */
+.decrease {
+  /* color: #c24848; */
 }
 
 .increase {
-    /* color: #5ace72; */
+  /* color: #5ace72; */
 }
 
-.count-control{
-    display: flex;
-    align-items: center;
-    gap: 0.8em;
-    }
+.count-control {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+}
 
-    .final-price h4{
-        display: flex;
-        justify-content: space-between;
-    }
+.order a {
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.order a:hover {
+  background-color: #222;
+  color: #fff;
+}
+
+.final-price h4 {
+  display: flex;
+  justify-content: space-between;
+}
+
