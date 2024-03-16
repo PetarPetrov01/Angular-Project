@@ -1,0 +1,138 @@
+.cart {
+  min-height: 70vh;
+}
+
+.container {
+  max-width: 1600px;
+  display: flex;
+  margin: 0 auto;
+  padding: 2em;
+  justify-content: space-between;
+  gap: 2em;
+}
+
+.products-wrapper {
+  flex: 0 0 75%;
+  display: flex;
+  flex-direction: column;
+}
+
+.order {
+  flex: 0 0 22%;
+  background-color: #fff;
+  padding: 1em;
+  border-radius: 1em;
+  height: 17em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 0.6em;
+}
+
+.order a {
+    display: block;
+    align-self: center;
+    padding: 1em 1.5em;
+    background: #38aa6d;
+}
+
+.header {
+  background-color: #fff;
+  border-radius: 1em 1em 0 0;
+  padding: 1.5em 1em 1em 2em;
+  position: relative;
+}
+
+.header span{
+    font-size: 0.6em;
+    color: #666;
+    padding-left: 2em;
+}
+
+.header::after{
+    content: "";
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: calc(5% / 2);
+    width: 95%;
+    height: 1px;
+    background: #d3d3d3;
+  }
+.cards-container {
+    display: flex;
+    flex-direction: column;
+gap: 2em;
+}
+
+.card {
+  padding: 1.5em;
+  background: #fff;
+  height: 220px;
+  display: flex;
+}
+
+.media {
+    flex: 0 0 20%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.media img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+.card-info{
+    flex: 0 0 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.controls{
+    flex: 0 0 20%;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    gap: 0.8em;
+}
+
+.controls a {
+    cursor: pointer;
+}
+
+.increase,
+.decrease{
+    border-radius: 50%;
+    color: #888;
+    font-size: 1.4em;
+}
+
+.wishlist i{
+    color: #38aa6d;
+}
+
+.remove-btn{
+    color: #d37676;
+}
+
+.decrease{
+    /* color: #c24848; */
+}
+
+.increase {
+    /* color: #5ace72; */
+}
+
+.count-control{
+    display: flex;
+    align-items: center;
+    gap: 0.8em;
+    }
+
+    .final-price h4{
+        display: flex;
+        justify-content: space-between;
+    }
