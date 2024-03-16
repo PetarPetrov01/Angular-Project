@@ -2,26 +2,43 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.0.
 
-## Development server
+## Content table
+Authentication
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Authentication
+## Login and register
 
-## Build
+Upon login/register the following happens:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- The browser sets a cookie: “auth-cookie”, containing the authorization token, returned from the server
+- The created user is emitted as new value to all subscribers of the user Observable.
+- The created user is set in the local storage
 
-## Running unit tests
+## Session - authComponent
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+An authentication component wraps the whole application, and its purpose is to keep the session, after reloading, navigating or other renders that would make the user Observable empty again. By checking the local storage and the *auth-cookie,* the component itself does the following operations:
 
-## Running end-to-end tests
+### Case 1: Cookie and user intact
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+In the case where both the user in the storage and the *auth-cookie* are intact, the component calls the *setUserSubject* function from the service, emitting the user from the localStorage to the subscribers
 
-## Further help
+### Case 2: User is missing
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+If the user is missing from the local storage, but the *auth-cookie* is intact, the component checks the validity of the token saved in the cookie by sending an API Request.  
+
+- Valid token: If the token is valid, the server returns the current user and the function that handles the request, sets the user in the local storage and emmits the new user to the observables.
+- Invalid token: Otherwise, if the token is not valid, the server responds with status code 401 - Unauthorized. The interceptor handles this kind of response by clearing the whole session (cookie, user in the localStroage and BehaviourSubject)
+
+### Case 3: Cookie is missing
+
+If neither the cookie nor the user in the storage are intact, the component clears the whole session as in the second case with the invalid token.
+
+## Aspects of the approach
+
+- **Single Source of Truth:** By relying on the server for user information.
+- **Reduced Requests:**
+Utilizing localStorage effectively reduces the number of requests to the server for checking user login status during renders and reloads.
+- **Session Handling:** The *authComponent* handles session continuity across different scenarios, making the user experience smoother.
+
