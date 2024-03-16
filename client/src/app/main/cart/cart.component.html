@@ -1,1 +1,9 @@
 <p>cart works!</p>
+@for (product of products$ | async; track $index) {
+    <div>
+        {{product.name}}
+        {{product.quantity}}
+        <a (click)="handleIncreaseQuantity(product)"> + </a>
+        <a> - </a>
+    </div>
+}
