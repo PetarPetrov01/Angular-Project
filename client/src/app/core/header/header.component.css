@@ -1,92 +1,88 @@
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css");
 
-:host{
-    display: block;
-background-color: #555;
-background: linear-gradient(90deg, #c8c8c8,#eeeeee);
+:host {
+  display: block;
+  background-color: #555;
+  background: linear-gradient(90deg, #c8c8c8, #eeeeee);
 }
 
 header {
-    background-image: url("../../../assets/images/back.jpg");
-    background-size: cover;
-    background-position: top;
-    max-width: 1600px;
-    padding: 1.2em;
-    margin: 0 auto;
+  background-image: url("../../../assets/images/back.jpg");
+  background-size: cover;
+  background-position: top;
+  max-width: 1600px;
+  padding: 1.2em;
+  margin: 0 auto;
 }
 
-header.home{
-    background-position: center;
+header.home {
+  background-position: center;
 }
 
-.logo{
-    height: 60px;
-    display: flex;
-    align-items: center;
-    gap: 0.5em;
-    user-select: none;
+.logo {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  user-select: none;
 }
 
-.logo img{
-    height: 100%;
+.logo img {
+  height: 100%;
 }
 
-.logo span{
-    font-size: 1.2em;
-    font-weight: 600;
-    cursor: default;
+.logo span {
+  font-size: 1.2em;
+  font-weight: 600;
+  cursor: default;
 }
 
 .container {
-    min-height: 750px;
-    max-width: 1200px;
-    margin: 0 auto;
+  min-height: 750px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.main-nav{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.main-nav ul{
-    display: flex;
-
+.main-nav ul {
+  display: flex;
 }
 
-.main-nav a{
-    text-decoration: none;
-    text-transform: uppercase;
-    color: #000;
-    padding: 0.5em 1em;
-    background-color: #4441;
-    letter-spacing: 1px;
-    font-size: 1.1em;
-    cursor: pointer;
+.main-nav a {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+  padding: 0.5em 1em;
+  background-color: #4441;
+  letter-spacing: 1px;
+  font-size: 1.1em;
+  cursor: pointer;
 }
 
-.main-nav a:hover{
-    background-color: #4444;
+.main-nav a:hover {
+  background-color: #4444;
 }
 
-.main-nav .active{
-    background-color: #777;
-    color: #fff;
+.main-nav .active {
+  background-color: #777;
+  color: #fff;
 }
 
-.banner-content{
-    padding: 1em 0;
+.banner-content {
+  padding: 1em 0;
 }
 .banner-content h2 {
-    font-size: 4em;
-    font-weight: 300;
+  font-size: 4em;
+  font-weight: 300;
 }
 
-
-::ng-deep .custom-class a{
-    max-height: 30px;
-    overflow: hidden;
-    /* padding: 2px; */
+::ng-deep .custom-class a {
+  max-height: 30px;
+  overflow: hidden;
+  /* padding: 2px; */
 }
-
-
