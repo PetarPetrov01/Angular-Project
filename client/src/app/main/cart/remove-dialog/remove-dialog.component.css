@@ -1,0 +1,30 @@
+mat-dialog-actions{
+    display: flex;
+    gap: 1em;
+    padding: 1em;
+    justify-content: center;
+}
+
+button{
+    padding: 0.6em 1em;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+}
+
+button:focus{
+    outline: 2px solid #888;
+}
+
+.confirm{
+    background-color: #f76565;
+}
+
+.confirm:hover{
+    background-color: #f74d4d;
+}
+
+span{
+    color: #222;
+}
