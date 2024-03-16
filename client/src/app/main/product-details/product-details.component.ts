@@ -10,7 +10,10 @@ import { PopulatedProduct } from '../../types/Product';
 
 import { DeleteDialogComponent } from './delete-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { User } from '../../types/User';
+import { Store } from '@ngrx/store';
+import { CartComponent } from '../cart/cart.component';
+
+import * as CartActions from '../cart/cart.actions';
 
 @Component({
   selector: 'app-product-details',
@@ -31,7 +34,8 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     private apiService: ApiService,
     private authService: AuthService,
     private matDialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private store: Store<CartComponent>
   ) {}
 
   ngOnInit(): void {
@@ -85,6 +89,14 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
       this.authService.setUserStorage(user);
       this.authService.setUserSubject(user);
     });
+  }
+
+  addToCart(){
+    if(this.product){
+      this.store.dispatch(CartActions.addItem({product: this.product,qty: this.buyQty}))
+    } else {
+      return
+    }
   }
 
   onInputBlur() {

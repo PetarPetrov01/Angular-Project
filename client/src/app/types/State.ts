@@ -1,5 +1,9 @@
-import { APIProduct } from "./Product";
+import { PopulatedProduct } from './Product';
 
-export interface  StateProduct extends APIProduct{
-    quantity: number
+export interface StateProduct extends PopulatedProduct {
+  quantity: number;
+}
+
+export interface CartState {
+  cart: StateProduct[];
 }

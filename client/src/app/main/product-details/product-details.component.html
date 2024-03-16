@@ -36,7 +36,7 @@
               </div>
             </div>
             <div class="controls">
-              <a id="button-cart">Add to cart</a>
+              <a id="button-cart" (click)="addToCart()">Add to cart</a>
               <a id="button-wishlist" (click)="toggleWishlist()"
                 ><i class="fa-heart" ngClass="{{isInWishList? 'fa-solid':'fa-regular'}}"></i
               ></a>
