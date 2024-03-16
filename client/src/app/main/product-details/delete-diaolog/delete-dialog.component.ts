@@ -1,4 +1,7 @@
 import { Component, Inject, OnDestroy } from '@angular/core';
+
+import { Subscription } from 'rxjs';
+
 import {
   MatDialogRef,
   MatDialogClose,
@@ -8,10 +11,8 @@ import {
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-import { Subscription } from 'rxjs';
-import { Store } from '@ngrx/store';
 
-import * as CartActions from '../cart.actions'
+import { ApiService } from '../../../shared/api.service';
 
 export interface DialogData {
   productName: string;
@@ -19,9 +20,9 @@ export interface DialogData {
 }
 
 @Component({
-  selector: 'remove-dialog',
-  templateUrl: 'remove-dialog.component.html',
-  styleUrl: 'remove-dialog.component.css',
+  selector: 'delete-dialog',
+  templateUrl: 'delete-dialog.component.html',
+  styleUrl: 'delete-dialog.component.css',
   standalone: true,
   imports: [
     MatButtonModule,
@@ -31,17 +32,24 @@ export interface DialogData {
     MatDialogContent,
   ],
 })
-export class RemoveDialogComponent {
+export class DeleteDialogComponent implements OnDestroy {
   subscription: Subscription | null = null;
 
   constructor(
+    public dialogRef: MatDialogRef<DeleteDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    private store: Store
+    private apiService: ApiService
   ) {}
 
   onConfirm() {
-   this.store.dispatch(CartActions.removeItem({productId: this.data._id}));
+    this.subscription = this.apiService
+      .deleteProduct(this.data._id)
+      .subscribe();
   }
 
-
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
 }

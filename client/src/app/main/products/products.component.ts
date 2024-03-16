@@ -1,9 +1,11 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ApiService } from '../api.service';
-import { Observable, Subscription, tap } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+
+import { Subscription } from 'rxjs';
+
+import { ApiService } from '../../shared/api.service';
 import { APIProduct } from '../../types/Product';
-import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -44,16 +46,16 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   changeCategory(category: string) {
-    if(category == this.queryParams['category']){
+    if (category == this.queryParams['category']) {
       return;
     }
 
-    if (category){
+    if (category) {
       this.router.navigate(['/products'], { queryParams: { category } });
     } else {
       this.router.navigate(['/products']);
     }
-    this.fetchProduts()
+    this.fetchProduts();
   }
 
   ngOnDestroy(): void {

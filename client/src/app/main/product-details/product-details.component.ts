@@ -1,19 +1,20 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Route, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { Subscription } from 'rxjs';
 
-import { ApiService } from '../api.service';
-import { AuthService } from '../../auth/auth.service';
+import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+
+import { ApiService } from '../../shared/api.service';
+import { AuthService } from '../../shared/auth.service';
 import { PopulatedProduct } from '../../types/Product';
 
-import { DeleteDialogComponent } from './delete-dialog.component';
+import { DeleteDialogComponent } from './delete-diaolog/delete-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { Store } from '@ngrx/store';
-import { CartComponent } from '../cart/cart.component';
+import { CartComponent } from '../../auth/cart/cart.component';
 
-import * as CartActions from '../cart/cart.actions';
+import * as CartActions from '../../auth/cart/cart.actions';
 
 @Component({
   selector: 'app-product-details',

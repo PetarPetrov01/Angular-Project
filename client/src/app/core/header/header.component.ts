@@ -1,16 +1,19 @@
-import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
+import { NgIf } from '@angular/common';
 import {
-  ActivatedRoute,
   Router,
   RouterLink,
   RouterLinkActive,
 } from '@angular/router';
-import { AuthService } from '../../auth/auth.service';
+
+import { Store } from '@ngrx/store';
+
 import { MatMenuModule } from '@angular/material/menu';
 import { MatBadgeModule } from '@angular/material/badge';
+
+import { AuthService } from '../../shared/auth.service';
+
 import { CartState } from '../../types/State';
-import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-header',

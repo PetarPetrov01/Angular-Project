@@ -1,10 +1,13 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
 import { BehaviorSubject, Subscription, tap } from 'rxjs';
-import { User } from '../types/User';
 import { CookieService } from 'ngx-cookie-service';
-import { cookieName } from './auth.component';
+
+import { cookieName } from '../auth/auth.component';
+
 import { APIProduct } from '../types/Product';
+import { User } from '../types/User';
 
 @Injectable({
   providedIn: 'root',

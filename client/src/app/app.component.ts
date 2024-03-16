@@ -1,11 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { AuthComponent } from './auth/auth.component';
-import { HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-root',

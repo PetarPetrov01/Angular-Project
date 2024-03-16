@@ -1,14 +1,16 @@
 import { Component, OnDestroy } from '@angular/core';
+import { NgIf } from '@angular/common';
+import { Router, RouterLink } from '@angular/router';
 import {
   FormBuilder,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
-import { EmailValidateDirective } from '../../validators/email-validator.directive';
-import { NgIf } from '@angular/common';
-import { AuthService } from '../auth.service';
+
 import { Subscription } from 'rxjs';
+
+import { AuthService } from '../../shared/auth.service';
+import { EmailValidateDirective } from '../../shared/validators/email-validator.directive';
 
 @Component({
   selector: 'app-login',

@@ -1,3 +1,4 @@
+import { Injectable, Provider } from '@angular/core';
 import {
   HTTP_INTERCEPTORS,
   HttpEvent,
@@ -5,13 +6,13 @@ import {
   HttpInterceptor,
   HttpRequest,
 } from '@angular/common/http';
-import { Injectable, Provider } from '@angular/core';
-import { Observable, catchError } from 'rxjs';
-import { environment } from '../environments/environment.development';
-import { CookieService } from 'ngx-cookie-service';
-import { cookieName } from './auth/auth.component';
-import { AuthService } from './auth/auth.service';
 import { Router } from '@angular/router';
+
+import { Observable, catchError } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
+
+import { AuthService } from './shared/auth.service';
+import { environment } from '../environments/environment.development';
 
 const { appUrl } = environment;
 

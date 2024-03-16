@@ -1,8 +1,10 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { APIProduct, PopulatedProduct, Product } from '../types/Product';
-import { tap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { Params } from '@angular/router';
+
+import { tap } from 'rxjs';
+
+import { APIProduct, PopulatedProduct, Product } from '../types/Product';
 import { User } from '../types/User';
 
 @Injectable({

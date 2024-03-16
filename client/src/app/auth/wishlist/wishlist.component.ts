@@ -1,10 +1,13 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { ApiService } from '../../main/api.service';
-import { AuthService } from '../auth.service';
-import { Subscription } from 'rxjs';
-import { APIProduct, Product } from '../../types/Product';
-import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
+
+import { Subscription } from 'rxjs';
+
+import { ApiService } from '../../shared/api.service';
+import { AuthService } from '../../shared/auth.service';
+
+import { APIProduct } from '../../types/Product';
 
 @Component({
   selector: 'app-wishlist',

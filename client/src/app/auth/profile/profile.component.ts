@@ -1,9 +1,11 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { AuthService } from '../auth.service';
-import { User } from '../../types/User';
-import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
+
+import { AuthService } from '../../shared/auth.service';
+
 import { APIProduct } from '../../types/Product';
+import { User } from '../../types/User';
 
 @Component({
   selector: 'app-profile',

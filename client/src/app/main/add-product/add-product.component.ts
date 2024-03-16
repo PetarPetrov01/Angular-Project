@@ -1,4 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NgIf } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+
 import {
   FormBuilder,
   FormControl,
@@ -6,14 +9,16 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+
+import { Subscription } from 'rxjs';
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
-import { NgIf } from '@angular/common';
-import { ApiService } from '../api.service';
-import { PopulatedProduct, Product } from '../../types/Product';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+
+import { ApiService } from '../../shared/api.service';
+
+import { Product } from '../../types/Product';
 
 @Component({
   selector: 'app-add-product',

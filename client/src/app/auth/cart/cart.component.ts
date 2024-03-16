@@ -1,15 +1,17 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { ApiService } from '../api.service';
-import { State, Store } from '@ngrx/store';
-import { CartState, StateProduct } from '../../types/State';
-import { Observable, Subscription } from 'rxjs';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
-import * as CartActions from '../cart/cart.actions';
+import { Observable, Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
 import { MatDialog } from '@angular/material/dialog';
+
+import { CartState, StateProduct } from '../../types/State';
+import * as CartActions from '../cart/cart.actions';
 import { RemoveDialogComponent } from './remove-dialog/remove-dialog.component';
-import { AuthService } from '../../auth/auth.service';
-import { Router, RouterLink } from '@angular/router';
+
+import { AuthService } from '../../shared/auth.service';
+import { ApiService } from '../../shared/api.service';
 
 @Component({
   selector: 'app-cart',
@@ -69,7 +71,7 @@ export class CartComponent implements OnInit, OnDestroy {
     });
   }
 
-  handleRemove(currentProduct: StateProduct){
+  handleRemove(currentProduct: StateProduct) {
     this.matDialog.open(RemoveDialogComponent, {
       width: '300px',
       enterAnimationDuration: '300ms',
@@ -93,7 +95,9 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   isInWishList(product: StateProduct) {
-    return !!this.authService.user?.wishlist.some((prod) => prod == product._id)
+    return !!this.authService.user?.wishlist.some(
+      (prod) => prod == product._id
+    );
   }
 
   ngOnInit(): void {}

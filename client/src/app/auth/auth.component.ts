@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { CookieService } from 'ngx-cookie-service';
-import { AuthService } from './auth.service';
-import { Router } from '@angular/router';
+import { AuthService } from '../shared/auth.service';
 
 export const cookieName = 'auth-cookie';
 

@@ -1,14 +1,17 @@
 import { Routes } from '@angular/router';
+
 import { HomeComponent } from './main/home/home.component';
 import { ProductsComponent } from './main/products/products.component';
+import { AddProductComponent } from './main/add-product/add-product.component';
+import { ProductDetailsComponent } from './main/product-details/product-details.component';
+
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { AddProductComponent } from './main/add-product/add-product.component';
-import { isGuestGuard, isUserGuard } from './guards/auth.guard';
-import { ProductDetailsComponent } from './main/product-details/product-details.component';
-import { CartComponent } from './main/cart/cart.component';
-import { WishlistComponent } from './auth/wishlist/wishlist.component';
 import { ProfileComponent } from './auth/profile/profile.component';
+import { WishlistComponent } from './auth/wishlist/wishlist.component';
+import { CartComponent } from './auth/cart/cart.component';
+
+import { isGuestGuard, isUserGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
