@@ -26,6 +26,14 @@ export class CartComponent implements OnInit {
     this.store.dispatch(CartActions.addItem({product: currentProduct,qty: 1}))
   }
 
+  handleDecreaseQuantity(currentProduct: StateProduct){
+    if (currentProduct.quantity <=1){
+      this.store.dispatch(CartActions.removeItem({productId: currentProduct._id}))
+    } else {
+      this.store.dispatch(CartActions.decreaseQuantity({productId : currentProduct._id}))
+    }
+  }
+
 
   ngOnInit(): void {
     // this.apiService.getProductsInCart();

@@ -4,6 +4,6 @@
         {{product.name}}
         {{product.quantity}}
         <a (click)="handleIncreaseQuantity(product)"> + </a>
-        <a> - </a>
+        <a (click)="handleDecreaseQuantity(product)"> - </a>
     </div>
 }

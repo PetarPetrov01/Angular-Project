@@ -1,10 +1,12 @@
-import { createReducer, on } from '@ngrx/store';
+import { Action, ActionReducer, State, createReducer, on, provideStore } from '@ngrx/store';
 import * as actions from './cart.actions';
-import { StateProduct } from '../../types/State';
+import {  StateProduct } from '../../types/State';
+import {  localStorageSync } from 'ngrx-store-localstorage';
 
 const initial: StateProduct[] | [] = [];
 
-export const cartReducer = createReducer(
+export const cartReducer: ActionReducer<StateProduct[], Action>  = createReducer(
+    
   initial,
   on(actions.addItem, (state, { product, qty }) => {
     return state.some((prod) => prod._id == product._id)
@@ -29,3 +31,17 @@ export const cartReducer = createReducer(
     return state.filter((prod) => prod._id != productId);
   })
 );
+
+export function testMetaReducer(reducer: ActionReducer<any>): ActionReducer<any>{
+    return function(state, action) {
+        console.log('state', state);
+        console.log('action', action);
+    
+        return reducer(state, action);
+      };
+}
+
+export function localStorageSyncReducer(reducer: ActionReducer<StateProduct[]>): ActionReducer<StateProduct[],Action> {
+    return localStorageSync({keys: ['cart'], rehydrate: true})(reducer);
+}
+
