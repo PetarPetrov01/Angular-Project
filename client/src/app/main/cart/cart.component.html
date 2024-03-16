@@ -1,9 +1,58 @@
-<p>cart works!</p>
-@for (product of products$ | async; track $index) {
-    <div>
-        {{product.name}}
-        {{product.quantity}}
-        <a (click)="handleIncreaseQuantity(product)"> + </a>
-        <a (click)="handleDecreaseQuantity(product)"> - </a>
+<section class="cart">
+  <div class="container">
+    <div class="products-wrapper">
+      <div class="header">
+        <h2>
+          Cart <span>Products: {{ totalCount }}</span>
+        </h2>
+      </div>
+      <div class="cards-container">
+        @for (product of products$ | async; track $index) {
+        <div class="card">
+          <div class="media">
+            <img [src]="product.image" alt="{{ product.name }}" />
+          </div>
+          <div class="card-info">
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.category }}</p>
+            <p>Material: {{ product.material }}</p>
+          </div>
+          <div class="controls">
+            <h3>${{ product.quantity * product.price }}</h3>
+            <div class="count-control">
+              <a (click)="handleDecreaseQuantity(product)" class="decrease"
+                ><i class="fa-solid fa-circle-minus"></i
+              ></a>
+              <h3>{{ product.quantity }}</h3>
+              <a (click)="handleIncreaseQuantity(product)" class="increase"
+                ><i class="fa-solid fa-circle-plus"></i
+              ></a>
+            </div>
+            <a class="wishlist"
+              >{{ isInWishList(product) ? "Remove from " : "Add to " }}wishlist
+              <i
+                class="fa-heart"
+                ngClass="{{
+                  isInWishList(product) ? 'fa-solid' : 'fa-regular'
+                }}"
+              ></i
+            ></a>
+            <a class="remove-btn"
+              >Remove <i class="fa-regular fa-trash-can"></i
+            ></a>
+          </div>
+        </div>
+        }
+      </div>
     </div>
-}
+    <div class="order">
+      <h2>Order info</h2>
+      <div class="final-price">
+        <h4>Products: <span>${{ totalPrice }}</span></h4>
+        <h4>Delivery: <span>FREE</span></h4>
+        <h2>Total: ${{ totalPrice }}</h2>
+      </div>
+      <a>Complete order</a>
+    </div>
+  </div>
+</section>
