@@ -9,19 +9,19 @@ import {
 import { Router } from '@angular/router';
 
 import { Observable, catchError } from 'rxjs';
-import { CookieService } from 'ngx-cookie-service';
 
 import { AuthService } from './shared/auth.service';
 import { environment } from '../environments/environment.development';
+import { ErrorService } from './shared/error/error.service';
 
 const { appUrl } = environment;
 
 @Injectable()
 export class AppInterceptor implements HttpInterceptor {
   constructor(
-    private cookieService: CookieService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private errorService: ErrorService
   ) {}
 
   intercept(
@@ -41,6 +41,8 @@ export class AppInterceptor implements HttpInterceptor {
           this.router.navigate(['/auth/login'])
         } else {
           console.error(err);
+          this.errorService.setError(err.error.message)
+          throw [err]
         }
         return [err];
       })
