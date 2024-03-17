@@ -39,6 +39,10 @@ export class RegisterComponent implements OnDestroy{
     }
 
     const { email, username, passwords: {password} } = form.value;
+
+    form.controls['passwords'].setValue({password: '', rePassword: ''})
+    form.controls['passwords'].markAsUntouched();
+
     this.subscription = this.authService.register(email, username, password).subscribe(()=>{
       this.router.navigate(['/'])
     })

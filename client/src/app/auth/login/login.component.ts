@@ -1,26 +1,30 @@
 import { Component, OnDestroy } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
-import {
-  FormBuilder,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
 
 import { AuthService } from '../../shared/auth.service';
 import { EmailValidateDirective } from '../../shared/validators/email-validator.directive';
+import { LoaderComponent } from '../../shared/loader/loader.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, EmailValidateDirective, NgIf],
+  imports: [
+    RouterLink,
+    ReactiveFormsModule,
+    EmailValidateDirective,
+    NgIf,
+    LoaderComponent,
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
-export class LoginComponent implements OnDestroy{
+export class LoginComponent implements OnDestroy {
   subscription: Subscription | null;
+  isLoading: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -36,14 +40,25 @@ export class LoginComponent implements OnDestroy{
   });
 
   handleLoginSubmit() {
-    if(this.loginForm.invalid){
+    if (this.loginForm.invalid) {
       return;
     }
+    this.isLoading = true;
 
     const { email, password } = this.loginForm.value;
 
-    this.authService.login(email!, password!).subscribe(() => {
-      this.router.navigate(['/']);
+    this.loginForm.reset()
+
+    this.authService.login(email!, password!).subscribe({
+      next: () => {
+        this.router.navigate(['/']);
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.log('errr');
+        this.isLoading = false;
+        console.log(err);
+      },
     });
   }
 
