@@ -48,13 +48,15 @@
             </ng-container>
           </div>
         </div>
-        <app-loader *ngIf="isLoading" color="#E8B677" diameter="70px" width="7px"/>
+        
         <button
           class="login-btn"
           [disabled]="loginForm.invalid"
           (click)="handleLoginSubmit()"
         >
-          Login
+        <p *ngIf="!isLoading">Login</p>
+          <app-loader type="dots" *ngIf="isLoading"
+          color="#E8B677" diameter="14px" width="7px"/>
         </button>
       </form>
       <div class="register-redirect">

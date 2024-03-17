@@ -55,9 +55,7 @@ export class LoginComponent implements OnDestroy {
         this.isLoading = false;
       },
       error: (err) => {
-        console.log('errr');
         this.isLoading = false;
-        console.log(err);
       },
     });
   }
