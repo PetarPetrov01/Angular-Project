@@ -13,6 +13,51 @@ import { CartComponent } from './auth/cart/cart.component';
 
 import { isGuestGuard, isUserGuard } from './guards/auth.guard';
 
+const productRoutes = {
+  path: 'products',
+  children: [
+    {
+      path: '',
+      component: ProductsComponent,
+    },
+    {
+      path: ':id',
+      children: [
+        { path: '', component: ProductDetailsComponent },
+        {
+          path: 'edit',
+          component: AddProductComponent,
+          canActivate: [isUserGuard],
+        },
+      ],
+    },
+  ],
+};
+
+const authRoutes = {
+  path: 'auth',
+  children: [
+    { path: 'login', component: LoginComponent, canActivate: [isGuestGuard] },
+    {
+      path: 'register',
+      component: RegisterComponent,
+      canActivate: [isGuestGuard],
+    },
+  ],
+};
+
+const profileRoutes = {
+  path: 'profile',
+  canActivate: [isUserGuard],
+  children: [
+    { path: '', component: ProfileComponent },
+    {
+      path: 'wishlist',
+      component: WishlistComponent,
+    },
+  ],
+}
+
 export const routes: Routes = [
   {
     path: '',
@@ -23,52 +68,13 @@ export const routes: Routes = [
     path: 'home',
     component: HomeComponent,
   },
-  {
-    path: 'products',
-    children: [
-      {
-        path: '',
-        component: ProductsComponent,
-      },
-      {
-        path: ':id',
-        children: [
-          { path: '', component: ProductDetailsComponent },
-          {
-            path: 'edit',
-            component: AddProductComponent,
-            canActivate: [isUserGuard],
-          },
-        ],
-      },
-    ],
-  },
+  productRoutes,
   {
     path: 'add-product',
     component: AddProductComponent,
     canActivate: [isUserGuard],
   },
   { path: 'cart', component: CartComponent, canActivate: [isUserGuard] },
-  {
-    path: 'auth',
-    children: [
-      { path: 'login', component: LoginComponent, canActivate: [isGuestGuard] },
-      {
-        path: 'register',
-        component: RegisterComponent,
-        canActivate: [isGuestGuard],
-      },
-    ],
-  },
-  {
-    path: 'profile',
-    canActivate: [isUserGuard],
-    children: [
-      { path: '', component: ProfileComponent },
-      {
-        path: 'wishlist',
-        component: WishlistComponent,
-      },
-    ],
-  },
+  authRoutes,
+  profileRoutes
 ];
