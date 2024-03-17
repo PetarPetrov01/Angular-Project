@@ -29,7 +29,8 @@ export const cartReducer: ActionReducer<StateProduct[], Action>  = createReducer
   }),
   on(actions.removeItem, (state, { productId }) => {
     return state.filter((prod) => prod._id != productId);
-  })
+  }),
+  on(actions.resetState,(state) => initial)
 );
 
 export function testMetaReducer(reducer: ActionReducer<any>): ActionReducer<any>{

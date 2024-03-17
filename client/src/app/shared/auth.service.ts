@@ -8,6 +8,9 @@ import { cookieName } from '../auth/auth.component';
 
 import { APIProduct } from '../types/Product';
 import { User } from '../types/User';
+import { Store } from '@ngrx/store';
+
+import * as CartActions from '../auth/cart/cart.actions'
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +23,11 @@ export class AuthService implements OnDestroy {
 
   subscription: Subscription;
 
-  constructor(private http: HttpClient, private cookieService: CookieService) {
+  constructor(
+    private http: HttpClient,
+    private cookieService: CookieService,
+    private store: Store
+  ) {
     this.subscription = this.user$$.subscribe((user) => {
       this.user = user;
     });
@@ -90,6 +97,7 @@ export class AuthService implements OnDestroy {
     localStorage.removeItem('[user]');
     this.user$$.next(undefined);
     this.cookieService.delete(cookieName, '/');
+    this.store.dispatch(CartActions.resetState());
   }
 
   ngOnDestroy(): void {
