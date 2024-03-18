@@ -38,11 +38,11 @@ export class AppInterceptor implements HttpInterceptor {
       catchError((err) => {
         if (err.status === 401) {
           this.authService.clearUserSession();
-          this.router.navigate(['/auth/login'])
+          this.router.navigate(['/auth/login']);
         } else {
           console.error(err);
-          this.errorService.setError(err.error.message)
-          throw [err]
+          this.errorService.setError(err.error.message);
+          throw [err];
         }
         return [err];
       })

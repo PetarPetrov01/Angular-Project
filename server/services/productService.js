@@ -12,15 +12,10 @@ async function getProducts(query) {
     optionsArr.push({ name: { $regex: new RegExp(query.search, "i") } });
   }
 
-  if (optionsArr.length > 0) {
-    products = await Product.find({ $and: optionsArr });
-  } else {
-    products = await Product.find({});
-  }
-
-  if (query.sort) {
-    products = products.sort(query.sort);
-  }
+  const queryObj = optionsArr.length > 0 ? { $and: optionsArr } : {};
+  products = await Product.find(queryObj)
+    .sort(query.sort || null)
+    .limit(query.limit || null);
 
   return products;
 }
@@ -45,7 +40,7 @@ async function updateProduct(productId, data) {
   product.dimensions = {
     width: Number(data.dimensions.width),
     height: Number(data.dimensions.height),
-    depth: Number(data.dimensions.depth)
+    depth: Number(data.dimensions.depth),
   };
   product.material = data.material;
   product.color = data.color;
@@ -54,13 +49,12 @@ async function updateProduct(productId, data) {
   return await product.save();
 }
 
-
-async function deleteProduct(productId){
+async function deleteProduct(productId) {
   return await Product.findByIdAndDelete(productId);
 }
 
-async function getOwn(userId){
-  return await Product.find({_ownerId: userId});
+async function getOwn(userId) {
+  return await Product.find({ _ownerId: userId });
 }
 
 const productService = {
@@ -69,7 +63,7 @@ const productService = {
   addProduct,
   updateProduct,
   deleteProduct,
-  getOwn
+  getOwn,
 };
 
 module.exports = productService;
