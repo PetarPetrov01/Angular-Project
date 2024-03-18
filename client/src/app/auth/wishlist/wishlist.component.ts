@@ -7,7 +7,11 @@ import { Subscription } from 'rxjs';
 import { ApiService } from '../../shared/api.service';
 import { AuthService } from '../../shared/auth.service';
 
-import { APIProduct } from '../../types/Product';
+import { APIProduct, PopulatedProduct } from '../../types/Product';
+import { CartState } from '../../types/State';
+import { Store } from '@ngrx/store';
+
+import * as CartActions from '../cart/cart.actions';
 
 @Component({
   selector: 'app-wishlist',
@@ -19,10 +23,12 @@ import { APIProduct } from '../../types/Product';
 export class WishlistComponent implements OnInit, OnDestroy {
   authService = inject(AuthService);
   apiService = inject(ApiService);
+  store = inject(Store<CartState>);
+
   router = inject(Router);
 
   subscription: Subscription | null = null;
-  wishlist: [APIProduct] | [] = [];
+  wishlist: [PopulatedProduct] | [] = [];
 
   ngOnInit(): void {
     this.subscription = this.fetchWishList()
@@ -44,6 +50,10 @@ export class WishlistComponent implements OnInit, OnDestroy {
       //sync list
       this.subscription = this.fetchWishList();
     });
+  }
+
+  onAddToCart(product: PopulatedProduct){
+    this.store.dispatch(CartActions.addItem({product, qty: 1}))
   }
 
   ngOnDestroy(): void {

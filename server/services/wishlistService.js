@@ -26,7 +26,12 @@ async function toggleItemInWishlist(userId, productId) {
 }
 
 async function getWishlist(userId) {
-  const user = await User.findById(userId).lean().populate("wishlist");
+  const user = await User.findById(userId).lean().populate({
+    path: 'wishlist',
+    populate: {
+      path: '_ownerId'
+    }
+  });
 
   return user.wishlist;
 }

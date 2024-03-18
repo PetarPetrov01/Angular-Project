@@ -29,7 +29,7 @@
             </div>
             <div class="pad">
               <h2>${{ product.price }}</h2>
-              <a id="cart-btn">Add to cart</a>
+              <a id="cart-btn" (click)="onAddToCart(product)">Add to cart</a>
               <a id="remove-btn" (click)="onRemove(product._id)"
                 >Remove <i class="fa-regular fa-trash-can"></i
               ></a>
