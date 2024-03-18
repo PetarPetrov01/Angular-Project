@@ -1,0 +1,39 @@
+:host {
+  padding: 1em;
+}
+
+.edit {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  padding: 1em 2em;
+  outline: none;
+  border: none;
+cursor: pointer;
+}
+
+.controls {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+}
+
+#cancel-btn {
+  background-color: #ff7b7b;
+}
+
+#cancel-btn:hover {
+  background-color: #f95454;
+  color: #fff;
+}
+#save-btn {
+  background-color: #92ffd6;
+}
+#save-btn:hover {
+  background-color: #444;
+  color: #fff;
+}

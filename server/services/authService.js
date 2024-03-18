@@ -57,7 +57,12 @@ async function editUser(userId, username, email) {
   user.email = email;
 
   await user.save();
-  return user;
+  return {
+    email: user.email,
+    username: user.username,
+    _id: user._id,
+    wishlist: user.wishlist,
+  };
 }
 
 function verifyToken(token) {

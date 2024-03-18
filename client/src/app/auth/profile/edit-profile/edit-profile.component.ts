@@ -4,7 +4,12 @@ import {
   MatDialogClose,
   MatDialogContent,
 } from '@angular/material/dialog';
-import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { AuthService } from '../../../shared/auth.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -23,16 +28,13 @@ import { EmailValidateDirective } from '../../../shared/validators/email-validat
     MatFormFieldModule,
     FormsModule,
     MatInputModule,
-    EmailValidateDirective
+    EmailValidateDirective,
   ],
   templateUrl: './edit-profile.component.html',
   styleUrl: './edit-profile.component.css',
 })
 export class EditProfileComponent implements OnInit {
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthService
-  ) {}
+  constructor(private fb: FormBuilder, private authService: AuthService) {}
 
   editForm = this.fb.group({
     username: ['', Validators.required],
@@ -49,10 +51,12 @@ export class EditProfileComponent implements OnInit {
   }
 
   onConfirm() {
-    if(this.editForm.invalid){
-      return
+    if (this.editForm.invalid) {
+      return;
     }
 
-    // this.authService.editProfile
+    const { username, email } = this.editForm.value;
+
+    this.authService.editProfile(username!, email!);
   }
 }

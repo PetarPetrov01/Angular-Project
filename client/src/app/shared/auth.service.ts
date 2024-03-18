@@ -68,6 +68,13 @@ export class AuthService implements OnDestroy {
     });
   }
 
+  editProfile(username: string, email: string){
+    return this.http.patch<User>('/api/auth/profile',{email,username}).subscribe((user) => {
+      this.setUserSubject(user);
+      this.setUserStorage(user);
+    });
+  }
+
   getWishlist() {
     return this.http.get<[PopulatedProduct]>('/api/auth/wishlist');
   }
