@@ -26,6 +26,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    cursor: pointer;
 }
 
 .card:hover:not(.info){
@@ -34,7 +35,8 @@
 
 
 .card.info p{
-    font-size: 16px;
+    font-size: 1.1em;
+    text-align: justify;
 }
 .card.info h3{
     font-size: 2em;
@@ -62,5 +64,5 @@
 .main .content h3{
     font-size: 1.5em;
     font-weight: bold;
-    padding: 1em 0;
+    padding: 0.8em 0;
 }
