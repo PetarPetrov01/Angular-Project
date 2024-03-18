@@ -10,7 +10,7 @@ import { ApiService } from '../../shared/api.service';
 import { AuthService } from '../../shared/auth.service';
 import { PopulatedProduct } from '../../types/Product';
 
-import { DeleteDialogComponent } from './delete-diaolog/delete-dialog.component';
+import { DeleteDialogComponent } from '../../shared/delete-diaolog/delete-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { CartComponent } from '../../auth/cart/cart.component';
 

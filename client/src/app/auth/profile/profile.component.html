@@ -3,9 +3,9 @@
     <aside class="aside-info">
       <h2>{{ user?.username }}</h2>
       <p>Email: {{ user?.email }}</p>
-      <a>Wishlist</a>
+      <a [routerLink]="'wishlist'">Wishlist</a>
       <a (click)="onEditProfile()">Edit profile</a>
-      <a>Logout</a>
+      <a (click)="handleLogout()">Logout</a>
     </aside>
     <div class="products">
       <div class="products-header">
@@ -28,8 +28,8 @@
               <h3>{{ product.material.join(", ") }}</h3>
             </div>
             <div class="controls">
-              <a href="" id="edit-btn">Edit</a>
-              <a href="" id="delete-btn">Delete</a>
+              <a  id="edit-btn" [routerLink]="'/products/' + product._id + '/edit'">Edit</a>
+              <a  id="delete-btn" (click)="onDelete(product,'200ms','100ms')">Delete</a>
             </div>
           </div>
         </div>

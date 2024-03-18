@@ -10,9 +10,8 @@ import {
   MatDialogContent,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
-import { MatButtonModule } from '@angular/material/button';
 
-import { ApiService } from '../../../shared/api.service';
+import { ApiService } from '../api.service';
 
 export interface DialogData {
   productName: string;
