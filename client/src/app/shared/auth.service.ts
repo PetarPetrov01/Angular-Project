@@ -6,7 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 
 import { cookieName } from '../auth/auth.component';
 
-import { APIProduct } from '../types/Product';
+import { APIProduct, PopulatedProduct } from '../types/Product';
 import { User } from '../types/User';
 import { Store } from '@ngrx/store';
 
@@ -69,7 +69,7 @@ export class AuthService implements OnDestroy {
   }
 
   getWishlist() {
-    return this.http.get<[APIProduct]>('/api/auth/wishlist');
+    return this.http.get<[PopulatedProduct]>('/api/auth/wishlist');
   }
 
   getOwnProducts() {

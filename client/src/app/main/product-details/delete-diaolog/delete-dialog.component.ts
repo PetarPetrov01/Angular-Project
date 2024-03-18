@@ -25,7 +25,6 @@ export interface DialogData {
   styleUrl: 'delete-dialog.component.css',
   standalone: true,
   imports: [
-    MatButtonModule,
     MatDialogActions,
     MatDialogClose,
     MatDialogTitle,
