@@ -1,56 +1,105 @@
 .profile {
-    min-height: 500px;
+  min-height: 500px;
   /* background-color: #f2f2f2; */
-  /* background: linear-gradient(#f2f2f2, #eee, #f2f2f2); */
+  /* background: linear-gradient(90deg, #f0e2d6, #ffdeb7); */
 }
 
 .container {
   max-width: 1600px;
   margin: 0 auto;
   display: flex;
-  align-items: stretch;
+  align-items: flex-start;
   height: 100%;
+  padding: 1em;
+  gap: 1em;
 }
 
 .aside-info {
-  min-height: 500px;
+  min-height: 300px;
   flex: 0 0 28%;
-  background-color: #bbb;
+  background-color: #eee4;
   padding: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  border-radius: 5px;
+  border: 1px solid #666;
+  box-shadow: 2px 2px 2px #999;
+}
+
+.aside-info a {
+  display: inline-block;
+  padding: 0.8em 1.3em;
+  background-color: #92ffd6;
+  cursor: pointer;
+}
+
+.aside-info a:hover {
+  background-color: #444;
+  color: #fff;
+}
+
+.products {
+  height: 100%;
+  flex: 0 0 72%;
+  padding: 0 2em 2em 2em;
+}
+
+.no-products {
+  min-height: 200px;
+  box-shadow: 0 0 3px #999;
+  border: 1px solid #999;
+border-top: none;
+  text-align: center;
+  padding: 2em 1em;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1em;
 }
 
-.aside-info a {
-  display: inline-block;
+.no-products a {
+  text-decoration: none;
+  background-color: #92ffd6;
   padding: 1em 2em;
-  background-color: #eee;
+  color: #000;
 }
 
-.products {
-  height: 100%;
-  flex: 0 0 72%;
+.no-products a:hover {
+  background-color: #444;
+  color: #fff;
+}
+
+.products-header {
+  box-shadow: 0 -1px 2px #999;
   padding: 1em;
-  background-color: #eee;
+  border: 1px solid #aaa;
+  border-bottom: none;
 }
 
-.posted-products {
-  background-color: #fff;
+.products-header span{
+  font-size: 0.58em;
+  padding-left: 1.2em;
+  color: #666;
 }
 
 .wrapper {
   display: flex;
   flex-direction: column;
   gap: 2em;
-  align-items: stretch;
 }
 
 .wrapper .card {
   height: 200px;
   display: flex;
   padding: 1.5em;
+  box-shadow: 0 0 2px #999;
+  border: 1px solid #aaa;
+}
+
+.wrapper .card:first-child{
+  border-top: none;
 }
 
 .media {
@@ -90,4 +139,25 @@
   text-decoration: none;
   color: #000;
   background-color: #bbb;
+}
+
+#delete-btn {
+  background-color: #ff7b7b;
+  transition: all 0.15s;
+
+}
+
+#delete-btn:hover {
+  background-color: #f95454;
+  color: #fff;
+}
+
+#edit-btn {
+  background-color: #92ffd6;
+  transition: all 0.15s;
+}
+
+#edit-btn:hover{
+  background-color: #444;
+  color: #fff;
 }

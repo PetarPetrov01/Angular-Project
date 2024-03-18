@@ -4,28 +4,34 @@
       <h2>{{ user?.username }}</h2>
       <p>Email: {{ user?.email }}</p>
       <a>Wishlist</a>
+      <a (click)="onEditProfile()">Edit profile</a>
       <a>Logout</a>
     </aside>
     <div class="products">
-      <div class="posted-products">
-        <h1>Posted products</h1>
-        <div class="wrapper" *ngIf="products?.length != 0 || !products">
-            <div class="card" *ngFor="let product of products">
-                <div class="media">
-                    <img [src]="product.image" [alt]="product.name">
-                </div>
-                <div class="content">
-                    <div class="info">
-                        <h2>{{product.name}}</h2>
-                        <h3>{{product.category.join(', ')}}</h3>
-                        <h3>{{product}}</h3>
-                    </div>
-                    <div class="controls">
-                        <a href="">Edit</a>
-                        <a href="">Delete</a>
-                    </div>
-                </div>
+      <div class="products-header">
+        <h1>Posted products <span>total: {{products.length}}</span></h1>
+      </div>
+      <div class="no-products" *ngIf="products?.length == 0">
+        <h2>No products</h2>
+        <p>You still haven't posted any products!</p>
+        <a routerLink="/add-product">Post a product</a>
+      </div>
+      <div class="wrapper" *ngIf="products?.length != 0 || !products">
+        <div class="card" *ngFor="let product of products">
+          <div class="media">
+            <img [src]="product.image" [alt]="product.name" />
+          </div>
+          <div class="content">
+            <div class="info">
+              <h2>{{ product.name }}</h2>
+              <h3>{{ product.category.join(", ") }}</h3>
+              <h3>{{ product.material.join(", ") }}</h3>
             </div>
+            <div class="controls">
+              <a href="" id="edit-btn">Edit</a>
+              <a href="" id="delete-btn">Delete</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
