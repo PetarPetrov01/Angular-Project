@@ -3,7 +3,7 @@ const { authCookieName } = require("../config/cookie.js");
 const errorParser = require("../util/errorParser.js");
 
 const { body, validationResult } = require("express-validator");
-const { isGuest } = require("../middlewares/guards.js");
+const { isGuest, isUser } = require("../middlewares/guards.js");
 const wishlistService = require("../services/wishlistService.js");
 const productService = require("../services/productService.js");
 
@@ -73,7 +73,7 @@ authController.post(
   }
 );
 
-authController.get("/profile", async (req, res) => {
+authController.get("/profile", isUser(), async (req, res) => {
   try {
     const userId = req.user?._id;
 
@@ -85,7 +85,22 @@ authController.get("/profile", async (req, res) => {
   }
 });
 
-authController.get("/wishlist", async (req, res) => {
+authController.patch("/profile", isUser(), async (req, res) => {
+  try {
+    const userId = req.user._id;
+    const user = await authService.editUser(
+      userId,
+      req.body.username,
+      req.body.email
+      );
+    res.json(user);
+  } catch (error) {
+    const errorMessage = errorParser(error);
+    res.status(400).json({ message: errorMessage });
+  }
+});
+
+authController.get("/wishlist", isUser(), async (req, res) => {
   try {
     const userId = req.user?._id;
     const wishlist = await wishlistService.getWishlist(userId);

@@ -46,8 +46,18 @@ async function getUser(userId) {
     email: user.email,
     username: user.username,
     _id: user._id,
-    wishlist: user.wishlist
+    wishlist: user.wishlist,
   };
+}
+
+async function editUser(userId, username, email) {
+  const user = await User.findOne({_id: userId});
+
+  user.username = username;
+  user.email = email;
+
+  await user.save();
+  return user;
 }
 
 function verifyToken(token) {
@@ -65,9 +75,9 @@ function createToken(user) {
       _id: user._id,
       email: user.email,
       username: user.username,
-      wishlist: user.wishlist
+      wishlist: user.wishlist,
     },
-    authToken: jwt.sign(payload, secret/*,{ expiresIn: "30s" }*/),
+    authToken: jwt.sign(payload, secret /*,{ expiresIn: "30s" }*/),
   };
 }
 
@@ -75,6 +85,7 @@ const authService = {
   login,
   register,
   getUser,
+  editUser,
   verifyToken,
 };
 
