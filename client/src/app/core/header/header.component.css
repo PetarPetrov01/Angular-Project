@@ -86,3 +86,32 @@ header.home {
   overflow: hidden;
   /* padding: 2px; */
 }
+
+@media (max-width: 800px) {
+
+  header.home{
+  background-size: cover;
+  background-position: 70% 50%;
+  max-height: 500px;
+
+  }
+
+  .main-nav,
+  .main-nav ul{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+  }
+
+  .main-nav a{
+    display: block;
+    font-size: 1.3em;
+    background-color: #cccb;
+  }
+
+  .banner-content h2{
+    text-align: center;
+    font-size: 3em;
+  }
+}

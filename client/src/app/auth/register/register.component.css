@@ -157,3 +157,36 @@ p.error{
 input.ng-touched.ng-invalid{
     border-color: #f55;
 }
+
+@media (max-width: 980px){
+    .media{
+        background-size: cover;
+        background-position: right;
+    }
+}
+
+@media (max-width: 800px){
+    .register-form{
+        width: 80%;
+        background: linear-gradient(90deg, #fff9, #fff6);
+    }
+}
+
+@media (max-width: 600px){
+    .register-form{
+        width: 100%;
+
+    }
+
+    .media {
+        min-height: 520px;
+    }
+
+}
+
+@media (max-width: 450px){
+    .login-redirect,
+    form.register{
+        width: 85%;
+    }
+}

@@ -72,7 +72,7 @@
           </div>
           <div class="info">
             <h3>{{ prod.name }}</h3>
-            <p>{{ prod.material }}</p>
+            <p>{{ prod.material.join(', ') }}</p>
             <span>${{ prod.price }} </span>
           </div>
         </div>
