@@ -21,8 +21,8 @@ section.add-product {
   background-color: #fff7;
   /* background: radial-gradient(#eee4 40%, #8e81ca44); */
   /* box-shadow: 0px 0px 4px 1px #8898d9; */
-  background: radial-gradient(rgba(238, 238, 238, 0.267) 40%, #88ca8144);
-  box-shadow: 0px 0px 4px 1px #88d99a;
+  background: radial-gradient(rgba(238, 238, 238, 0.267) 40%, #81caa444);
+  box-shadow: 0px 0px 4px 1px #88d9b1;
 }
 
 h1 {
@@ -30,7 +30,7 @@ h1 {
   /* color: #46c955; */
   color: #ffffff;
   font-size: 2.5em;
-  text-shadow: 2px 1px 2px #84ea7d;
+  text-shadow: 2px 1px 2px #50b449;
   /* text-shadow: 1px 0px 3px #e2dcf1; */
 }
 
@@ -70,7 +70,7 @@ input {
 button {
   font-size: 1.1em;
   padding: 0.8em 2em;
-  background-color: #63d57e;
+  background-color: #6bd384;
   outline: none;
   border: none;
   border-radius: 5px;
@@ -80,7 +80,7 @@ button {
 }
 
 button:hover {
-  background-color: #3f51b5;
+  background-color: #39a244;
 }
 
 :host

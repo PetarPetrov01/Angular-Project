@@ -48,7 +48,6 @@ export class HeaderComponent {
   }
 
   get isHomeActive() {
-    console.log(this.location.path().match(/\/home$/));
     return this.location.path().match(/\/home$/);
   }
 

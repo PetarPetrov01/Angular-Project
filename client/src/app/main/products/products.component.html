@@ -36,6 +36,14 @@
               >Outdoor
           </mat-chip-option>
         </ul>
+        <div class="sort">
+          <select name="sort" id="" [(ngModel)]="sort" (change)="onSortChange()">
+            <option value="" disabled>Choose sorting</option>
+            <option *ngFor="let option of sortOptions" [value]="option.value">
+              {{ option.text }}
+            </option>
+          </select>
+        </div>
       </div>
     </div>
     <div

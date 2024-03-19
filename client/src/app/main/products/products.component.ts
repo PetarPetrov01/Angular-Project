@@ -26,6 +26,24 @@ export class ProductsComponent implements OnInit, OnDestroy {
   apiSubscription: Subscription | null = null;
 
   isLoading: boolean = false;
+  sortOptions = [
+    {
+      value: 'name asc',
+      text: 'Name ascending',
+    },
+    {
+      value: 'name desc',
+      text: 'Name descending',
+    },
+    {
+      value: 'price asc',
+      text: 'Price ascending',
+    },
+    {
+      value: 'price desc',
+      text: 'Price descending',
+    },
+  ];
 
   constructor(
     private apiService: ApiService,
