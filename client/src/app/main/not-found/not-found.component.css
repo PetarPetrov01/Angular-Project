@@ -1,0 +1,60 @@
+section.not-found{
+    background-color: #fefefe;
+}
+
+.container{
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2em;
+}
+
+main{
+    width: 70%;
+    margin: 0 auto;
+    /* background-color: #fff; */
+    background: radial-gradient(#fff 50%, #ffdddd53);
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px 1px #ffacac;
+    padding: 3em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header{
+    text-align: center;
+    border-radius: 1em 1em 0 0;
+}
+
+header h1{
+    font-size: 5em;
+    font-family: 'PT Sans';
+    font-weight: bold;
+    color: #ff5959;
+}
+
+.not-found{
+    min-height: 70vh;
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.missing-product p{
+    font-size: 1.1em;
+}
+
+.missing-product span{
+    font-style: italic;
+    font-weight: bold;
+}
+
+#home-btn{
+    margin-top: 2em;
+    text-decoration: none;
+    color: #000000;
+    background-color: #ededed;
+}

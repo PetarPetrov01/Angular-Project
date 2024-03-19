@@ -121,6 +121,14 @@
   font-size: 1.1em;
 }
 
+.controls a {
+  color: #ffffff;
+  padding: 1em;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+}
+
 .controls.guest a,
 .controls.owner a{
   flex: 1 1 50%;
@@ -142,14 +150,6 @@
   background-color: #ea5858;
   /* border: 1px solid #222; */
   /* color: #000; */
-}
-
-.controls a {
-  color: #000;
-  padding: 1em;
-  text-decoration: none;
-  text-align: center;
-  cursor: pointer;
 }
 
 #button-cart {

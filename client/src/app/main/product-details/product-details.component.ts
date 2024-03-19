@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
-import { Subscription } from 'rxjs';
+import { Subscription, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { ApiService } from '../../shared/api.service';
@@ -42,11 +42,15 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.activated.params.subscribe((params) => {
       this.productId = params['id'];
-      this.subscription = this.apiService
-        .getProduct(this.productId)
-        .subscribe((prod) => {
+      this.subscription = this.apiService.getProduct(this.productId).subscribe({
+        next: (prod) => {
           this.product = prod;
-        });
+        },
+        error: (err) => {
+          this.router.navigate([`/products/${this.productId}/not-found`]);
+          console.log(err);
+        },
+      });
     });
   }
 
@@ -92,11 +96,13 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
-  addToCart(){
-    if(this.product){
-      this.store.dispatch(CartActions.addItem({product: this.product,qty: this.buyQty}))
+  addToCart() {
+    if (this.product) {
+      this.store.dispatch(
+        CartActions.addItem({ product: this.product, qty: this.buyQty })
+      );
     } else {
-      return
+      return;
     }
   }
 
