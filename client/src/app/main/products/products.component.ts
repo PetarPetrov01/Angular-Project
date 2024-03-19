@@ -6,29 +6,30 @@ import { Subscription } from 'rxjs';
 
 import { ApiService } from '../../shared/api.service';
 import { APIProduct } from '../../types/Product';
+import { LoaderCardComponent } from '../../shared/loader-card/loader-card.component';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, LoaderCardComponent],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
 })
 export class ProductsComponent implements OnInit, OnDestroy {
   // products$: Observable<APIProduct[]> | null;
-  products: APIProduct[] | null = null;
+  products: APIProduct[] | [] = [];
   queryParams: any = {};
 
   querySubcsription: Subscription | null = null;
   apiSubscription: Subscription | null = null;
 
+  isLoading: boolean = false;
+
   constructor(
     private apiService: ApiService,
     private router: Router,
     private route: ActivatedRoute
-  ) {
-    // this.products$ = null // Test empty arr;
-  }
+  ) {}
 
   ngOnInit(): void {
     this.querySubcsription = this.route.queryParams.subscribe((params) => {
@@ -39,10 +40,14 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   fetchProduts() {
+    this.isLoading = true;
     this.apiSubscription = this.apiService
-      .getProducts(this.queryParams)
-      .subscribe((prods) => {
+    .getProducts(this.queryParams)
+    .subscribe((prods) => {
+      setTimeout(()=>{
         this.products = prods;
+        this.isLoading = false;
+      },2000)
       });
   }
 

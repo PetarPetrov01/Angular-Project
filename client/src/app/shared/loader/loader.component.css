@@ -1,44 +1,69 @@
 .loader {
-    border: 5px solid;
-    border-radius: 50%;
-    display: inline-block;
-    box-sizing: border-box;
-    animation: rotation 1s linear infinite;
-    }
+  border: 5px solid;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
 
-    @keyframes rotation {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-    } 
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
-    .loader-dots {
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        display: block;
-        margin:6px auto;
-        position: relative;
-        background: #FFF;
-        box-shadow: -24px 0 #FFF, 24px 0 #FFF;
-        box-sizing: border-box;
-        animation: shadowPulse 2s linear infinite;
-      }
-      
-      @keyframes shadowPulse {
-        33% {
-          background: #FFF;
-          box-shadow: -24px 0 #FF3D00, 24px 0 #FFF;
-        }
-        66% {
-          background: #FF3D00;
-          box-shadow: -24px 0 #FFF, 24px 0 #FFF;
-        }
-        100% {
-          background: #FFF;
-          box-shadow: -24px 0 #FFF, 24px 0 #FF3D00;
-        }
-      }
+.loader-dots {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: block;
+  margin: 6px auto;
+  position: relative;
+  background: #fff;
+  box-shadow: -24px 0 #fff, 24px 0 #fff;
+  box-sizing: border-box;
+  animation: shadowPulse 2s linear infinite;
+}
+
+@keyframes shadowPulse {
+  33% {
+    background: #fff;
+    box-shadow: -24px 0 #ff3d00, 24px 0 #fff;
+  }
+  66% {
+    background: #ff3d00;
+    box-shadow: -24px 0 #fff, 24px 0 #fff;
+  }
+  100% {
+    background: #fff;
+    box-shadow: -24px 0 #fff, 24px 0 #ff3d00;
+  }
+}
+
+.loader-card {
+  display: block;
+  flex: 0 0 20.5%;
+  /* width: 245px; */
+  height: 100%;
+  background:
+      linear-gradient(0.25turn, transparent, #FFF, transparent),
+      linear-gradient(#DDD, #DDD),
+      linear-gradient(#DDD, #DDD),
+      linear-gradient(#DDD, #DDD),
+      linear-gradient(#DDD, #DDD);
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-size: 215px 100%, 215px 50%, 150px 20px, 100px 15px, 90px 25px;
+  background-position: -215px 0, 15px 10px, 15px 65%, 15px 75%, 15px 85%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  to {
+    background-position: 215px 0, 15px 10px, 15px 65%, 15px 75%, 15px 85%;
+  }
+}
+
