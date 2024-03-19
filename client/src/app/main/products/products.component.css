@@ -17,7 +17,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2.5em;
+  gap: 2em;
 }
 
 :host ::ng-deep .mat-mdc-standard-chip .mdc-evolution-chip__text-label {
@@ -31,6 +31,77 @@
   ) {
     background-color: #444;
     padding: 0.2em;
+}
+
+.query-controls{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+  padding-top:  1em;
+}
+
+.query-controls a{
+  cursor: pointer;
+}
+
+form.search{
+  display: flex;
+}
+
+input#search,
+.sort select{
+  font-size: 1em;
+  outline: none;
+  border: none;
+  padding: 0.4em;
+  background-color: #fff;
+}
+
+input#search{
+  border-radius: 1em 0 0 1em;
+  padding-left: 1em;
+}
+
+input#search:focus{
+  outline: none;
+  border: none;
+}
+
+#search-btn{
+  background-color: #fff;
+  color: #333;
+  border: none;
+  padding: 0 1em;
+  border-radius: 0 1em 0.8em 0;
+  cursor: pointer;
+  font-size: 1.1em;
+}
+
+.sort select{
+  border-radius: 1em;
+  padding: 0.4em 0.8em;
+}
+
+.clear{
+  min-width: 7ch;
+}
+
+.clear a{
+  padding: 0.5em;
+  border-radius: 2px;
+  font-size: 0.85em;
+  border: 1px solid #bbb;
+  color: #333;
+  border-radius: 5px;
+  transition: all 0.15s;
+}
+
+.clear a:hover{
+  border-color: #e66666;
+  color: #882323;
+  /* border-color: #000;
+  color: #000; */
 }
 
 .products-wrapper {
