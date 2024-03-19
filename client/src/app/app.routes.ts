@@ -12,6 +12,7 @@ import { WishlistComponent } from './auth/wishlist/wishlist.component';
 import { CartComponent } from './auth/cart/cart.component';
 
 import { isGuestGuard, isUserGuard } from './guards/auth.guard';
+import { NotFoundComponent } from './main/not-found/not-found.component';
 
 const productRoutes = {
   path: 'products',
@@ -56,7 +57,7 @@ const profileRoutes = {
       component: WishlistComponent,
     },
   ],
-}
+};
 
 export const routes: Routes = [
   {
@@ -76,5 +77,6 @@ export const routes: Routes = [
   },
   { path: 'cart', component: CartComponent, canActivate: [isUserGuard] },
   authRoutes,
-  profileRoutes
+  profileRoutes,
+  { path: '**', component: NotFoundComponent },
 ];
