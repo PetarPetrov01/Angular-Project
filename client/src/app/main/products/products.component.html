@@ -46,7 +46,7 @@
         </form>
         <div class="sort">
           <select name="sort" id="" [(ngModel)]="sort" (change)="onSortChange()">
-            <option value="" disabled>Choose sorting</option>
+            <option value="" disabled>Sort by</option>
             <option *ngFor="let option of sortOptions" [value]="option.value">
               {{ option.text }}
             </option>

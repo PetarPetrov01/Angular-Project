@@ -81,6 +81,7 @@ input#search:focus{
 .sort select{
   border-radius: 1em;
   padding: 0.4em 0.8em;
+  cursor: pointer;
 }
 
 .clear{
@@ -100,8 +101,6 @@ input#search:focus{
 .clear a:hover{
   border-color: #e66666;
   color: #882323;
-  /* border-color: #000;
-  color: #000; */
 }
 
 .products-wrapper {

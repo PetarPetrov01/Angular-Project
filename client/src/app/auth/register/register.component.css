@@ -14,7 +14,7 @@ section.register{
 }
 
 .media{
-    background-image: url('../../../assets/images/register-side.jpg');
+    background-image: url('../../../assets/images/register-side-small.jpg');
     background-size: contain;
     min-height: 640px;
     width: 100%;

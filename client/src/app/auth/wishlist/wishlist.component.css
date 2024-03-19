@@ -133,9 +133,10 @@
 #cart-btn {
   padding: 1em 2em;
   background-color: #38aa6d;
-  color: #000;
+  color: #fff;
   border: none;
   border-radius: 2px;
+  transition: all 0.15s;
 }
 
 #cart-btn:hover {

@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { AuthService } from '../../shared/auth.service';
 import { EmailValidateDirective } from '../../shared/validators/email-validator.directive';
 import { LoaderComponent } from '../../shared/loader/loader.component';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ import { LoaderComponent } from '../../shared/loader/loader.component';
     EmailValidateDirective,
     NgIf,
     LoaderComponent,
+    LazyLoadImageModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',

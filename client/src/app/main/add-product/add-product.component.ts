@@ -19,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ApiService } from '../../shared/api.service';
 
 import { Product } from '../../types/Product';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 @Component({
   selector: 'app-add-product',
@@ -30,6 +31,7 @@ import { Product } from '../../types/Product';
     FormsModule,
     MatInputModule,
     NgIf,
+    LazyLoadImageModule
   ],
   templateUrl: './add-product.component.html',
   styleUrl: './add-product.component.css',

@@ -9,6 +9,7 @@ import { AuthService } from '../../shared/auth.service';
 import { MatchPasswordsDirective } from '../../shared/validators/match-passwords.directive';
 import { EmailValidateDirective } from '../../shared/validators/email-validator.directive';
 import { LoaderComponent } from '../../shared/loader/loader.component';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 @Component({
   selector: 'app-register',
@@ -20,6 +21,7 @@ import { LoaderComponent } from '../../shared/loader/loader.component';
     EmailValidateDirective,
     CommonModule,
     LoaderComponent,
+    LazyLoadImageModule
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',

@@ -6,7 +6,8 @@ section.add-product {
   padding: 3em 0;
   max-width: 1600px;
   margin: 0 auto;
-  background-image: url("../../../assets/images/add-prod-back.jpg");
+  background: linear-gradient(90deg, #88d9b1, #f8f8f8, #88d9b1);
+  background-image: url("../../../assets/images/add-prod-back-small.jpg");
   background-size: cover;
   background-position: center;
 }
