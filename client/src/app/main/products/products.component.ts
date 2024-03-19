@@ -8,10 +8,12 @@ import { ApiService } from '../../shared/api.service';
 import { APIProduct } from '../../types/Product';
 import { LoaderCardComponent } from '../../shared/loader-card/loader-card.component';
 
+import { MatChipsModule } from '@angular/material/chips';
+
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule, RouterLink, LoaderCardComponent],
+  imports: [CommonModule, RouterLink, LoaderCardComponent, MatChipsModule],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
 })
@@ -42,12 +44,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
   fetchProduts() {
     this.isLoading = true;
     this.apiSubscription = this.apiService
-    .getProducts(this.queryParams)
-    .subscribe((prods) => {
-      setTimeout(()=>{
-        this.products = prods;
-        this.isLoading = false;
-      },2000)
+      .getProducts(this.queryParams)
+      .subscribe((prods) => {
+        setTimeout(() => {
+          this.products = prods;
+          this.isLoading = false;
+        }, 2000);
       });
   }
 

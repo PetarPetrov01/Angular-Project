@@ -2,54 +2,39 @@
     <div class="options">
       <div class="container">
         <ul>
-          <li>
-            <a
-              (click)="changeCategory('')"
-              [ngClass]="!queryParams['category'] ? 'active' : ''"
-              >All</a
-            >
-          </li>
-          <li>
-            <a
+          <mat-chip-option
+            (click)="changeCategory('')"
+              [selected]="!queryParams['category']">All
+          </mat-chip-option>
+          <mat-chip-option
               (click)="changeCategory('Living room')"
-              [ngClass]="
-                queryParams['category'] == 'Living room' ? 'active' : ''
+              [selected]="
+                queryParams['category'] == 'Living room' 
               "
-              >Living room</a
-            >
-          </li>
-          <li>
-            <a
+              >Living room
+          </mat-chip-option>
+          <mat-chip-option
               (click)="changeCategory('Bedroom')"
-              [ngClass]="queryParams['category'] == 'Bedroom' ? 'active' : ''"
-              >Bedroom</a
-            >
-          </li>
-          <li>
-            <a
+              [selected]="queryParams['category'] == 'Bedroom'"
+              >Bedroom
+          </mat-chip-option>
+          <mat-chip-option
               (click)="changeCategory('Dining room')"
-              [ngClass]="
-                queryParams['category'] == 'Dining room' ? 'active' : ''
-              "
-              >Dining room</a
-            >
-          </li>
-          <li>
-            <a
+              [selected]="
+                queryParams['category'] == 'Dining room'"
+              >Dining room
+          </mat-chip-option>
+          <mat-chip-option
               (click)="changeCategory('Home office')"
-              [ngClass]="
-                queryParams['category'] == 'Home office' ? 'active' : ''
-              "
-              >Home office</a
-            >
-          </li>
-          <li>
-            <a
+              [selected]="
+                queryParams['category'] == 'Home office'"
+              >Home office
+          </mat-chip-option>
+          <mat-chip-option
               (click)="changeCategory('Outdoor')"
-              [ngClass]="queryParams['category'] == 'Outdoor' ? 'active' : ''"
-              >Outdoor</a
-            >
-          </li>
+              [selected]="queryParams['category'] == 'Outdoor'"
+              >Outdoor
+          </mat-chip-option>
         </ul>
       </div>
     </div>

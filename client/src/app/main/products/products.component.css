@@ -20,18 +20,17 @@
   gap: 2.5em;
 }
 
-li a {
-  display: block;
-  text-decoration: none;
-  color: #000;
-  font-size: 1.1em;
-  transition: transform 0.3s;
-  cursor: pointer;
+:host ::ng-deep .mat-mdc-standard-chip .mdc-evolution-chip__text-label {
+  font-size: 1em;
 }
 
-li a.active,
-li a:hover:not(.active) {
-  transform: scale(1.2);
+:host
+  ::ng-deep
+  .mat-mdc-standard-chip.mdc-evolution-chip--selected:not(
+    .mdc-evolution-chip--disabled
+  ) {
+    background-color: #444;
+    padding: 0.2em;
 }
 
 .products-wrapper {
