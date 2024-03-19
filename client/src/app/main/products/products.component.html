@@ -1,41 +1,49 @@
 <section class="products">
-    <div class="options">
-      <div class="container">
-        <ul>
-          <mat-chip-option
-            (click)="changeCategory('')"
-              [selected]="!queryParams['category']">All
-          </mat-chip-option>
-          <mat-chip-option
-              (click)="changeCategory('Living room')"
-              [selected]="
-                queryParams['category'] == 'Living room' 
-              "
-              >Living room
-          </mat-chip-option>
-          <mat-chip-option
-              (click)="changeCategory('Bedroom')"
-              [selected]="queryParams['category'] == 'Bedroom'"
-              >Bedroom
-          </mat-chip-option>
-          <mat-chip-option
-              (click)="changeCategory('Dining room')"
-              [selected]="
-                queryParams['category'] == 'Dining room'"
-              >Dining room
-          </mat-chip-option>
-          <mat-chip-option
-              (click)="changeCategory('Home office')"
-              [selected]="
-                queryParams['category'] == 'Home office'"
-              >Home office
-          </mat-chip-option>
-          <mat-chip-option
-              (click)="changeCategory('Outdoor')"
-              [selected]="queryParams['category'] == 'Outdoor'"
-              >Outdoor
-          </mat-chip-option>
-        </ul>
+  <div class="options">
+    <div class="container">
+      <ul class="category-select">
+        <mat-chip-option
+          (click)="changeCategory('')"
+          [selected]="!queryParams['category']"
+          >All
+        </mat-chip-option>
+        <mat-chip-option
+          (click)="changeCategory('Living room')"
+          [selected]="queryParams['category'] == 'Living room'"
+          >Living room
+        </mat-chip-option>
+        <mat-chip-option
+          (click)="changeCategory('Bedroom')"
+          [selected]="queryParams['category'] == 'Bedroom'"
+          >Bedroom
+        </mat-chip-option>
+        <mat-chip-option
+          (click)="changeCategory('Dining room')"
+          [selected]="queryParams['category'] == 'Dining room'"
+          >Dining room
+        </mat-chip-option>
+        <mat-chip-option
+          (click)="changeCategory('Home office')"
+          [selected]="queryParams['category'] == 'Home office'"
+          >Home office
+        </mat-chip-option>
+        <mat-chip-option
+          (click)="changeCategory('Outdoor')"
+          [selected]="queryParams['category'] == 'Outdoor'"
+          >Outdoor
+        </mat-chip-option>
+      </ul>
+      <div class="query-controls">
+        <form class="search" (ngSubmit)="onSearch()">
+          <input
+            id="search"
+            type="text"
+            placeholder="Search..."
+            name="search"
+            [(ngModel)]="search"
+          />
+          <button type="submit" id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
         <div class="sort">
           <select name="sort" id="" [(ngModel)]="sort" (change)="onSortChange()">
             <option value="" disabled>Choose sorting</option>
@@ -44,41 +52,45 @@
             </option>
           </select>
         </div>
+        <div class="clear" >
+          <a (click)="onClear()" *ngIf="hasQueryParams">Reset</a>
+        </div>
       </div>
     </div>
-    <div
-      class="products-wrapper"
-      [ngStyle]="{
-        'justify-content':
-          products.length && products.length > 4 ? 'flex-start' : 'center'
-      }"
-    >
-      <h1 class="no-products" *ngIf="products?.length == 0 && !isLoading">
-        There are currently no products to show!
-      </h1>
+  </div>
+  <div
+    class="products-wrapper"
+    [ngStyle]="{
+      'justify-content':
+        products.length && products.length > 4 ? 'flex-start' : 'center'
+    }"
+  >
+    <h1 class="no-products" *ngIf="products?.length == 0 && !isLoading">
+      There are currently no products to show!
+    </h1>
 
-      <ng-container *ngIf="isLoading">
-        <app-loader-card/>
-        <app-loader-card/>
-        <app-loader-card/>
-        <app-loader-card/>
-      </ng-container>
+    <ng-container *ngIf="isLoading">
+      <app-loader-card />
+      <app-loader-card />
+      <app-loader-card />
+      <app-loader-card />
+    </ng-container>
 
-      <ng-container *ngIf="!isLoading">
-        <div class="card" *ngFor="let prod of products" >
-          <div class="filler">
-            <div class="media">
+    <ng-container *ngIf="!isLoading">
+      <div class="card" *ngFor="let prod of products">
+        <div class="filler">
+          <div class="media">
             <a [routerLink]="prod._id">
               <img [src]="prod.image" alt="" />
             </a>
           </div>
           <div class="info">
             <h3>{{ prod.name }}</h3>
-            <p>{{ prod.material.join(', ') }}</p>
+            <p>{{ prod.material.join(", ") }}</p>
             <span>${{ prod.price }} </span>
           </div>
         </div>
       </div>
     </ng-container>
-    </div>
+  </div>
 </section>

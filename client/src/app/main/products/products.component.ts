@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 
@@ -9,23 +9,32 @@ import { APIProduct } from '../../types/Product';
 import { LoaderCardComponent } from '../../shared/loader-card/loader-card.component';
 
 import { MatChipsModule } from '@angular/material/chips';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule, RouterLink, LoaderCardComponent, MatChipsModule],
+  imports: [
+    CommonModule,
+    RouterLink,
+    LoaderCardComponent,
+    MatChipsModule,
+    FormsModule,
+  ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
 })
 export class ProductsComponent implements OnInit, OnDestroy {
-  // products$: Observable<APIProduct[]> | null;
   products: APIProduct[] | [] = [];
-  queryParams: any = {};
+  queryParams: Params = {};
 
   querySubcsription: Subscription | null = null;
   apiSubscription: Subscription | null = null;
 
   isLoading: boolean = false;
+  search: string = '';
+  sort: string = '';
+
   sortOptions = [
     {
       value: 'name asc',
@@ -53,13 +62,15 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.querySubcsription = this.route.queryParams.subscribe((params) => {
-      console.log(params);
       this.queryParams = params;
-      this.fetchProduts();
+
+      this.sort = this.queryParams['sort'] || '';
+      this.search = this.queryParams['search'] || '';
+      this.fetchProducts();
     });
   }
 
-  fetchProduts() {
+  fetchProducts() {
     this.isLoading = true;
     this.apiSubscription = this.apiService
       .getProducts(this.queryParams)
@@ -76,12 +87,54 @@ export class ProductsComponent implements OnInit, OnDestroy {
       return;
     }
 
-    if (category) {
-      this.router.navigate(['/products'], { queryParams: { category } });
+    const newCategory = category ? category : null;
+
+    this.router.navigate(['/products'], {
+      queryParams: { category: newCategory },
+      queryParamsHandling: 'merge',
+    });
+
+    this.fetchProducts();
+  }
+
+  onSearch() {
+    let search;
+
+    if (this.search) {
+      search = this.search;
+    } else if (this.queryParams['search']) {
+      //   If the user has searched and clears the search
+      search = null;
     } else {
-      this.router.navigate(['/products']);
+      return;
     }
-    this.fetchProduts();
+
+    this.router.navigate(['/products'], {
+      queryParams: { search },
+      queryParamsHandling: 'merge',
+    });
+    this.fetchProducts();
+  }
+
+  onSortChange() {
+    this.router.navigate(['/products'], {
+      queryParams: { sort: this.sort },
+      queryParamsHandling: 'merge',
+    });
+    this.fetchProducts();
+  }
+  
+  onClear(){
+    if(Object.keys(this.queryParams).length < 1){
+      return
+    }
+
+    this.router.navigate(['/products'])
+    this.fetchProducts();
+  }
+
+  get hasQueryParams(){
+    return !!Object.keys(this.queryParams).length
   }
 
   ngOnDestroy(): void {
