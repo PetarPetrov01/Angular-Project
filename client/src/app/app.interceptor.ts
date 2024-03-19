@@ -41,6 +41,9 @@ export class AppInterceptor implements HttpInterceptor {
           this.router.navigate(['/auth/login']);
         } else {
           console.error(err);
+          if(req.url.match(/.*\/products\/.+/g)){
+            throw [err];
+          }
           this.errorService.setError(err.error.message);
           throw [err];
         }

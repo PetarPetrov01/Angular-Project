@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { NgIf } from '@angular/common';
+import { NgIf, Location } from '@angular/common';
 import {
   Router,
   RouterLink,
   RouterLinkActive,
+  UrlSegment,
 } from '@angular/router';
 
 import { Store } from '@ngrx/store';
@@ -28,17 +29,27 @@ export class HeaderComponent {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private store: Store<CartState>
+    private store: Store<CartState>,
+    public location: Location
   ) {
     this.store
       .select('cart')
-      .subscribe((prods) =>
-      this.cartQuantity = prods.reduce((acc, prod) => (acc += prod.quantity), 0)
+      .subscribe(
+        (prods) =>
+          (this.cartQuantity = prods.reduce(
+            (acc, prod) => (acc += prod.quantity),
+            0
+          ))
       );
   }
 
   get isLogged() {
     return this.authService.isLogged;
+  }
+
+  get isHomeActive() {
+    console.log(this.location.path().match(/\/home$/));
+    return this.location.path().match(/\/home$/);
   }
 
   handleLogout() {

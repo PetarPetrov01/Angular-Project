@@ -104,7 +104,13 @@ header.home {
     gap: 1em;
   }
 
+
+  .main-nav li{
+    width: 100%;
+  }
+
   .main-nav a{
+    text-align: center;
     display: block;
     font-size: 1.3em;
     background-color: #cccb;

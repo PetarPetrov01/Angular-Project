@@ -1,4 +1,4 @@
-<header [className]="home.isActive ? 'home' : ''">
+<header [className]="isHomeActive ? 'home' : ''">
   <nav class="main-nav">
     <div class="logo">
       <!-- <i class="fa-solid fa-couch fa-2x"></i> -->
@@ -7,7 +7,7 @@
     </div>
     <ul>
       <li>
-        <a routerLink="/home" routerLinkActive="active" #home="routerLinkActive"
+        <a routerLink="/home" routerLinkActive="active" routerLinkActive
           >Home</a
         >
       </li>
@@ -46,7 +46,7 @@
       </ng-container>
     </ul>
   </nav>
-  <div class="container" *ngIf="home.isActive">
+  <div class="container" *ngIf="isHomeActive">
     <div class="banner-content">
       <h2>
         <p>Elevate your</p>
