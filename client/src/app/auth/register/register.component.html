@@ -107,7 +107,8 @@
             class="register-btn"
             [disabled]="registerForm.invalid ? true : false"
           >
-            Register
+            <p *ngIf="!isLoading">Register</p>
+            <app-loader *ngIf="isLoading" type="dots" diameter="14px" width="7px"></app-loader>
           </button>
         </form>
         <div class="login-redirect">

@@ -54,8 +54,11 @@ export class LoginComponent implements OnDestroy {
         this.router.navigate(['/']);
         this.isLoading = false;
       },
-      error: (err) => {
-        this.isLoading = false;
+      error: () => {
+        //mock delay to visualize loader
+        setTimeout(()=>{
+          this.isLoading = false;
+        },2000)
       },
     });
   }
