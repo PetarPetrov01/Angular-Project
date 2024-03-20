@@ -16,7 +16,7 @@ export class HomeComponent{
 products$ : Observable<APIProduct[]>; 
 
 constructor (private apiService: ApiService){
-  this.products$ = this.apiService.getProducts({limit: 3, sort: 'createdAt asc'});
+  this.products$ = this.apiService.getProducts({limit: 3, sort: 'createdAt:asc'});
 
 }
 }

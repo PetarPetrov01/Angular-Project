@@ -37,23 +37,23 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   sortOptions = [
     {
-      value: 'name asc',
+      value: 'name:asc',
       text: 'Name (A to Z)',
     },
     {
-      value: 'name desc',
+      value: 'name:desc',
       text: 'Name (Z to A)',
     },
     {
-      value: 'price asc',
+      value: 'price:asc',
       text: 'Price ascending',
     },
     {
-      value: 'price desc',
+      value: 'price:desc',
       text: 'Price descending',
     },
     {
-      value: 'createdAt asc',
+      value: 'createdAt:asc',
       text: 'Oldest',
     },
     {
