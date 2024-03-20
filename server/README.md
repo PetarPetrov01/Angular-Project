@@ -97,3 +97,13 @@ Example error response:
 }
 ```
 
+## Products service endpoints
+The API utilizes the base URL `/products` to provide access to furniture product resources.
+
+## Get all products
+You can retrieve a list of all furniture products using a `GET` request to the `/products` endpoint. Here are the optional query parameters you can use to filter and control the response:
+* search (string): Filter products by name. The search is case-insensitive and matches products that contain the provided term within their names.
+* sort (string): Sort the list of products based on a specific property. Specify the property name followed by a colon (':') and the desired sort order: "asc" for ascending or "desc" for descending. (e.g., sort=price:asc sorts by price in ascending order)
+* category (string): Filter products by category. Specify a valid category name (e.g., "Living room", "Bedroom") to retrieve products belonging to that category.
+* limit (integer): Limit the number of products returned in the response. 
+
