@@ -117,6 +117,7 @@ export class AddProductComponent implements OnInit, OnDestroy {
   });
 
   handleClick() {
+    console.log(this.addProductForm.invalid)
     if (this.addProductForm.invalid) {
       return;
     }
@@ -147,14 +148,10 @@ export class AddProductComponent implements OnInit, OnDestroy {
     console.log(data);
     if (this.isEditing && this.editProductId) {
       this.apiService.updateProduct(this.editProductId,data).subscribe((prod)=>{
-        console.log('EDITED');
-        console.log(prod);
         this.router.navigate([`/products/${this.editProductId}`]);
       })
     } else {
       this.apiService.addProduct(data).subscribe((prod) => {
-        console.log('CREATED');
-        console.log(prod);
         this.router.navigate(['/products']);
       });
     }
