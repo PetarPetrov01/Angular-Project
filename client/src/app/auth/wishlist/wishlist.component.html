@@ -28,7 +28,7 @@
               <p>{{ product.material.join(", ") }}</p>
             </div>
             <div class="pad">
-              <h2>${{ product.price }}</h2>
+              <h2>${{ product.price.toFixed(0) }} <span>{{product.price.toFixed(2).slice(-2)}}</span></h2>
               <a id="cart-btn" (click)="onAddToCart(product)">Add to cart</a>
               <a id="remove-btn" (click)="onRemove(product._id)"
                 >Remove <i class="fa-regular fa-trash-can"></i

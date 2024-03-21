@@ -137,9 +137,6 @@ input#search:focus{
   align-self: stretch;
   border: 1px solid #ccc;
   background: radial-gradient(#fff 25%, #e4e4e4);
-}
-
-.card:not(:last-child){
   margin-bottom: 4em;
 }
 

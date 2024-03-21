@@ -125,6 +125,16 @@
   background: #eee;
 }
 
+.pad h2{
+  display: flex;
+  align-items: flex-start;
+}
+
+.pad span{
+  font-size: 0.7em;
+  padding-top: 0.2em;
+}
+
 .content a {
   text-decoration: none;
   cursor: pointer;
