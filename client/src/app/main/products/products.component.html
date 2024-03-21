@@ -87,7 +87,7 @@
           <div class="info">
             <h3>{{ prod.name }}</h3>
             <p>{{ prod.material.join(", ") }}</p>
-            <span>${{ prod.price }} </span>
+            <p>${{ prod.price.toFixed(0) }}<span>{{prod.price.toFixed(2).slice(-2)}}</span></p>
           </div>
         </div>
       </div>

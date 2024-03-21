@@ -9,10 +9,12 @@
       <div class="buy-section">
         <h1>{{ product?.name }}</h1>
         <p>{{ product?.category?.join(", ") }}</p>
-        <h1 id="price">
-          ${{ product?.price }}
-          <span>or ~ 12 x ${{ monthlyPrice(product?.price) }}</span>
-        </h1>
+        <div class="price">
+          <h1 id="price">
+            ${{ product?.price?.toFixed(0) }}<span id="decimals">{{product?.price?.toFixed(2)?.slice(-2)}}</span>
+          </h1>
+          <span id="monthly-price">or ~ 12 x ${{ monthlyPrice(product?.price) }}</span>
+        </div>
         <p class="shipping">
           Free shipping and express delivery across Europe in just 3-5 working
           days.

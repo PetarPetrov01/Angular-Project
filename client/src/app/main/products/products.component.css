@@ -139,6 +139,10 @@ input#search:focus{
   background: radial-gradient(#fff 25%, #e4e4e4);
 }
 
+.card:not(:last-child){
+  margin-bottom: 4em;
+}
+
 .filler {
   padding: 1em 2em;
   background: #fff;
@@ -182,7 +186,14 @@ a:hover img {
   padding: 1em;
 }
 
-.card span {
+.card p {
   font-size: 1.3em;
+  display: flex;
+  align-items: flex-start;
   /* font-weight: bold; */
+}
+
+.card p span{
+  padding-top: 0.2em;
+  font-size: 0.6em;
 }

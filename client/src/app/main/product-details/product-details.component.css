@@ -47,15 +47,28 @@
   font-family: "PT Sans";
 }
 
+.price{
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
 #price {
   font-family: "PT Sans";
   font-size: 1.9em;
+  display: flex;
+  align-items: flex-start;
 }
 
-#price span {
-  font-size: 0.5em;
+#price #decimals{
+  font-size: 0.65em;
+  padding-top: 0.2em;
+}
+
+#monthly-price {
   color: #888;
 }
+
 
 .buy-section .shipping {
   width: 100%;
