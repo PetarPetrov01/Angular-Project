@@ -162,3 +162,17 @@
 #remove-btn:hover {
   color: rgb(236, 94, 81);
 }
+
+@media (max-width: 850px){
+  .wrapper {
+    width: 100%;
+  }
+
+.card{
+  height: 180px;
+}
+
+  #cart-btn{
+    padding: 0.5em;
+  }
+}
