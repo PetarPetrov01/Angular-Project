@@ -84,6 +84,10 @@ input#search:focus{
   cursor: pointer;
 }
 
+.sort select{
+  color: #666;
+}
+
 .clear{
   min-width: 7ch;
 }
@@ -110,6 +114,7 @@ input#search:focus{
   flex-wrap: wrap;
   gap: 6%;
   padding: 2em;
+  /* justify-content: flex-start; */
   /* display: grid;
   grid-template-columns: repeat(4, minmax(20%, 1fr));
   gap: 2em;
@@ -193,4 +198,54 @@ a:hover img {
 .card p span{
   padding-top: 0.2em;
   font-size: 0.6em;
+}
+
+
+@media (max-width: 1000px){
+  .card
+  {
+    flex-basis: 29.33%;
+  }
+}
+
+@media (max-width: 700px){
+  .options .category-select{
+    flex-wrap: wrap;
+    gap: 0.5em;
+  }
+
+  .products-wrapper{
+    gap: 4%;
+  }
+
+  .card
+  {
+    flex-basis: 48%;
+  }
+}
+
+@media (max-width: 450px) {
+  .query-controls{
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5em;
+  }
+
+  .filler{
+    padding: 1em;
+  }
+
+  .card{
+    font-size: 0.85em;
+  }
+
+  form.search{
+    flex-basis: 80%;
+    justify-content: stretch;
+  }
+
+  form.search input{
+    width: 70%;
+  }
+  
 }

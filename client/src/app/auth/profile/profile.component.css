@@ -52,7 +52,7 @@
   min-height: 200px;
   box-shadow: 0 0 3px #999;
   border: 1px solid #999;
-border-top: none;
+  border-top: none;
   text-align: center;
   padding: 2em 1em;
   display: flex;
@@ -80,7 +80,7 @@ border-top: none;
   border-bottom: none;
 }
 
-.products-header span{
+.products-header span {
   font-size: 0.58em;
   padding-left: 1.2em;
   color: #666;
@@ -100,7 +100,7 @@ border-top: none;
   border: 1px solid #aaa;
 }
 
-.wrapper .card:first-child{
+.wrapper .card:first-child {
   border-top: none;
 }
 
@@ -146,7 +146,6 @@ border-top: none;
 #delete-btn {
   background-color: #ff7b7b;
   transition: all 0.15s;
-
 }
 
 #delete-btn:hover {

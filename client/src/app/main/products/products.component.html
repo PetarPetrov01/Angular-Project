@@ -42,29 +42,31 @@
             name="search"
             [(ngModel)]="search"
           />
-          <button type="submit" id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+          <button type="submit" id="search-btn">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
         </form>
         <div class="sort">
-          <select name="sort" id="" [(ngModel)]="sort" (change)="onSortChange()">
+          <select name="sort" [(ngModel)]="sort" (change)="onSortChange()">
             <option value="" disabled>Sort by</option>
             <option *ngFor="let option of sortOptions" [value]="option.value">
               {{ option.text }}
             </option>
           </select>
         </div>
-        <div class="clear" >
+        <div class="clear">
           <a (click)="onClear()" *ngIf="hasQueryParams">RESET</a>
         </div>
       </div>
     </div>
   </div>
-  <div
-    class="products-wrapper"
+  <div class="products-wrapper">
+    <!-- 
     [ngStyle]="{
       'justify-content':
         products.length && products.length > 4 ? 'flex-start' : 'center'
     }"
-  >
+  > -->
     <h1 class="no-products" *ngIf="products?.length == 0 && !isLoading">
       There are currently no products to show!
     </h1>
@@ -87,7 +89,10 @@
           <div class="info">
             <h3>{{ prod.name }}</h3>
             <p>{{ prod.material.join(", ") }}</p>
-            <p>${{ prod.price.toFixed(0) }}<span>{{prod.price.toFixed(2).slice(-2)}}</span></p>
+            <p>
+              ${{ prod.price.toFixed(0)
+              }}<span>{{ prod.price.toFixed(2).slice(-2) }}</span>
+            </p>
           </div>
         </div>
       </div>
