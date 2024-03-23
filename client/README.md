@@ -42,4 +42,22 @@ Utilizing localStorage effectively reduces the number of requests to the server 
 - **Session Handling:** The *authComponent* handles session continuity across different scenarios, making the user experience smoother.
 
 
-## 
+## Application overview
+### Header
+
+The header component servers as the main navigation of the application, providing quick access to features and pages. Depending on the client's authentication status the header includes the following navigation:
+
+- Guest (not logged in)
+  - Home - Directs to the home page.
+  - Products - Clicking on the Products link allows users to explore the complete collection of products offered.
+  - Login - Leads to the dedicated Login page.
+  - Register - Link to a page, where guests can create an account to unlock more features.
+ 
+![Header guest](./screenshots/header-guest.PNG)
+- Users (logged in)
+  - Home
+  - Products
+  - Profile (icon) - Clicking the button reveals a dropdown menu with profile page and wishlist links and an option to logout.
+  - Cart (icon) - Directs to the user's cart. If the user has items in the cart, their total count is showed in the upper right corner
+  
+![Header user](./screenshots/header-user.PNG)
