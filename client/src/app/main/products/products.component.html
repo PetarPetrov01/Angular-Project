@@ -60,13 +60,12 @@
       </div>
     </div>
   </div>
-  <div class="products-wrapper">
-    <!-- 
+  <div class="products-wrapper"
     [ngStyle]="{
       'justify-content':
-        products.length && products.length > 4 ? 'flex-start' : 'center'
+        products.length && products.length > 2 ? 'flex-start' : 'center'
     }"
-  > -->
+  > 
     <h1 class="no-products" *ngIf="products?.length == 0 && !isLoading">
       There are currently no products to show!
     </h1>

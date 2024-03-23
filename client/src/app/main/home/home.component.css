@@ -91,10 +91,24 @@
   .main .card {
     padding: 0;
     padding-top: 1em;
+    position: relative;
+  }
+
+  .card:not(.info)::before {
+    content: "";
+    position: absolute;
+    background: linear-gradient(90deg, #eee, #888, #eee);
+    top: 0;
+    height: 1px;
+    width: 100%;
   }
 
   .card:not(.info) .media img {
     height: 100%;
     width: auto;
+  }
+
+  .main .card.info{
+    padding: 1em 0;
   }
 }
