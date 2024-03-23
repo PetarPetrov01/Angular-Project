@@ -13,13 +13,16 @@ The project consists of two main folders:
 * Server: This folder contains the backend logic, including functionalities like user authentication, product management and database interaction.
   
 ### Client side
+[Client Documentation](/client/README.md)
 The client side is build with the Angular framework. For a better user-expereience the following libraries are used: 
 * NgRx - Reactive state managment for Angular inspired by Redux. Used for the user's cart.
 * ngrx-store-localstorage - Simple syncing between the NgRx store and local storage.
 * Angular Material - Material Design components.
 * ngx-cookie-service - Angular service to read, set and delete browser cookies. Used for the authentication.
+* ng-lazyload-image - Lazy image loader.
 
 ### Server side
+[API Documentation](/server/README.md)
 The server side is built on the Node.js runtime environemnt with the express framework. The database used in the application is MongoDB.
 
 ### Running the application
