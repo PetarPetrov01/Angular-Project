@@ -2,13 +2,6 @@
   <h2>Edit profile</h2>
   <form class="edit" [formGroup]="editForm">
     <mat-form-field>
-      <mat-label>Username</mat-label>
-      <input matInput placeholder="Username" formControlName="username" />
-      <mat-error *ngIf="editForm.get('username')?.hasError('required')"
-              >Username is required</mat-error
-            >
-    </mat-form-field>
-    <mat-form-field>
       <mat-label>Email</mat-label>
       <input matInput placeholder="Email" formControlName="email" appEmailValidate/>
       <mat-error *ngIf="editForm.get('email')?.hasError('required')"
@@ -16,6 +9,13 @@
             >
       <mat-error *ngIf="editForm.get('email')?.hasError('email')"
               >Invalid email</mat-error
+            >
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input matInput placeholder="Username" formControlName="username" />
+      <mat-error *ngIf="editForm.get('username')?.hasError('required')"
+              >Username is required</mat-error
             >
     </mat-form-field>
   </form>

@@ -174,7 +174,7 @@
 }
 
 .no-products img {
-  height: 300px;
+  height: 21em;
 }
 
 .no-products p {
@@ -185,7 +185,7 @@
   padding: 1em 1.5em;
   text-decoration: none;
   transition: all 0.2s;
-  color: #000;
+  color: #ffffff;
   background-color: #4fb4f3;
 }
 
@@ -227,7 +227,7 @@
     padding: 1em;
   }
 
-  .card{
+  .card {
     height: 140px;
     padding: 1em;
   }
@@ -238,10 +238,14 @@
   .order {
     width: 60%;
   }
+
+  .no-products {
+    width: 80%;
+  }
 }
 
-@media (max-width: 500px){
-  .media{
+@media (max-width: 500px) {
+  .media {
     width: 100%;
     height: auto;
     display: flex;
@@ -249,8 +253,12 @@
     justify-content: center;
   }
 
-  .media img{
+  .media img {
     width: 100%;
     height: auto;
+  }
+
+  .no-products {
+    width: 90%;
   }
 }

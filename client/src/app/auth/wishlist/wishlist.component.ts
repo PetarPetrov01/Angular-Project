@@ -42,7 +42,6 @@ export class WishlistComponent implements OnInit, OnDestroy {
 
   onRemove(prodId: string){
     this.apiService.toggleWishList(prodId).subscribe((user)=>{
-      this.router.navigate(['/auth/wishlist'])
       //sync user
       this.authService.setUserStorage(user);
       this.authService.setUserSubject(user);
