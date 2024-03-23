@@ -158,7 +158,65 @@
   transition: all 0.15s;
 }
 
-#edit-btn:hover{
+#edit-btn:hover {
   background-color: #444;
   color: #fff;
+}
+
+@media (max-width: 1000px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .aside-info {
+    width: 50%;
+  }
+
+  .products {
+    width: 90%;
+  }
+}
+
+@media (max-width: 850px) {
+  .aside-info {
+    width: 90%;
+    min-height: fit-content;
+  }
+
+  .products {
+    width: 100%;
+  }
+
+  .wrapper .card {
+    height: fit-content;
+  }
+
+  .card .media {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    padding-right: 1em;
+  }
+
+  .card .media img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .products {
+    width: 90%;
+    font-size: 0.8em;
+  }
+
+  .products {
+    width: 96%;
+    padding: 0 1em 1em 1em;
+  }
 }
