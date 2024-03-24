@@ -61,3 +61,17 @@ The header component servers as the main navigation of the application, providin
   - Cart (icon) - Directs to the user's cart. If the user has items in the cart, their total count is showed in the upper right corner
   
 ![Header user](./screenshots/header-user.PNG)
+
+### Home page
+
+The home page servers as the main landing page. It provides an interface to browse the oldest published furnitures with summarizzed information. Upon clicking on the item itself, the user is taken to the detailed page of the furniture. 
+
+#### A view of the homepage:
+
+---
+![Home page](./screenshots/home-page.PNG)
+
+### Products page
+
+The Products page provides a complete list of all furniture items offered on the platform. The users can sort, filter and search the items based on the their preferences. Each product on the page includes brief display of the essential information and a detailed page of the product can be opened by clicking on the image. 
+
