@@ -125,3 +125,8 @@ The second section displays detail information about the product's dimensions, m
 ---
 
 ![Products guest](./screenshots//products-guest.PNG)
+
+| Guest                                                                           | User                                                                               | Owner                                                |
+| ------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| If the user is not authenticated, he is presented with Login and register links | The user has access to a wishlist and cart, where he can put his desired products. | The owner of the product can modify it or delete it. |
+| ![Guest controls](./screenshots/controls-guest.PNG)                             | ![User controls](./screenshots/controls-user.PNG)                                  | ![Owner controls](./screenshots/controls-owner.PNG)  |
