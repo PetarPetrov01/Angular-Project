@@ -75,3 +75,34 @@ The home page servers as the main landing page. It provides an interface to brow
 
 The Products page provides a complete list of all furniture items offered on the platform. The users can sort, filter and search the items based on the their preferences. Each product on the page includes brief display of the essential information and a detailed page of the product can be opened by clicking on the image. 
 
+#### Filtering
+Users can filter the products based on their categories (The type of room they are suitable for)
+- All
+- Living room
+- Bedroom
+- Dining room
+- Home office
+- Outdoor
+
+#### Search functionality
+
+The products page provides a search bar that enables users to find specific products efficiently by the product's name. The match is case-insensitive.
+
+#### Sort functionality
+
+Users can sort the products based on some of their properties:
+
+- Alphabetically by name
+- Time of creation (Oldest and Newest)
+- Price (Ascending and descending)
+  
+#### URL state and reseting
+
+The URL link in the app captures the current state of the page, including filters, sorting, and search. Sharing that link allows the user to easily collaborate and share specific information with others.
+
+Additionaly the page has a RESET button, which resets all sorting and filtering.
+
+#### A view of the products page:
+
+---
+![Products-page](./screenshots/catalog-page.PNG)
