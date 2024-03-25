@@ -34,7 +34,6 @@
 @media (max-width: 700px) {
   :host {
     flex-basis: 48%;
-    font-size: 0.9em;
     margin-bottom: 0.5em;
   }
 }

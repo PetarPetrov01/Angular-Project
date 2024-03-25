@@ -170,3 +170,12 @@ Authenticated users can add their products with the form provided on the create 
 
 ![create page](./screenshots/create-page.PNG)
 
+### Profile page
+
+Users can open their profile page, where they can see all the products they have posted, their profile and information and controls to edit the profile, link to the user's wishlist and logout link.
+
+![profile page](./screenshots/profile-page.PNG)
+
+The edit button opens up a modal with email and username inputs. The has to change the values and submit the form to update his profile information.
+
+![edit profile](./screenshots/edit-profile.PNG)
