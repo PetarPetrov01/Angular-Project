@@ -126,7 +126,30 @@ The second section displays detail information about the product's dimensions, m
 
 ![Products guest](./screenshots//products-guest.PNG)
 
+
+#### Views based on authentication
+
+---
+
 | Guest                                                                           | User                                                                               | Owner                                                |
 | ------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------- |
 | If the user is not authenticated, he is presented with Login and register links | The user has access to a wishlist and cart, where he can put his desired products. | The owner of the product can modify it or delete it. |
 | ![Guest controls](./screenshots/controls-guest.PNG)                             | ![User controls](./screenshots/controls-user.PNG)                                  | ![Owner controls](./screenshots/controls-owner.PNG)  |
+
+
+### Register page
+
+The register page provides a form with inputs where a guest, who still doesn't have an account can create one. If he wished to access additional features he has to fill the input with his email, username and password.
+
+![login page](./screenshots/login.PNG)
+
+### Login page
+
+The login page provides a form featuring two input fields. One for the email and one for the password. To login the users must fill the inputs with the right email and password and submit the form.
+
+![register page](./screenshots/register.PNG)
+
+The form validates all fields and displays error messages for invalid entries:
+
+![error inputs](./screenshots/error-inputs.PNG)
+
