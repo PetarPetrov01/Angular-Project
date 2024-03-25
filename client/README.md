@@ -126,7 +126,6 @@ The second section displays detail information about the product's dimensions, m
 
 ![Products guest](./screenshots//products-guest.PNG)
 
-
 #### Views based on authentication
 
 ---
@@ -135,7 +134,6 @@ The second section displays detail information about the product's dimensions, m
 | ------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------- |
 | If the user is not authenticated, he is presented with Login and register links | The user has access to a wishlist and cart, where he can put his desired products. | The owner of the product can modify it or delete it. |
 | ![Guest controls](./screenshots/controls-guest.PNG)                             | ![User controls](./screenshots/controls-user.PNG)                                  | ![Owner controls](./screenshots/controls-owner.PNG)  |
-
 
 ### Register page
 
@@ -156,16 +154,17 @@ The form validates all fields and displays error messages for invalid entries:
 ### Create and Edit pages
 
 Authenticated users can add their products with the form provided on the create page. The same page is used when the user wants to update already created product, with the only difference that the inputs are filled with the current product properties. Each input is validated with the same styling in the register and login pages. The following data should be provided in the inputs:
+
 - name - string
 - description - string
 - image - URL to the image
 - category - multiple option select
 - style - string
 - height - number
-- width - number 
-- depth - number 
+- width - number
+- depth - number
 - material - multiple option select
-- color - select 
+- color - select
 - price - number (integer or number with two deciamal places)
 
 ![create page](./screenshots/create-page.PNG)
@@ -174,8 +173,21 @@ Authenticated users can add their products with the form provided on the create 
 
 Users can open their profile page, where they can see all the products they have posted, their profile and information and controls to edit the profile, link to the user's wishlist and logout link.
 
+#### Profile page view 
+
+---
+
 ![profile page](./screenshots/profile-page.PNG)
 
 The edit button opens up a modal with email and username inputs. The has to change the values and submit the form to update his profile information.
 
+#### Edit profile modal view
+
+---
+
 ![edit profile](./screenshots/edit-profile.PNG)
+
+### Wishlist
+
+Authenticated users can create their own wishlist and manage their favorite products. The wishlist features a brief display of each product in it. Uppon clicking the image the user is taken to details page of the product. A `Add to cart` button is also provided, which adds the product the user's cart. 
+
