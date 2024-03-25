@@ -191,3 +191,27 @@ The edit button opens up a modal with email and username inputs. The has to chan
 
 Authenticated users can create their own wishlist and manage their favorite products. The wishlist features a brief display of each product in it. Uppon clicking the image the user is taken to details page of the product. A `Add to cart` button is also provided, which adds the product the user's cart. 
 
+#### Wishlist view
+
+---
+
+|Wishlist with items|Empty wishlist|
+|-|-|
+|![wishlist](./screenshots/wishlist.PNG)|![empty wishlist](./screenshots/wishlist-empty.PNG)|
+
+
+### Cart
+
+The cart is the place where the user can see his final presentation of the products he wants to buy with their price (per product, total price of the current product, overall total price). From the cart, he can manage all products (incrementing or decerementing the count of a product and removing the product from the cart). Upon removing the item from the cart, a modal is displayed and the user has to confirm he wants to remove the item from the cart.
+
+#### Cart view
+
+---
+
+![cart](./screenshots/cart.PNG)
+
+#### Empty cart view
+
+---
+
+![cart empty](./screenshots/cart-empty.PNG)
