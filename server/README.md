@@ -60,23 +60,23 @@ Content-Type: application/json
 
 Request body:
 
-```js
+```ts
 {
-  email: "string",
-  username: "string",
-  password: "string"
+  email: string,
+  username: string,
+  password: string
 }
 ```
 
 #### Example regsiter response
 
-```js
+```ts
 {
-    "_id": "string",
-    "email": "string",
-    "username": "string",
-    "wishlist": [
-        "string"
+    _id: string,
+    email: string,
+    username: string,
+    wishlist: [
+        string
     ]
 }
 ```
@@ -94,10 +94,10 @@ Content-Type: application/json
 
 Request body:
 
-```js
+```ts
 {
-  email: "string",
-  password: "string"
+  email: string,
+  password: string
 }
 ```
 
@@ -150,37 +150,69 @@ Example response:
     name: string,
     description: string,
     image: string,
-    category: [
-        string,
-        string
-    ],
+    category: [string, string],
     style: string,
     dimensions: {
-        height: number,
-        width: number,
-        depth: number
+      height: number,
+      width: number,
+      depth: number,
     },
-    material: [
-        string,
-        string
-    ],
+    material: [string, string],
     color: yellow,
     price: number,
     _ownerId: string,
     createdAt: string,
     updatedAt: string,
-    __v: number
-  }
-]
+    __v: number,
+  },
+];
 ```
 
 ## Get a single product
 
-To get a single product send a GET request to /products/{id}, where id is the server generated ID of the property. The server responds with an object representing the requested product. The object returned by the server differs with the one in the previous section only with the "_ownerId". In the case of a single product, the path is populated with the acutal user's data
-```js
+To get a single product send a GET request to `/products/{id}`, where id is the server generated ID of the property. The server responds with an object representing the requested product. The object returned by the server differs with the one in the previous section only with the "\_ownerId". In the case of a single product, the path is populated with the acutal user's data
+
+```ts
 _ownerId: {
-        _id: "string",
-        email: "string",
-        username: "string"
+        _id: string,
+        email: string,
+        username: string
     }
 ````
+```
+
+## Create a new product
+
+To add a new product to the collection send a `POST` request to `/products`, passing the following object as the request body:
+
+```ts
+{
+    name: string,
+    description: string,
+    image: string,
+    category: [string],
+    style: string,
+    dimensions: {
+      height: number,
+      width: number,
+      depth: number
+    },
+    material: [string],
+    color: string,
+    price: number,
+    _ownerId: string,
+  }
+```
+
+On successfull creation, the API responds with the created object appending the generated properties:
+```ts
+_id: string,
+    createdAt: string,
+    updatedAt: string,
+    __v: number
+```
+
+## Edit a product
+
+Editing/updating the product can be only by the creator of the product. To do that, send a `PUT` request to `/products/{id}`, where is the server generated ID of the product. The data passed should match data as the one in the creation of a new product. The server response is also the same as the create response.
+
