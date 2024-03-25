@@ -147,7 +147,7 @@ The login page provides a form featuring two input fields. One for the email and
 
 ![register page](./screenshots/register.PNG)
 
-The form validates all fields and displays error messages for invalid entries:
+The form validates all fields and displays error messages for invalid entries immedieatly for better user expirience:
 
 ![error inputs](./screenshots/error-inputs.PNG)
 
@@ -171,7 +171,7 @@ Authenticated users can add their products with the form provided on the create 
 
 ### Profile page
 
-Users can open their profile page, where they can see all the products they have posted, their profile and information and controls to edit the profile, link to the user's wishlist and logout link.
+Users can open their profile page, where they can see all the products they have posted, their profile and information and controls to edit the profile, link to the user's `wishlist` and logout link.
 
 #### Profile page view 
 
@@ -179,7 +179,7 @@ Users can open their profile page, where they can see all the products they have
 
 ![profile page](./screenshots/profile-page.PNG)
 
-The edit button opens up a modal with email and username inputs. The has to change the values and submit the form to update his profile information.
+The edit button opens up a modal with `email` and `username` inputs. The has to change the values and submit the form to update his profile information.
 
 #### Edit profile modal view
 
@@ -203,6 +203,8 @@ Authenticated users can create their own wishlist and manage their favorite prod
 ### Cart
 
 The cart is the place where the user can see his final presentation of the products he wants to buy with their price (per product, total price of the current product, overall total price). From the cart, he can manage all products (incrementing or decerementing the count of a product and removing the product from the cart). Upon removing the item from the cart, a modal is displayed and the user has to confirm he wants to remove the item from the cart.
+
+The cart utilizes the ngrx store to keep the state of the user's cart. Additionaly the ngrx-store-localstorage is used to keep the the state through the session.
 
 #### Cart view
 
