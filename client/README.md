@@ -153,3 +153,20 @@ The form validates all fields and displays error messages for invalid entries:
 
 ![error inputs](./screenshots/error-inputs.PNG)
 
+### Create and Edit pages
+
+Authenticated users can add their products with the form provided on the create page. The same page is used when the user wants to update already created product, with the only difference that the inputs are filled with the current product properties. Each input is validated with the same styling in the register and login pages. The following data should be provided in the inputs:
+- name - string
+- description - string
+- image - URL to the image
+- category - multiple option select
+- style - string
+- height - number
+- width - number 
+- depth - number 
+- material - multiple option select
+- color - select 
+- price - number (integer or number with two deciamal places)
+
+![create page](./screenshots/create-page.PNG)
+
