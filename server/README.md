@@ -178,7 +178,6 @@ _ownerId: {
         email: string,
         username: string
     }
-````
 ```
 
 ## Create a new product
