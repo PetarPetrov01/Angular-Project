@@ -170,7 +170,7 @@ Example response:
 
 ## Get a single product
 
-To get a single product send a GET request to `/products/{id}`, where id is the server generated ID of the property. The server responds with an object representing the requested product. The object returned by the server differs with the one in the previous section only with the "\_ownerId". In the case of a single product, the path is populated with the acutal user's data
+To get a single product send a GET request to `/products/{id}`, where id is the server generated ID of the property. The server responds with an object representing the requested product. The object returned by the server differs with the one in the [previous section](#get-all-products) only with the "\_ownerId". In the case of a single product, the path is populated with the acutal user's data
 
 ```ts
 _ownerId: {
@@ -178,7 +178,6 @@ _ownerId: {
         email: string,
         username: string
     }
-````
 ```
 
 ## Create a new product
@@ -205,6 +204,7 @@ To add a new product to the collection send a `POST` request to `/products`, pas
 ```
 
 On successfull creation, the API responds with the created object appending the generated properties:
+
 ```ts
 _id: string,
     createdAt: string,
@@ -214,5 +214,22 @@ _id: string,
 
 ## Edit a product
 
-Editing/updating the product can be only by the creator of the product. To do that, send a `PUT` request to `/products/{id}`, where is the server generated ID of the product. The data passed should match data as the one in the creation of a new product. The server response is also the same as the create response.
+Editing/updating the product can be only by the creator of the product. To do that, send a `PUT` request to `/products/{id}`, where `id` is the server generated ID of the product. The data passed should match data as the one in the creation of a new product. The server response is also the same as the create response.
+
+## Delete a product
+
+The owner of the product can delete it by sending an autorized `DELETE` request to `/products/{id}`. The server returns status code `204` - No Content status code. The attempt to parse the result as JSON, would result in error.
+
+## Get profile
+
+To get information for the user's profile send a `GET` request to `/auth/profile`. The server responds with an object that has the following data types:
+```ts
+{
+    email: string,
+    username: string,
+    _id: string,
+    wishlist: [string]
+}
+```
+
 
