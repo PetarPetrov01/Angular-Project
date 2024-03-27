@@ -29,7 +29,8 @@ async function getWishlist(userId) {
   const user = await User.findById(userId).lean().populate({
     path: 'wishlist',
     populate: {
-      path: '_ownerId'
+      path: '_ownerId',
+      select: {hashedPassword: 0, __v:0}
     }
   });
 
