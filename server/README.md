@@ -232,4 +232,17 @@ To get information for the user's profile send a `GET` request to `/auth/profile
 }
 ```
 
+## Edit profile
+
+To edit the profile information (email and username), send a `PATCH` request to `/auth/profile`, passing the new `email` and `username` in the request body. The server response is similar to the one with the GET request
+
+## Get wishlist
+
+To get the user's current wishlist, send a `GET` request to `/auth/wishlist`. The server responds with an array that holds populated products, where the _ownerId is also populated (The same as getting a [single product](#get-a-single-product))
+
+## Add item to wishlist
+
+To add an item to the current user's wishlist send a `POST` request to `/products/{productId}/wishlist`, where `productId` is the product you want to add to the current user's wishlist.
+
+
 
