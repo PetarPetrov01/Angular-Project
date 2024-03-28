@@ -12,7 +12,6 @@ const connectionString =
 const cookieSecret = process.env.COOKIE_SECRET || "DreamFurniture";
 
 module.exports = async (app) => {
-  console.log(connectionString);
   const connection = await mongoose.connect(connectionString);
   console.log("Connected to Database");
 

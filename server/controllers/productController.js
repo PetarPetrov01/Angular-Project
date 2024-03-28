@@ -8,9 +8,7 @@ const productController = require("express").Router();
 
 productController.get("/", async (req, res) => {
   try {
-    console.log('Request to products...')
     const products = await productService.getProducts(req.query);
-    console.log(products);
     res.json(products);
   } catch (error) {
     const message = errorParser(error);
