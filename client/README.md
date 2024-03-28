@@ -1,6 +1,7 @@
 # DreamFurniture
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.0.
+The application is deployed at https://dream-furniture-1e92c.web.app
 
 ## Content table
 
