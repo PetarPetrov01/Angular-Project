@@ -9,26 +9,35 @@
           that reflects your unique style and personality. But finding the
           perfect pieces can feel overwhelming.
         </p>
-        <p>That's where DreamFurniture comes in. We're a
-          passionate team of furniture enthusiasts and design experts dedicated
-          to making high-quality, customizable furniture accessible to everyone.</p>
+        <p>
+          That's where DreamFurniture comes in. We're a passionate team of
+          furniture enthusiasts and design experts dedicated to making
+          high-quality, customizable furniture accessible to everyone.
+        </p>
       </article>
-      <article
-        class="card"
-        *ngFor="let product of products$ | async"
-        [routerLink]="'/products/' + product._id"
-      >
-        <div class="media">
-          <img [src]="product.image" [alt]="product.name" />
-        </div>
-        <div class="content">
-          <p>{{ product.name }}</p>
-          <h3>
-            ${{ product.price.toFixed(0) }}
-            <span>{{ product.price.toFixed(2).slice(-2) }}</span>
-          </h3>
-        </div>
-      </article>
+      <ng-container *ngIf="products.length == 0">
+        <app-loader-card />
+        <app-loader-card />
+        <app-loader-card />
+      </ng-container>
+      <ng-container *ngIf="products.length > 0">
+        <article
+          class="card"
+          *ngFor="let product of products"
+          [routerLink]="'/products/' + product._id"
+        >
+          <div class="media">
+            <img [src]="product.image" [alt]="product.name" />
+          </div>
+          <div class="content">
+            <p>{{ product.name }}</p>
+            <h3>
+              ${{ product.price.toFixed(0) }}
+              <span>{{ product.price.toFixed(2).slice(-2) }}</span>
+            </h3>
+          </div>
+        </article>
+      </ng-container>
     </div>
   </section>
 </div>
