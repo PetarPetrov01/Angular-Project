@@ -16,9 +16,9 @@
         </p>
       </article>
       <ng-container *ngIf="products.length == 0">
-        <app-loader-card />
-        <app-loader-card />
-        <app-loader-card />
+        <app-loader-card class="card"/>
+        <app-loader-card class="card"/>
+        <app-loader-card class="card"/>
       </ng-container>
       <ng-container *ngIf="products.length > 0">
         <article

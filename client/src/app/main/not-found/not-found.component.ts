@@ -22,7 +22,6 @@ export class NotFoundComponent implements OnInit{
       if(url[0]?.path == 'products'){
         this.productId = url[1].path;
       }
-      console.log(this.productId);
     })
   }
 }

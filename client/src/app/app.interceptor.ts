@@ -33,7 +33,6 @@ export class AppInterceptor implements HttpInterceptor {
       withCredentials: true,
     });
 
-    console.log(req.url);
     return next.handle(req).pipe(
       catchError((err) => {
         if (err.status === 401) {

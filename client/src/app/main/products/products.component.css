@@ -245,7 +245,7 @@ a:hover img {
   }
 
   form.search input{
-    width: 70%;
+    width: 80%;
   }
 
   :host ::ng-deep .mat-mdc-standard-chip .mdc-evolution-chip__text-label {

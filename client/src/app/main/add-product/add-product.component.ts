@@ -117,7 +117,6 @@ export class AddProductComponent implements OnInit, OnDestroy {
   });
 
   handleClick() {
-    console.log(this.addProductForm.invalid)
     if (this.addProductForm.invalid) {
       return;
     }
@@ -145,7 +144,6 @@ export class AddProductComponent implements OnInit, OnDestroy {
       dimensions,
     };
 
-    console.log(data);
     if (this.isEditing && this.editProductId) {
       this.apiService.updateProduct(this.editProductId,data).subscribe((prod)=>{
         this.router.navigate([`/products/${this.editProductId}`]);
