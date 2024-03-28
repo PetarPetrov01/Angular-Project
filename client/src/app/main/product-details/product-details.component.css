@@ -47,7 +47,7 @@
   font-family: "PT Sans";
 }
 
-.price{
+.price {
   display: flex;
   align-items: center;
   gap: 0.5em;
@@ -60,7 +60,7 @@
   align-items: flex-start;
 }
 
-#price #decimals{
+#price #decimals {
   font-size: 0.65em;
   padding-top: 0.2em;
 }
@@ -68,7 +68,6 @@
 #monthly-price {
   color: #888;
 }
-
 
 .buy-section .shipping {
   width: 100%;
@@ -84,7 +83,7 @@
   margin-right: 2px;
 }
 
-.input-group input{
+.input-group input {
   max-width: 30px;
   background-color: transparent;
   color: #000;
@@ -93,11 +92,11 @@
   padding-left: 2px;
 }
 
-.input-group input:hover{
+.input-group input:hover {
   outline: none;
 }
 
-.quantity{
+.quantity {
   padding: 1em;
   background: #e8e8e8;
   display: flex;
@@ -105,25 +104,25 @@
   align-items: center;
 }
 
-.quantity #qty{
+.quantity #qty {
   -webkit-appearance: none;
   -moz-appearance: textfield;
 }
 
-.update-qty{
+.update-qty {
   display: flex;
   gap: 1em;
   font-size: 1.5em;
 }
 
-.update-qty a{
+.update-qty a {
   text-decoration: none;
   color: #000;
   cursor: pointer;
   user-select: none;
 }
 
-.update-qty a:hover{
+.update-qty a:hover {
   color: #38aa6d;
 }
 
@@ -143,23 +142,23 @@
 }
 
 .controls.guest a,
-.controls.owner a{
+.controls.owner a {
   flex: 1 1 50%;
   background-color: #51a076;
   transition: all 0.2s;
 }
 
 .controls.guest a:hover,
-.controls.owner a:hover{
+.controls.owner a:hover {
   background-color: #000;
   color: #fff;
 }
 
-#del-btn{
+#del-btn {
   background-color: #f18b8b;
 }
 
-#del-btn:hover{
+#del-btn:hover {
   background-color: #ea5858;
   /* border: 1px solid #222; */
   /* color: #000; */
@@ -242,4 +241,47 @@
 
 .row-label {
   color: #666;
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .image-section {
+    width: 80%;
+    max-height: initial;
+  }
+
+  .image-section .media {
+    width: 100%;
+    height: auto;
+  }
+
+  .media img {
+    width: 100%;
+    height: auto;
+    max-height: 25em;
+    object-fit: contain;
+  }
+
+  .buy-section {
+    width: 90%;
+  }
+
+  .column .row{
+    margin-right: 3em;
+  }
+}
+
+@media (max-width: 450px) {
+
+  .buy-section {
+    width: 100%;
+  }
+
+  .column {
+    flex-basis: 100%;
+  }
 }

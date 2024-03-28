@@ -168,8 +168,13 @@ input.ng-touched.ng-invalid {
   }
 
   section.login{
-    /* overflow: auto;
-    flex-direction: column; */
     aspect-ratio: auto;
+  }
+}
+
+@media (max-width: 460px){
+  form.login,
+  .register-redirect{
+    width: 90%;
   }
 }
