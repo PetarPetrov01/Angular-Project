@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 import { Observable, catchError } from 'rxjs';
 
 import { AuthService } from './shared/auth.service';
-import { environment } from '../environments/environment.development';
+import { environment } from '../environments/environment';
 import { ErrorService } from './shared/error/error.service';
 
 const { appUrl } = environment;

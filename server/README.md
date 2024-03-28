@@ -4,9 +4,7 @@ This document serves as the API reference guide for the REST API. This API provi
 
 ## Running the server
 
-To run the server successfully, ensure that MongoDB is installed on your machine. If you haven't installed MongoDB yet, you can download it from the official website.
-
-Once MongoDB is installed, follow these steps to start the server:
+To run the server successfully, MongoDB must be installed on your machine. Once it's installed, follow these steps to start the server:
 Clone the repository (if you still haven't):
 
 ```bash
@@ -235,6 +233,10 @@ To get information for the user's profile send a `GET` request to `/auth/profile
 ## Edit profile
 
 To edit the profile information (email and username), send a `PATCH` request to `/auth/profile`, passing the new `email` and `username` in the request body. The server response is similar to the one with the GET request
+
+## Get posted products
+
+To get all products the current user has created, sent a `GET` request to `/auth/posts`. The server returns an array containing all products in objects similar to [getting all products](#get-all-products).
 
 ## Get wishlist
 

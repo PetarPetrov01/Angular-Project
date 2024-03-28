@@ -19,7 +19,10 @@ module.exports = async (app) => {
   app.use(cookieParser(cookieSecret));
   app.use(
     cors({
-      origin: "http://localhost:4200",
+      origin: [
+        "http://localhost:4200",
+        "https://dream-furniture-1e92c.web.app",
+      ],
       credentials: true,
     })
   );
