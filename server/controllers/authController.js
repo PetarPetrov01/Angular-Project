@@ -18,7 +18,7 @@ authController.post("/login", isGuest(), async (req, res) => {
 
     if (process.env.NODE_ENV == "production") {
       res.cookie(authCookieName, authToken, {
-        httpOnly: true,
+        httpOnly: false,
         sameSite: "none",
       }); // secure: true
     } else {
@@ -58,7 +58,7 @@ authController.post(
 
       if (process.env.NODE_ENV == "production") {
         res.cookie(authCookieName, authToken, {
-          httpOnly: true,
+          httpOnly: false,
           sameSite: "none",
         }); // secure: true
       } else {
