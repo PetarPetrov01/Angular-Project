@@ -105,6 +105,8 @@ export class AuthService implements OnDestroy {
     this.user$$.next(undefined);
     this.cookieService.delete(cookieName, '/');
     this.store.dispatch(CartActions.resetState());
+    
+    this.http.get('/api/auth/logout').subscribe();
   }
 
   ngOnDestroy(): void {

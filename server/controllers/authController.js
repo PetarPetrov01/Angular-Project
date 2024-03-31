@@ -73,6 +73,17 @@ authController.post(
   }
 );
 
+authController.get('/logout', async(req,res)=>{
+  try {
+    res.clearCookie(authCookieName, authToken, {
+      httpOnly: false,
+      sameSite: "none"})
+  } catch (error) {
+    const errorMessage = errorParser(error);
+    res.status(400).json({message: errorMessage});
+  }
+})
+
 authController.get("/profile", isUser(), async (req, res) => {
   try {
     const userId = req.user?._id;
