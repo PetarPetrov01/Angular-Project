@@ -73,16 +73,19 @@ authController.post(
   }
 );
 
-authController.get('/logout', async(req,res)=>{
+authController.get("/logout", async (req, res) => {
   try {
-    res.clearCookie(authCookieName, {
-      httpOnly: false,
-      sameSite: "none"})
+    res
+      .clearCookie(authCookieName, {
+        httpOnly: false,
+        sameSite: "none",
+      })
+      .json({message: 'Succesfully logged out'});
   } catch (error) {
     const errorMessage = errorParser(error);
-    res.status(400).json({message: errorMessage});
+    res.status(400).json({ message: errorMessage });
   }
-})
+});
 
 authController.get("/profile", isUser(), async (req, res) => {
   try {
@@ -103,7 +106,7 @@ authController.patch("/profile", isUser(), async (req, res) => {
       userId,
       req.body.username,
       req.body.email
-      );
+    );
     res.json(user);
   } catch (error) {
     const errorMessage = errorParser(error);
