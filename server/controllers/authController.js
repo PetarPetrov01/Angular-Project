@@ -75,7 +75,7 @@ authController.post(
 
 authController.get('/logout', async(req,res)=>{
   try {
-    res.clearCookie(authCookieName, authToken, {
+    res.clearCookie(authCookieName, {
       httpOnly: false,
       sameSite: "none"})
   } catch (error) {
