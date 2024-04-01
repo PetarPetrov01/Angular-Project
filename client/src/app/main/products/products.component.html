@@ -2,36 +2,36 @@
   <div class="options">
     <div class="container">
       <ul class="category-select">
-        <mat-chip-option
+        <button class="category-btn"
           (click)="changeCategory('')"
-          [selected]="!queryParams['category']"
-          >All
-        </mat-chip-option>
-        <mat-chip-option
+          [class.selected]="!queryParams['category']"
+          ><i *ngIf="!queryParams['category']" class="fa-solid fa-check"></i>All
+        </button>
+        <button class="category-btn"
           (click)="changeCategory('Living room')"
-          [selected]="queryParams['category'] == 'Living room'"
-          >Living room
-        </mat-chip-option>
-        <mat-chip-option
+          [class.selected]="queryParams['category'] == 'Living room'"
+          ><i *ngIf="queryParams['category'] == 'Living room'" class="fa-solid fa-check"></i>Living room
+        </button>
+        <button class="category-btn"
           (click)="changeCategory('Bedroom')"
-          [selected]="queryParams['category'] == 'Bedroom'"
-          >Bedroom
-        </mat-chip-option>
-        <mat-chip-option
+          [class.selected]="queryParams['category'] == 'Bedroom'"
+          ><i *ngIf="queryParams['category'] == 'Bedroom'" class="fa-solid fa-check"></i>Bedroom
+        </button>
+        <button class="category-btn"
           (click)="changeCategory('Dining room')"
-          [selected]="queryParams['category'] == 'Dining room'"
-          >Dining room
-        </mat-chip-option>
-        <mat-chip-option
+          [class.selected]="queryParams['category'] == 'Dining room'"
+          ><i *ngIf="queryParams['category'] == 'Dining room'"class="fa-solid fa-check"></i>Dining room
+        </button>
+        <button class="category-btn"
           (click)="changeCategory('Home office')"
-          [selected]="queryParams['category'] == 'Home office'"
-          >Home office
-        </mat-chip-option>
-        <mat-chip-option
+          [class.selected]="queryParams['category'] == 'Home office'"
+          ><i *ngIf="queryParams['category'] == 'Home office'" class="fa-solid fa-check"></i>Home office
+        </button>
+        <button class="category-btn"
           (click)="changeCategory('Outdoor')"
-          [selected]="queryParams['category'] == 'Outdoor'"
-          >Outdoor
-        </mat-chip-option>
+          [class.selected]="queryParams['category'] == 'Outdoor'"
+          ><i *ngIf="queryParams['category'] == 'Outdoor'" class="fa-solid fa-check"></i>Outdoor
+        </button>
       </ul>
       <div class="query-controls">
         <form class="search" (ngSubmit)="onSearch()">

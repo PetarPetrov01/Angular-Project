@@ -20,7 +20,28 @@
   gap: 2em;
 }
 
-:host ::ng-deep .mat-mdc-standard-chip .mdc-evolution-chip__text-label {
+
+.category-btn{
+  border-radius: 2em;
+  padding: 0.4em 0.7em;
+  font-size: 1.05em;
+  outline: none;
+  background-color: #fff;
+  border: #666;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.category-btn.selected{
+  background-color: #444;
+  color: #fff;
+}
+
+.category-btn.selected i{
+  padding-right: 0.3em;
+  font-size: 0.9em;
+}
+/* :host ::ng-deep .mat-mdc-standard-chip .mdc-evolution-chip__text-label {
   font-size: 1em;
 }
 
@@ -31,7 +52,7 @@
   ) {
     background-color: #444;
     padding: 0.2em;
-}
+} */
 
 .query-controls{
   display: flex;
@@ -248,8 +269,8 @@ a:hover img {
     width: 80%;
   }
 
-  :host ::ng-deep .mat-mdc-standard-chip .mdc-evolution-chip__text-label {
+  /* :host ::ng-deep .mat-mdc-standard-chip .mdc-evolution-chip__text-label {
     font-size: 0.85em;
-  }
+  } */
   
 }
