@@ -32,6 +32,10 @@
   transition: all 0.2s;
 }
 
+.category-btn:not(.selected):hover{
+  background-color: #ddd;
+}
+
 .category-btn.selected{
   background-color: #444;
   color: #fff;
@@ -41,18 +45,6 @@
   padding-right: 0.3em;
   font-size: 0.9em;
 }
-/* :host ::ng-deep .mat-mdc-standard-chip .mdc-evolution-chip__text-label {
-  font-size: 1em;
-}
-
-:host
-  ::ng-deep
-  .mat-mdc-standard-chip.mdc-evolution-chip--selected:not(
-    .mdc-evolution-chip--disabled
-  ) {
-    background-color: #444;
-    padding: 0.2em;
-} */
 
 .query-controls{
   display: flex;

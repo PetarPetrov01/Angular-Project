@@ -71,7 +71,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    
+    this.isLoading=true;
+
     this.querySubscription = this.route.queryParams
     .subscribe((params) => {
       this.queryParams = params;
@@ -80,7 +81,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
       this.categoryChange$.pipe(debounceTime(1000)).subscribe(category=>{
         this.fetchProducts();
       })
-      });
+    });
+    
+    this.categoryChange$.next('');
   }
 
   fetchProducts() {
