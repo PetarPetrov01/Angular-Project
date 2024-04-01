@@ -18,10 +18,9 @@ export class ApiService {
   }
 
   getProduct(productId: string) {
-    return this.http.get<PopulatedProduct>(`/api/products/${productId}`).pipe(
-      tap((res) => {
-      })
-    );
+    return this.http
+      .get<PopulatedProduct>(`/api/products/${productId}`)
+      .pipe(tap((res) => {}));
   }
 
   addProduct(data: Product) {

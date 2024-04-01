@@ -18,7 +18,7 @@ authController.post("/login", isGuest(), async (req, res) => {
 
     if (process.env.NODE_ENV == "production") {
       res.cookie(authCookieName, authToken, {
-        httpOnly: false,
+        httpOnly: true,
         sameSite: "none",
       }); // secure: true
     } else {
@@ -58,7 +58,7 @@ authController.post(
 
       if (process.env.NODE_ENV == "production") {
         res.cookie(authCookieName, authToken, {
-          httpOnly: false,
+          httpOnly: true,
           sameSite: "none",
         }); // secure: true
       } else {
@@ -77,7 +77,7 @@ authController.get("/logout", async (req, res) => {
   try {
     res
       .clearCookie(authCookieName, {
-        httpOnly: false,
+        httpOnly: true,
         sameSite: "none",
       })
       .json({message: 'Succesfully logged out'});
