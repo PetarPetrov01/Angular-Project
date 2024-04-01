@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 
-import { Subscription } from 'rxjs';
+import { Subject, Subscription, debounceTime, fromEvent } from 'rxjs';
 
 import { ApiService } from '../../shared/api.service';
 import { APIProduct } from '../../types/Product';
@@ -28,7 +28,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
   products: APIProduct[] | [] = [];
   queryParams: Params = {};
 
-  querySubcsription: Subscription | null = null;
+  categoryChange$: Subject<string> = new Subject<string>();
+
+  querySubscription: Subscription | null = null;
   apiSubscription: Subscription | null = null;
 
   isLoading: boolean = false;
@@ -54,11 +56,11 @@ export class ProductsComponent implements OnInit, OnDestroy {
     },
     {
       value: 'createdAt:asc',
-      text: 'Oldest',
+      text: 'Oldest first',
     },
     {
       value: 'createdAt desc',
-      text: 'Newest',
+      text: 'Newest first',
     },
   ];
 
@@ -69,13 +71,16 @@ export class ProductsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.querySubcsription = this.route.queryParams.subscribe((params) => {
+    
+    this.querySubscription = this.route.queryParams
+    .subscribe((params) => {
       this.queryParams = params;
-
       this.sort = this.queryParams['sort'] || '';
       this.search = this.queryParams['search'] || '';
-      this.fetchProducts();
-    });
+      this.categoryChange$.pipe(debounceTime(1000)).subscribe(category=>{
+        this.fetchProducts();
+      })
+      });
   }
 
   fetchProducts() {
@@ -83,10 +88,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.apiSubscription = this.apiService
       .getProducts(this.queryParams)
       .subscribe((prods) => {
-        setTimeout(() => {
-          this.products = prods;
-          this.isLoading = false;
-        }, 2000);
+        this.products = prods;
+        this.isLoading = false;
       });
   }
 
@@ -94,15 +97,15 @@ export class ProductsComponent implements OnInit, OnDestroy {
     if (category == this.queryParams['category']) {
       return;
     }
+    this.isLoading = true;
 
     const newCategory = category ? category : null;
 
+    this.categoryChange$.next(newCategory || '')
     this.router.navigate(['/products'], {
       queryParams: { category: newCategory },
       queryParamsHandling: 'merge',
     });
-
-    this.fetchProducts();
   }
 
   onSearch() {
@@ -117,36 +120,36 @@ export class ProductsComponent implements OnInit, OnDestroy {
       return;
     }
 
+    this.isLoading = true;
     this.router.navigate(['/products'], {
       queryParams: { search },
       queryParamsHandling: 'merge',
     });
-    this.fetchProducts();
   }
 
   onSortChange() {
+    this.isLoading = true;
     this.router.navigate(['/products'], {
       queryParams: { sort: this.sort },
       queryParamsHandling: 'merge',
     });
-    this.fetchProducts();
   }
-  
-  onClear(){
-    if(Object.keys(this.queryParams).length < 1){
-      return
+
+  onClear() {
+    if (Object.keys(this.queryParams).length < 1) {
+      return;
     }
+    this.isLoading = true;
 
-    this.router.navigate(['/products'])
-    this.fetchProducts();
+    this.router.navigate(['/products']);
   }
 
-  get hasQueryParams(){
-    return !!Object.keys(this.queryParams).length
+  get hasQueryParams() {
+    return !!Object.keys(this.queryParams).length;
   }
 
   ngOnDestroy(): void {
-    this.querySubcsription?.unsubscribe();
+    this.querySubscription?.unsubscribe();
     this.apiSubscription?.unsubscribe();
   }
 }
