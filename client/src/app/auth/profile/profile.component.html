@@ -18,7 +18,7 @@
       </div>
       <div class="wrapper" *ngIf="products?.length != 0 || !products">
         <div class="card" *ngFor="let product of products">
-          <div class="media">
+          <div class="media" [routerLink]="'/products/' + product._id">
             <img [src]="product.image" [alt]="product.name" />
           </div>
           <div class="content">

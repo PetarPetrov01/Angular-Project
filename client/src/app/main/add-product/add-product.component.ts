@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import {
   FormBuilder,
-  FormControl,
   FormsModule,
   ReactiveFormsModule,
   Validators,
@@ -20,6 +19,7 @@ import { ApiService } from '../../shared/api.service';
 
 import { Product } from '../../types/Product';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { LoaderComponent } from '../../shared/loader/loader.component';
 
 @Component({
   selector: 'app-add-product',
@@ -31,7 +31,8 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     FormsModule,
     MatInputModule,
     NgIf,
-    LazyLoadImageModule
+    LazyLoadImageModule,
+    LoaderComponent
   ],
   templateUrl: './add-product.component.html',
   styleUrl: './add-product.component.css',
@@ -40,6 +41,8 @@ export class AddProductComponent implements OnInit, OnDestroy {
   editProdSubscription: Subscription | null = null;
   editProductId: string | null = null;
   isEditing: boolean = false;
+  isLoading: boolean = false;
+  
 
   categoryList = [
     'Living room',
@@ -121,13 +124,14 @@ export class AddProductComponent implements OnInit, OnDestroy {
       return;
     }
 
+    this.isLoading = true;
     const { width, height, depth, ...values } = this.addProductForm.value;
     const dimensions = {
       width: Number(width),
       height: Number(height),
       depth: Number(depth),
     };
-
+    
     const safeValues = {
       name: values.name || '',
       description: values.description || '',
@@ -138,18 +142,20 @@ export class AddProductComponent implements OnInit, OnDestroy {
       color: values.color || '',
       price: Number(values.price) || 0,
     };
-
+    
     const data: Product = {
       ...safeValues,
       dimensions,
     };
-
+    
     if (this.isEditing && this.editProductId) {
       this.apiService.updateProduct(this.editProductId,data).subscribe((prod)=>{
+        this.isLoading = false;
         this.router.navigate([`/products/${this.editProductId}`]);
       })
     } else {
       this.apiService.addProduct(data).subscribe((prod) => {
+        this.isLoading = false;
         this.router.navigate(['/products']);
       });
     }

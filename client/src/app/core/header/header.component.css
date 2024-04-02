@@ -76,6 +76,7 @@ header.home {
 .banner-content {
   padding: 1em 0;
 }
+
 .banner-content h2 {
   font-size: 4em;
   font-weight: 300;
@@ -93,7 +94,6 @@ header.home {
   background-size: cover;
   background-position: 70% 50%;
   max-height: 500px;
-
   }
 
   .main-nav,
@@ -103,7 +103,6 @@ header.home {
     justify-content: center;
     gap: 1em;
   }
-
 
   .main-nav li{
     width: 100%;

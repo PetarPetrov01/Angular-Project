@@ -110,6 +110,7 @@
   overflow: hidden;
   display: flex;
   justify-content: center;
+  cursor: pointer;
 }
 
 .media img {
