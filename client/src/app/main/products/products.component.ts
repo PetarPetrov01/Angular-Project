@@ -29,6 +29,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   queryParams: Params = {};
 
   categoryChange$: Subject<string> = new Subject<string>();
+  hasDebounced: boolean = false;
 
   querySubscription: Subscription | null = null;
   apiSubscription: Subscription | null = null;
@@ -71,18 +72,23 @@ export class ProductsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.isLoading=true;
+    this.isLoading = true;
 
-    this.querySubscription = this.route.queryParams
-    .subscribe((params) => {
+    this.querySubscription = this.route.queryParams.subscribe((params) => {
       this.queryParams = params;
       this.sort = this.queryParams['sort'] || '';
       this.search = this.queryParams['search'] || '';
-      this.categoryChange$.pipe(debounceTime(1000)).subscribe(category=>{
+
+      this.categoryChange$.pipe(debounceTime(1000)).subscribe((category) => {
         this.fetchProducts();
-      })
+        this.hasDebounced = true;
+      });
+
+      if (!this.hasDebounced) {
+        this.fetchProducts();
+      }
     });
-    
+
     this.categoryChange$.next('');
   }
 
@@ -91,8 +97,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.apiSubscription = this.apiService
       .getProducts(this.queryParams)
       .subscribe((prods) => {
-        this.products = prods;
         this.isLoading = false;
+        this.products = prods;
       });
   }
 
@@ -100,11 +106,11 @@ export class ProductsComponent implements OnInit, OnDestroy {
     if (category == this.queryParams['category']) {
       return;
     }
-    this.isLoading = true;
 
     const newCategory = category ? category : null;
 
-    this.categoryChange$.next(newCategory || '')
+    this.hasDebounced = true;
+    this.categoryChange$.next(newCategory || '');
     this.router.navigate(['/products'], {
       queryParams: { category: newCategory },
       queryParamsHandling: 'merge',
@@ -123,7 +129,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.isLoading = true;
+    this.hasDebounced = false;
+
     this.router.navigate(['/products'], {
       queryParams: { search },
       queryParamsHandling: 'merge',
@@ -131,7 +138,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   onSortChange() {
-    this.isLoading = true;
+    this.hasDebounced = false;
+
     this.router.navigate(['/products'], {
       queryParams: { sort: this.sort },
       queryParamsHandling: 'merge',
@@ -142,8 +150,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
     if (Object.keys(this.queryParams).length < 1) {
       return;
     }
-    this.isLoading = true;
 
+    this.hasDebounced = false;
     this.router.navigate(['/products']);
   }
 
