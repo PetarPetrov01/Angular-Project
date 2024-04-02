@@ -15,11 +15,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { CartComponent } from '../../auth/cart/cart.component';
 
 import * as CartActions from '../../auth/cart/cart.actions';
+import { DateFormatterPipe } from '../../shared/pipes/date-formatter.pipe';
 
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, DeleteDialogComponent],
+  imports: [CommonModule, FormsModule, RouterLink, DeleteDialogComponent, DateFormatterPipe],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css',
 })
@@ -45,6 +46,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
       this.subscription = this.apiService.getProduct(this.productId).subscribe({
         next: (prod) => {
           this.product = prod;
+          console.log(prod);
         },
         error: (err) => {
           this.router.navigate([`/products/${this.productId}/not-found`]);

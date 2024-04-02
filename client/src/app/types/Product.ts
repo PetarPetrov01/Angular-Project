@@ -20,6 +20,7 @@ export interface APIProduct extends Product{
   _id: string;
   _ownerId: string;
   __v: string;
+  createdAt: string;
 }
 
 export interface PopulatedProduct extends  Omit<APIProduct,'_ownerId'>{
