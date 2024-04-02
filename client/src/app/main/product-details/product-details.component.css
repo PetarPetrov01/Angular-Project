@@ -160,8 +160,6 @@
 
 #del-btn:hover {
   background-color: #ea5858;
-  /* border: 1px solid #222; */
-  /* color: #000; */
 }
 
 #button-cart {
@@ -204,6 +202,11 @@
 
 .keypoints i {
   max-width: 10px;
+}
+
+#post-date{
+  font-size: 0.9em;
+  color: #666;
 }
 
 .info-section {
