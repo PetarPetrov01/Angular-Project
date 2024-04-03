@@ -4,8 +4,21 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 The application is deployed at https://dream-furniture-1e92c.web.app
 
 ## Content table
-
-Authentication
+|Content table|
+|----|
+|[Authentication](#authentication)|
+|- [Session](#session---authcomponent)|
+|[Application overview](#application-overview)
+- [Header](#header)
+- [Home page](#home-page)
+- [Products](#products-page)
+- [Product details](#product-details-page)
+- [Regsiter page](#register-page)
+- [Login page](#login-page)
+- [Create and edit page](#create-and-edit-page)
+- [Profile page](#profile-page)
+- [Wishlist](#wishlist)
+- [Cart](#cart)
 
 ## Authentication
 
@@ -152,7 +165,7 @@ The form validates all fields and displays error messages for invalid entries im
 
 ![error inputs](./screenshots/error-inputs.PNG)
 
-### Create and Edit pages
+### Create and Edit page
 
 Authenticated users can add their products with the form provided on the create page. The same page is used when the user wants to update already created product, with the only difference that the inputs are filled with the current product properties. Each input is validated with the same styling in the register and login pages. The following data should be provided in the inputs:
 
