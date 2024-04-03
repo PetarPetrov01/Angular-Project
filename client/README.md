@@ -4,21 +4,13 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 The application is deployed at https://dream-furniture-1e92c.web.app
 
 ## Content table
-|Content table|
-|----|
-|[Authentication](#authentication)|
-|- [Session](#session---authcomponent)|
-|[Application overview](#application-overview)
-- [Header](#header)
-- [Home page](#home-page)
-- [Products](#products-page)
-- [Product details](#product-details-page)
-- [Regsiter page](#register-page)
-- [Login page](#login-page)
-- [Create and edit page](#create-and-edit-page)
-- [Profile page](#profile-page)
-- [Wishlist](#wishlist)
-- [Cart](#cart)
+
+| Content table                         |
+| ------------------------------------- |
+| [Authentication](#authentication)     |
+| - [Session](#session---authcomponent) |
+|[Application overview](#application-overview)|
+|<ul><li>[Header](#header)</li><li>[Home page](#home-page)</li><li>[Products](#products-page)</li><li>[Product details](#product-details-page)</li><li>[Regsiter page](#register-page)</li><li>[Login page](#login-page)</li><li>[Create and edit page](#create-and-edit-page)</li><li>[Profile page](#profile-page)</li><li>[Wishlist](#wishlist)</li><li>[Cart](#cart)</li></ul>|
 
 ## Authentication
 
@@ -187,7 +179,7 @@ Authenticated users can add their products with the form provided on the create 
 
 Users can open their profile page, where they can see all the products they have posted, their profile and information and controls to edit the profile, link to the user's `wishlist` and logout link.
 
-#### Profile page view 
+#### Profile page view
 
 ---
 
@@ -203,16 +195,15 @@ The edit button opens up a modal with `email` and `username` inputs. The has to 
 
 ### Wishlist
 
-Authenticated users can create their own wishlist and manage their favorite products. The wishlist features a brief display of each product in it. Uppon clicking the image the user is taken to details page of the product. A `Add to cart` button is also provided, which adds the product the user's cart. 
+Authenticated users can create their own wishlist and manage their favorite products. The wishlist features a brief display of each product in it. Uppon clicking the image the user is taken to details page of the product. A `Add to cart` button is also provided, which adds the product the user's cart.
 
 #### Wishlist view
 
 ---
 
-|Wishlist with items|Empty wishlist|
-|-|-|
-|![wishlist](./screenshots/wishlist.PNG)|![empty wishlist](./screenshots/wishlist-empty.PNG)|
-
+| Wishlist with items                     | Empty wishlist                                      |
+| --------------------------------------- | --------------------------------------------------- |
+| ![wishlist](./screenshots/wishlist.PNG) | ![empty wishlist](./screenshots/wishlist-empty.PNG) |
 
 ### Cart
 
