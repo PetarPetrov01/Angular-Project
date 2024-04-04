@@ -19,8 +19,9 @@ authController.post("/login", isGuest(), async (req, res) => {
     if (process.env.NODE_ENV == "production") {
       res.cookie(authCookieName, authToken, {
         httpOnly: true,
-        sameSite: "none",
-      }); // secure: true
+        sameSite: "strict",
+        secure: true,
+      });
     } else {
       res.cookie(authCookieName, authToken, { httpOnly: false });
     }
@@ -59,8 +60,9 @@ authController.post(
       if (process.env.NODE_ENV == "production") {
         res.cookie(authCookieName, authToken, {
           httpOnly: true,
-          sameSite: "none",
-        }); // secure: true
+          sameSite: "strict",
+          secure: true,
+        });
       } else {
         res.cookie(authCookieName, authToken, { httpOnly: false });
       }
@@ -75,12 +77,17 @@ authController.post(
 
 authController.get("/logout", async (req, res) => {
   try {
-    res
-      .clearCookie(authCookieName, {
-        httpOnly: true,
-        sameSite: "none",
-      })
-      .json({ message: "Succesfully logged out" });
+    if (process.env.NODE_ENV == "production") {
+      res
+        .clearCookie(authCookieName, {
+          httpOnly: true,
+          sameSite: "strict",
+          secure: true,
+        })
+        .json({ message: "Succesfully logged out" });
+    } else {
+      res.clearCookie(authCookieName, { httpOnly: false });
+    }
   } catch (error) {
     const errorMessage = errorParser(error);
     res.status(400).json({ message: errorMessage });

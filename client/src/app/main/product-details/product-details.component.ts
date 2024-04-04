@@ -46,7 +46,6 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
       this.subscription = this.apiService.getProduct(this.productId).subscribe({
         next: (prod) => {
           this.product = prod;
-          console.log(prod);
         },
         error: (err) => {
           this.router.navigate([`/products/${this.productId}/not-found`]);

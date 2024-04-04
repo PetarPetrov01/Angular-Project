@@ -65,7 +65,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
   toggleWishlist(currentProduct: StateProduct) {
     this.apiService.toggleWishList(currentProduct._id).subscribe((user) => {
-      this.router.navigate([`/cart}`]);
+      this.router.navigate([`/cart`]);
       this.authService.setUserStorage(user);
       this.authService.setUserSubject(user);
     });
