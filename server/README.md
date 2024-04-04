@@ -112,9 +112,22 @@ To keep the session of the user the server uses a middleware function which look
 ## Route guards
 
 To control the access to certain routes, some middlewares that serve as guards are implemented. These route guards serve to enforce specific access permissions based on the user's authentication status and ownership.
-- isUser - Allows access only to authenticated users. The following routes utilize this guard:
-- isGuest - Allows access only to unauthenticated (guest) users.
-- isOwner - Allows access to routes based on ownership criteria. In order for this guard to effectively determine ownership of a resource, additional middleware named 'preload' is used. This middleware is responsible for fetching relevant data from the database and setting it in the `res.locals` object. By doing so, the data is accessible in the guard itself.
+
+**isUser** - Allows access only to authenticated users. The following routes utilize this guard:
+- [Get profile](#get-profile) - `GET /auth/profile` 
+- [Edit profile](#edit-profile) - `PATCH /auth/profile`
+- [Create a product](#create-a-new-product) - `POST /products`
+- [Get posted products](#get-posted-products) - `GET /auth/posts`
+- [Get wishlist](#get-wishlist) - `GET /auth/wishlist`
+- [Add to wishlist](#add-item-to-wishlist) - `POST /products/{productId}/wishlist`
+  
+**isGuest** - Allows access only to unauthenticated (guest) users. Routes utulizing the guard:
+- [Register](#register) - `POST /auth/register`
+- [Login](#login) - `POST /auth/login`
+
+**isOwner** - Allows access to routes based on ownership criteria. In order for this guard to effectively determine ownership of a resource, additional middleware named 'preload' is used. This middleware is responsible for fetching relevant data from the database and setting it in the `res.locals` object. By doing so, the data is accessible in the guard itself. The following routes utilize the guard:
+- [Edit product](#edit-a-product) - `PUT /products/{productId}`
+- [Delete product](#delete-a-product) - `DELETE /products/{productId}`
 
 ### Error Responses
 
