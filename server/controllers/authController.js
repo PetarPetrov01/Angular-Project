@@ -80,7 +80,7 @@ authController.get("/logout", async (req, res) => {
         httpOnly: true,
         sameSite: "none",
       })
-      .json({message: 'Succesfully logged out'});
+      .json({ message: "Succesfully logged out" });
   } catch (error) {
     const errorMessage = errorParser(error);
     res.status(400).json({ message: errorMessage });
@@ -125,7 +125,7 @@ authController.get("/wishlist", isUser(), async (req, res) => {
   }
 });
 
-authController.get("/posts", async (req, res) => {
+authController.get("/posts", isUser(), async (req, res) => {
   try {
     const userId = req.user?._id;
     const ownProducts = await productService.getOwn(userId);

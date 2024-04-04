@@ -2,7 +2,9 @@
 
 This document serves as the API reference guide for the REST API. This API provides access to a collection of furniture product data, enabling developers to integrate furniture information and functionalities seamlessly into their applications.
 
-## Running the server
+For the purpose of SoftUni's Angular course, this REST API is currently deployed on render - cloud application hosting. For the managment of the data, MongoDB Atlas is utilized as the database solution.
+
+## Running the server locally
 
 To run the server successfully, MongoDB must be installed on your machine. Once it's installed, follow these steps to start the server:
 Clone the repository (if you still haven't):
@@ -107,9 +109,16 @@ The service responds with the object similar to what is found in the [registrati
 
 To keep the session of the user the server uses a middleware function which looks up for a cookie in the request headers and validates it. If the token in the cookie is valid, the user information is saved in the request, so controllers can access it. Otherwise, if the token is invalid the server responds with status code 401.
 
+## Route guards
+
+To control the access to certain routes, some middlewares that serve as guards are implemented. These route guards serve to enforce specific access permissions based on the user's authentication status and ownership.
+- isUser - Allows access only to authenticated users. The following routes utilize this guard:
+- isGuest - Allows access only to unauthenticated (guest) users.
+- isOwner - Allows access to routes based on ownership criteria. In order for this guard to effectively determine ownership of a resource, additional middleware named 'preload' is used. This middleware is responsible for fetching relevant data from the database and setting it in the `res.locals` object. By doing so, the data is accessible in the guard itself.
+
 ### Error Responses
 
-In case of any issues processing the request, the API will clearly communicate the error using a specific status code and a detailed message JSON format.
+In case of any issues processing the request, the API will clearly communicate the error using a specific status code and a detailed message in JSON format.
 
 Example error response:
 
