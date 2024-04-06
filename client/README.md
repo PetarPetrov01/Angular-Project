@@ -222,3 +222,23 @@ The cart utilizes the ngrx store to keep the state of the user's cart. Additiona
 ---
 
 ![cart empty](./screenshots/cart-empty.PNG)
+
+## Protected routes
+
+Within the application, protected routes are established utilizing route guards, ensuring the secure accessibility of sensitive content and features. These routes require authentication or authorization before granting user access.
+
+### isUserGuard
+
+This is a custom route guard implemented within the application to enforce specific access control rules based on the user's authentication. This guard intercepts navigation attempts to certain routes and verifies whether the user has logged in. If the user isn't logged in, he is redirected to the login page. The following routes are protected with the "isUserGuard":
+- Create new product - `/add-product`
+- Profile page - `/profile`
+- User's Wishlist - `/profile/wishlist`
+- User's Cart - `/cart`
+- Edit a product - `/products/{productId}/edit`
+
+### isGuestGuard
+
+Opposite to the `isUserGuard`, this guard intercepts navigation to certain routes and verifies whether the user is a guest (not authenticated). If an authenticated user tries to access a route protected by this guard, he is redirected to the home page. These routes are protected with the guard:
+
+- Login page - `/auth/login`
+- Register page - `/auth/register`

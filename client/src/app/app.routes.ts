@@ -37,12 +37,12 @@ const productRoutes = {
 
 const authRoutes = {
   path: 'auth',
+  canActivate: [isGuestGuard],
   children: [
-    { path: 'login', component: LoginComponent, canActivate: [isGuestGuard] },
+    { path: 'login', component: LoginComponent },
     {
       path: 'register',
       component: RegisterComponent,
-      canActivate: [isGuestGuard],
     },
   ],
 };
