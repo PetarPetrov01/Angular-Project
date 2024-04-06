@@ -84,6 +84,14 @@ button:hover {
   background-color: #39a244;
 }
 
+button:disabled {
+  background-color: #98d0a5;;
+}
+
+button:disabled:hover {
+  cursor: not-allowed;
+}
+
 :host
   ::ng-deep
   .mdc-text-field--filled:not(.mdc-text-field--disabled).mdc-text-field--focused

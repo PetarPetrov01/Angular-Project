@@ -6,9 +6,12 @@
         <div class="column left">
           <mat-form-field>
             <mat-label>Name</mat-label>
-            <input matInput placeholder="Name" formControlName="name" />
+            <input matInput placeholder="Name" formControlName="name" minlength="4" />
             <mat-error *ngIf="addProductForm.get('name')?.hasError('required')"
               >Name is required</mat-error
+            >
+            <mat-error *ngIf="addProductForm.get('name')?.hasError('minlength')"
+              >Name must be atleast 4 characters long</mat-error
             >
           </mat-form-field>
           <mat-form-field>
@@ -18,10 +21,15 @@
               type="text"
               style="max-height: 200px"
               formControlName="description"
+              minlength="20"
             ></textarea>
             <mat-error
               *ngIf="addProductForm.get('description')?.hasError('required')"
               >Description is required</mat-error
+            >
+            <mat-error
+              *ngIf="addProductForm.get('description')?.hasError('minlength')"
+              >Description must be atleast 20 characters long</mat-error
             >
           </mat-form-field>
           <mat-form-field>
@@ -54,10 +62,14 @@
           </mat-form-field>
           <mat-form-field>
             <mat-label for="">Style</mat-label>
-            <input matInput type="text" formControlName="style" />
+            <input matInput type="text" formControlName="style"  minlength="3"/>
             <mat-error *ngIf="addProductForm.get('style')?.hasError('required')"
               >Style is required</mat-error
             >
+            <mat-error *ngIf="addProductForm.get('style')?.hasError('minlength')"
+              >Style must be atleast 3 characters long</mat-error
+            >
+
           </mat-form-field>
         </div>
         <div class="column right">
@@ -133,7 +145,7 @@
           </mat-form-field>
         </div>
       </form>
-      <button (click)="handleClick()">
+      <button (click)="handleClick()" [disabled]="addProductForm.invalid">
         <p *ngIf="!isLoading">Submit</p>
         <app-loader *ngIf="isLoading" type="dots" diameter="26"/>
       </button>

@@ -43,7 +43,6 @@ export class AddProductComponent implements OnInit, OnDestroy {
   isEditing: boolean = false;
   isLoading: boolean = false;
   
-
   categoryList = [
     'Living room',
     'Bedroom',
