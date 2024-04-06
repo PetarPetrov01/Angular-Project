@@ -12,11 +12,13 @@ import { RemoveDialogComponent } from './remove-dialog/remove-dialog.component';
 
 import { AuthService } from '../../shared/auth.service';
 import { ApiService } from '../../shared/api.service';
+import { FloorPricePipe } from '../../shared/pipes/floor-price.pipe';
+import { DecimalSlicePipe } from '../../shared/pipes/decimal-slice.pipe';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, FloorPricePipe, DecimalSlicePipe],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css',
 })

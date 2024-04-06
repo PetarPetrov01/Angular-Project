@@ -16,11 +16,21 @@ import { CartComponent } from '../../auth/cart/cart.component';
 
 import * as CartActions from '../../auth/cart/cart.actions';
 import { DateFormatterPipe } from '../../shared/pipes/date-formatter.pipe';
+import { FloorPricePipe } from '../../shared/pipes/floor-price.pipe';
+import { DecimalSlicePipe } from '../../shared/pipes/decimal-slice.pipe';
 
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, DeleteDialogComponent, DateFormatterPipe],
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterLink,
+    DeleteDialogComponent,
+    DateFormatterPipe,
+    FloorPricePipe,
+    DecimalSlicePipe,
+  ],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css',
 })

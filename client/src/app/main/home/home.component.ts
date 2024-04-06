@@ -4,13 +4,14 @@ import {  Subscription } from 'rxjs';
 import { APIProduct } from '../../types/Product';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { LoaderComponent } from '../../shared/loader/loader.component';
 import { LoaderCardComponent } from '../../shared/loader-card/loader-card.component';
+import { FloorPricePipe } from '../../shared/pipes/floor-price.pipe';
+import { DecimalSlicePipe } from '../../shared/pipes/decimal-slice.pipe';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterLink, LoaderCardComponent],
+  imports: [CommonModule, RouterLink, LoaderCardComponent, FloorPricePipe, DecimalSlicePipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

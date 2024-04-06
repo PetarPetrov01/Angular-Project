@@ -10,6 +10,8 @@ import { LoaderCardComponent } from '../../shared/loader-card/loader-card.compon
 
 import { MatChipsModule } from '@angular/material/chips';
 import { FormsModule } from '@angular/forms';
+import { FloorPricePipe } from '../../shared/pipes/floor-price.pipe';
+import { DecimalSlicePipe } from '../../shared/pipes/decimal-slice.pipe';
 
 @Component({
   selector: 'app-products',
@@ -20,6 +22,8 @@ import { FormsModule } from '@angular/forms';
     LoaderCardComponent,
     MatChipsModule,
     FormsModule,
+    FloorPricePipe,
+    DecimalSlicePipe,
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',

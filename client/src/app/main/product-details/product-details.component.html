@@ -11,7 +11,7 @@
         <p>{{ product?.category?.join(", ") }}</p>
         <div class="price">
           <h1 id="price">
-            ${{ product?.price?.toFixed(0) }}<span id="decimals">{{product?.price?.toFixed(2)?.slice(-2)}}</span>
+            ${{ product?.price! | floorPrice }}<span id="decimals">{{product?.price! | decimalSlice}}</span>
           </h1>
           <span id="monthly-price">or ~ 12 x ${{ monthlyPrice(product?.price) }}</span>
         </div>

@@ -53,11 +53,11 @@
             Products:
           </p>
           <p id="products-price">
-            ${{totalPrice?.toFixed(0)}}<span>{{ totalPrice?.toFixed(2)?.slice(-2) }}</span>
+            ${{totalPrice! | floorPrice}}<span>{{ totalPrice! | decimalSlice }}</span>
           </p>
         </h4>
         <h4>Delivery: <span>FREE</span></h4>
-        <h2>Total: ${{ totalPrice?.toFixed(0) }} <span>{{totalPrice?.toFixed(2)?.slice(-2)}}</span></h2>
+        <h2>Total: ${{ totalPrice! | floorPrice }} <span>{{totalPrice! | decimalSlice}}</span></h2>
       </div>
       <a>Complete order</a>
     </div>

@@ -2,35 +2,67 @@
   <div class="options">
     <div class="container">
       <ul class="category-select">
-        <button class="category-btn"
+        <button
+          class="category-btn"
           (click)="changeCategory('')"
           [class.selected]="!queryParams['category']"
-          ><i *ngIf="!queryParams['category']" class="fa-solid fa-check"></i>All
+        >
+          <i *ngIf="!queryParams['category']" class="fa-solid fa-check"></i>All
         </button>
-        <button class="category-btn"
+        <button
+          class="category-btn"
           (click)="changeCategory('Living room')"
           [class.selected]="queryParams['category'] == 'Living room'"
-          ><i *ngIf="queryParams['category'] == 'Living room'" class="fa-solid fa-check"></i>Living room
+        >
+          <i
+            *ngIf="queryParams['category'] == 'Living room'"
+            class="fa-solid fa-check"
+          ></i
+          >Living room
         </button>
-        <button class="category-btn"
+        <button
+          class="category-btn"
           (click)="changeCategory('Bedroom')"
           [class.selected]="queryParams['category'] == 'Bedroom'"
-          ><i *ngIf="queryParams['category'] == 'Bedroom'" class="fa-solid fa-check"></i>Bedroom
+        >
+          <i
+            *ngIf="queryParams['category'] == 'Bedroom'"
+            class="fa-solid fa-check"
+          ></i
+          >Bedroom
         </button>
-        <button class="category-btn"
+        <button
+          class="category-btn"
           (click)="changeCategory('Dining room')"
           [class.selected]="queryParams['category'] == 'Dining room'"
-          ><i *ngIf="queryParams['category'] == 'Dining room'"class="fa-solid fa-check"></i>Dining room
+        >
+          <i
+            *ngIf="queryParams['category'] == 'Dining room'"
+            class="fa-solid fa-check"
+          ></i
+          >Dining room
         </button>
-        <button class="category-btn"
+        <button
+          class="category-btn"
           (click)="changeCategory('Home office')"
           [class.selected]="queryParams['category'] == 'Home office'"
-          ><i *ngIf="queryParams['category'] == 'Home office'" class="fa-solid fa-check"></i>Home office
+        >
+          <i
+            *ngIf="queryParams['category'] == 'Home office'"
+            class="fa-solid fa-check"
+          ></i
+          >Home office
         </button>
-        <button class="category-btn"
+        <button
+          class="category-btn"
           (click)="changeCategory('Outdoor')"
           [class.selected]="queryParams['category'] == 'Outdoor'"
-          ><i *ngIf="queryParams['category'] == 'Outdoor'" class="fa-solid fa-check"></i>Outdoor
+        >
+          <i
+            *ngIf="queryParams['category'] == 'Outdoor'"
+            class="fa-solid fa-check"
+          ></i
+          >Outdoor
         </button>
       </ul>
       <div class="query-controls">
@@ -60,12 +92,13 @@
       </div>
     </div>
   </div>
-  <div class="products-wrapper"
+  <div
+    class="products-wrapper"
     [ngStyle]="{
       'justify-content':
         products.length && products.length > 2 ? 'flex-start' : 'center'
     }"
-  > 
+  >
     <h1 class="no-products" *ngIf="products?.length == 0 && !isLoading">
       There are currently no products to show!
     </h1>
@@ -89,8 +122,8 @@
             <h3>{{ prod.name }}</h3>
             <p>{{ prod.material.join(", ") }}</p>
             <p>
-              ${{ prod.price.toFixed(0)
-              }}<span>{{ prod.price.toFixed(2).slice(-2) }}</span>
+              ${{ prod.price | floorPrice
+              }}<span>{{ prod.price | decimalSlice }}</span>
             </p>
           </div>
         </div>

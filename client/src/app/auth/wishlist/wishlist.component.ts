@@ -12,11 +12,13 @@ import { CartState } from '../../types/State';
 import { Store } from '@ngrx/store';
 
 import * as CartActions from '../cart/cart.actions';
+import { FloorPricePipe } from '../../shared/pipes/floor-price.pipe';
+import { DecimalSlicePipe } from '../../shared/pipes/decimal-slice.pipe';
 
 @Component({
   selector: 'app-wishlist',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, FloorPricePipe, DecimalSlicePipe],
   templateUrl: './wishlist.component.html',
   styleUrl: './wishlist.component.css',
 })
@@ -31,17 +33,17 @@ export class WishlistComponent implements OnInit, OnDestroy {
   wishlist: [PopulatedProduct] | [] = [];
 
   ngOnInit(): void {
-    this.subscription = this.fetchWishList()
+    this.subscription = this.fetchWishList();
   }
 
-  fetchWishList(){
+  fetchWishList() {
     return this.authService.getWishlist().subscribe((wishlist) => {
       this.wishlist = wishlist;
     });
   }
 
-  onRemove(prodId: string){
-    this.apiService.toggleWishList(prodId).subscribe((user)=>{
+  onRemove(prodId: string) {
+    this.apiService.toggleWishList(prodId).subscribe((user) => {
       //sync user
       this.authService.setUserStorage(user);
       this.authService.setUserSubject(user);
@@ -51,12 +53,12 @@ export class WishlistComponent implements OnInit, OnDestroy {
     });
   }
 
-  onAddToCart(product: PopulatedProduct){
-    this.store.dispatch(CartActions.addItem({product, qty: 1}))
+  onAddToCart(product: PopulatedProduct) {
+    this.store.dispatch(CartActions.addItem({ product, qty: 1 }));
   }
 
   ngOnDestroy(): void {
-    if (this.subscription){
+    if (this.subscription) {
       this.subscription.unsubscribe();
     }
   }
