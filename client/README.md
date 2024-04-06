@@ -5,12 +5,14 @@ The application is deployed at https://dream-furniture-1e92c.web.app
 
 ## Content table
 
-| Content table                         |
-| ------------------------------------- |
-| [Authentication](#authentication)     |
-| - [Session](#session---authcomponent) |
-|[Application overview](#application-overview)|
-|<ul><li>[Header](#header)</li><li>[Home page](#home-page)</li><li>[Products](#products-page)</li><li>[Product details](#product-details-page)</li><li>[Regsiter page](#register-page)</li><li>[Login page](#login-page)</li><li>[Create and edit page](#create-and-edit-page)</li><li>[Profile page](#profile-page)</li><li>[Wishlist](#wishlist)</li><li>[Cart](#cart)</li></ul>|
+| Content table                                                                                                                                                                                                                                                                                                                                                                     |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Authentication](#authentication)                                                                                                                                                                                                                                                                                                                                                 |
+| <ul><li>[Login and register](#login-and-register)</li><li>[Session](#session---authcomponent)</li><li>[Aspects](#aspects-of-the-approach)</li></ul>                                                                                                                                                                                                                               |
+| [Application overview](#application-overview)                                                                                                                                                                                                                                                                                                                                     |
+| <ul><li>[Header](#header)</li><li>[Home page](#home-page)</li><li>[Products](#products-page)</li><li>[Product details](#product-details-page)</li><li>[Regsiter page](#register-page)</li><li>[Login page](#login-page)</li><li>[Create and edit page](#create-and-edit-page)</li><li>[Profile page](#profile-page)</li><li>[Wishlist](#wishlist)</li><li>[Cart](#cart)</li></ul> |
+| [Protected routes](#protected-routes)                                                                                                                                                                                                                                                                                                                                             |
+| <ul><li>[isUserGuard](#isuserguard)</li><li>[isGuestGuard](#isuserguard)</li></ul>                                                                                                                                                                                                                                                                                                |
 
 ## Authentication
 
@@ -230,6 +232,7 @@ Within the application, protected routes are established utilizing route guards,
 ### isUserGuard
 
 This is a custom route guard implemented within the application to enforce specific access control rules based on the user's authentication. This guard intercepts navigation attempts to certain routes and verifies whether the user has logged in. If the user isn't logged in, he is redirected to the login page. The following routes are protected with the "isUserGuard":
+
 - Create new product - `/add-product`
 - Profile page - `/profile`
 - User's Wishlist - `/profile/wishlist`
