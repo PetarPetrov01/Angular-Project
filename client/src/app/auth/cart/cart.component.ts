@@ -14,6 +14,7 @@ import { AuthService } from '../../shared/auth.service';
 import { ApiService } from '../../shared/api.service';
 import { FloorPricePipe } from '../../shared/pipes/floor-price.pipe';
 import { DecimalSlicePipe } from '../../shared/pipes/decimal-slice.pipe';
+import { ClearDiaologComponent } from './clear-diaolog/clear-diaolog.component';
 
 @Component({
   selector: 'app-cart',
@@ -85,6 +86,14 @@ export class CartComponent implements OnInit, OnDestroy {
     });
   }
 
+  handleClearCart(){
+    this.matDialog.open(ClearDiaologComponent), {
+      width: '300px',
+      enterAnimationDuration: '300ms',
+      exitAnimationDuration: '200ms',
+    }
+  }
+
   get totalCount() {
     return this.products?.reduce((acc, prod) => acc + prod.quantity, 0);
   }
@@ -93,7 +102,7 @@ export class CartComponent implements OnInit, OnDestroy {
     return this.products?.reduce(
       (acc, prod) => acc + prod.quantity * prod.price,
       0
-    );
+    )
   }
 
   isInWishList(product: StateProduct) {

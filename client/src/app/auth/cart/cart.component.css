@@ -42,12 +42,29 @@
   border-radius: 1em 1em 0 0;
   padding: 1.5em 1em 1em 2em;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .header span {
   font-size: 0.6em;
   color: #666;
   padding-left: 2em;
+}
+
+#clear-cart-btn{
+  padding-right: 1em;
+  color: #d37676;
+  cursor: pointer;
+}
+
+#clear-cart-btn i{
+  font-size: 1.15em;
+}
+
+#clear-cart-btn:hover{
+  color: #ff0000;
 }
 
 .header::after {
@@ -77,11 +94,12 @@
   flex: 0 0 20%;
   height: 100%;
   overflow: hidden;
+  padding-right: 1em;
 }
 
 .media img {
   height: 100%;
-  width: auto;
+  width: 100%;
   object-fit: contain;
 }
 
