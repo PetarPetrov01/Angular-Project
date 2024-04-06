@@ -12,6 +12,7 @@ import {
 } from '@angular/material/dialog';
 
 import { ApiService } from '../api.service';
+import { Router } from '@angular/router';
 
 export interface DialogData {
   productName: string;
@@ -23,12 +24,7 @@ export interface DialogData {
   templateUrl: 'delete-dialog.component.html',
   styleUrl: 'delete-dialog.component.css',
   standalone: true,
-  imports: [
-    MatDialogActions,
-    MatDialogClose,
-    MatDialogTitle,
-    MatDialogContent,
-  ],
+  imports: [MatDialogActions, MatDialogClose, MatDialogTitle, MatDialogContent],
 })
 export class DeleteDialogComponent implements OnDestroy {
   subscription: Subscription | null = null;
@@ -36,13 +32,15 @@ export class DeleteDialogComponent implements OnDestroy {
   constructor(
     public dialogRef: MatDialogRef<DeleteDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private router: Router
   ) {}
 
   onConfirm() {
     this.subscription = this.apiService
       .deleteProduct(this.data._id)
       .subscribe();
+    this.router.navigate(['/products']);
   }
 
   ngOnDestroy(): void {
