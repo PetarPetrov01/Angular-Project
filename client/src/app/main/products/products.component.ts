@@ -85,7 +85,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
       this.categoryChange$.pipe(debounceTime(1000)).subscribe((category) => {
         this.fetchProducts();
-        this.hasDebounced = true;
       });
 
       if (!this.hasDebounced) {
@@ -93,7 +92,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.categoryChange$.next('');
+    // this.categoryChange$.next('');
   }
 
   fetchProducts() {
@@ -112,8 +111,13 @@ export class ProductsComponent implements OnInit, OnDestroy {
     }
 
     const newCategory = category ? category : null;
+    //If empty string is passed to the params, it still remains in the query, while passing null, complete removes it:
+    //Passing '' => /products?category=
+    //Passing null => /products 
 
     this.hasDebounced = true;
+    //For the initial click (while its still false)
+
     this.categoryChange$.next(newCategory || '');
     this.router.navigate(['/products'], {
       queryParams: { category: newCategory },

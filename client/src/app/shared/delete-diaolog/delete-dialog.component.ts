@@ -40,7 +40,9 @@ export class DeleteDialogComponent implements OnDestroy {
     this.subscription = this.apiService
       .deleteProduct(this.data._id)
       .subscribe();
-    this.router.navigate(['/products']);
+      //subscribe is meaningless as delete request returns nothing
+
+      this.router.navigate(['/products']);
   }
 
   ngOnDestroy(): void {
