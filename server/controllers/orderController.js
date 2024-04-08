@@ -6,7 +6,17 @@ const orderController = require("express").Router();
 
 orderController.get("/", isUser(), async (req, res) => {
   try {
-    const order = await orderService.getOrders(req.user?._id);
+    const orders = await orderService.getOrders(req.user?._id);
+    res.json(orders);
+  } catch (error) {
+    const errorMessage = errorParser(error);
+    res.status(400).json({ message: errorMessage });
+  }
+});
+
+orderController.get("/:id", isUser(), async (req, res) => {
+  try {
+    const order = await orderService.getOrderById(req.params.id);
     res.json(order);
   } catch (error) {
     const errorMessage = errorParser(error);
