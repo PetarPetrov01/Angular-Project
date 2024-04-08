@@ -94,6 +94,24 @@ export class CartComponent implements OnInit, OnDestroy {
     }
   }
 
+  handleCompleteOrder(){
+    
+    if(!this.products || this.products?.length == 0){
+      return;
+    }
+
+    const order = this.products?.map((prod)=>{
+      return {
+        product: prod._id,
+        count: prod.quantity
+      }
+    })
+
+    this.authService.completeOrder(order!).subscribe(()=>{
+      this.store.dispatch(CartActions.resetState());
+    });
+  }
+
   get totalCount() {
     return this.products?.reduce((acc, prod) => acc + prod.quantity, 0);
   }

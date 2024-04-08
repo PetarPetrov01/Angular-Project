@@ -64,7 +64,7 @@
           <span>{{ totalPrice! | decimalSlice }}</span>
         </h2>
       </div>
-      <a>Complete order</a>
+      <a (click)="handleCompleteOrder()">Complete order</a>
     </div>
     <div class="no-products" *ngIf="!totalCount">
       <div class="div">
