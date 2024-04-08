@@ -13,7 +13,7 @@ async function start() {
 
   app.use("/auth", authController);
   app.use("/products", productController);
-  app.use("/order", orderController);
+  app.use("/orders", orderController);
 
   app.listen(3030, () => {
     console.log(`Listening on port 3030`);

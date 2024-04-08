@@ -107,7 +107,7 @@ export class CartComponent implements OnInit, OnDestroy {
       }
     })
 
-    this.authService.completeOrder(order!).subscribe(()=>{
+    this.authService.completeOrder(order!).subscribe((message)=>{
       this.store.dispatch(CartActions.resetState());
     });
   }

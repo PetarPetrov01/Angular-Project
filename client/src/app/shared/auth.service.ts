@@ -87,7 +87,7 @@ export class AuthService implements OnDestroy {
   }
 
   completeOrder(data: Order) {
-    return this.http.post('/api/order/create', { products: data });
+    return this.http.post('/api/orders/create', { products: data });
   }
 
   setUserSubject(user: User) {
