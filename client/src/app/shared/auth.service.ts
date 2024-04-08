@@ -10,7 +10,8 @@ import { APIProduct, PopulatedProduct } from '../types/Product';
 import { User } from '../types/User';
 import { Store } from '@ngrx/store';
 
-import * as CartActions from '../auth/cart/cart.actions'
+import * as CartActions from '../auth/cart/cart.actions';
+import { Order } from '../types/Order';
 
 @Injectable({
   providedIn: 'root',
@@ -68,11 +69,13 @@ export class AuthService implements OnDestroy {
     });
   }
 
-  editProfile(username: string, email: string){
-    return this.http.patch<User>('/api/auth/profile',{email,username}).subscribe((user) => {
-      this.setUserSubject(user);
-      this.setUserStorage(user);
-    });
+  editProfile(username: string, email: string) {
+    return this.http
+      .patch<User>('/api/auth/profile', { email, username })
+      .subscribe((user) => {
+        this.setUserSubject(user);
+        this.setUserStorage(user);
+      });
   }
 
   getWishlist() {
@@ -81,6 +84,10 @@ export class AuthService implements OnDestroy {
 
   getOwnProducts() {
     return this.http.get<[APIProduct]>('/api/auth/posts');
+  }
+
+  completeOrder(data: Order) {
+    return this.http.post('/api/order/create', { products: data });
   }
 
   setUserSubject(user: User) {
@@ -105,7 +112,7 @@ export class AuthService implements OnDestroy {
     this.user$$.next(undefined);
     this.cookieService.delete(cookieName, '/');
     this.store.dispatch(CartActions.resetState());
-    
+
     this.http.get('/api/auth/logout').subscribe();
   }
 
