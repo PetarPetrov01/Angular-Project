@@ -2,9 +2,13 @@ const Order = require("../models/Order");
 const Product = require("../models/Product");
 
 async function getOrders(userId) {
-  return await Order.find({ _ownerId: userId }).populate({
-    path: "products.product",
-  });
+  const orders = await Order.find({ _ownerId: userId })
+    .select("_id products totalPrice count createdAt")
+    .populate({
+      path: "products.product",
+    });
+
+  return orders;
 }
 
 async function getOrderById(orderId) {
