@@ -13,6 +13,8 @@ import { CartComponent } from './auth/cart/cart.component';
 
 import { isGuestGuard, isUserGuard } from './guards/auth.guard';
 import { NotFoundComponent } from './main/not-found/not-found.component';
+import { Component } from '@angular/core';
+import { OrdersComponent } from './auth/orders/orders.component';
 
 const productRoutes = {
   path: 'products',
@@ -56,6 +58,10 @@ const profileRoutes = {
       path: 'wishlist',
       component: WishlistComponent,
     },
+    {
+      path: 'orders',
+      component: OrdersComponent
+    }
   ],
 };
 
