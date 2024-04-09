@@ -126,7 +126,7 @@
   flex: 0 0 80%;
   display: flex;
   flex-direction: column;
-justify-content: space-between;
+  justify-content: space-between;
 }
 
 .product-info h2 {
@@ -136,13 +136,13 @@ justify-content: space-between;
 .product-info .price {
   display: flex;
   justify-content: space-between;
-  padding-right: 3em;
+  padding-right: 2.5em;
 }
 
 .order-controls {
   display: flex;
   justify-content: space-between;
-  padding: 0.2em;
+  padding: 1em 1em;
 }
 
 .order-controls h3 {
@@ -153,4 +153,18 @@ justify-content: space-between;
 .order-controls h3 span {
   font-size: 0.78em;
   padding-top: 0.05em;
+}
+
+#delete-btn{
+    padding: 0.5em 0.7em;
+    border-radius: 0.3em;
+    cursor: pointer;
+    background-color: #df5f5f;
+    text-decoration: none;
+    color: #fff;
+}
+
+#delete-btn:hover{
+    background-color: #f60b0b;
+
 }

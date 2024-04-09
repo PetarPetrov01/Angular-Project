@@ -30,7 +30,7 @@ async function createOrder(data) {
 }
 
 async function deleteOrder(id) {
-  await Order.findByIdAndDelete(id);
+  return await Order.findByIdAndDelete(id);
 }
 
 const orderService = { getOrders, getOrderById, createOrder, deleteOrder };

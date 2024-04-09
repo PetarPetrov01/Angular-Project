@@ -37,7 +37,7 @@
               </div>
             </div>
             <div class="order-controls">
-              <a href="">Delete order</a>
+              <a id="delete-btn" (click)="handleDelete(order._id)">Delete order</a>
               <h3>
                 Total: ${{ order.totalPrice | floorPrice }}
                 <span>{{ order.totalPrice | decimalSlice }}</span>

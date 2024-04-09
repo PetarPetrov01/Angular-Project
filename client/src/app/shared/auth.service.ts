@@ -90,8 +90,13 @@ export class AuthService implements OnDestroy {
     return this.http.post('/api/orders/create', { products: data });
   }
 
-  getOrders(){
+  getOrders() {
     return this.http.get<APIOrder[]>('/api/orders');
+  }
+
+  deleteOrder(orderId: string) {
+    console.log('trying delete')
+    return this.http.delete(`/api/orders/${orderId}`);
   }
 
   setUserSubject(user: User) {

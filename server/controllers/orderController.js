@@ -37,4 +37,14 @@ orderController.post("/create", isUser(), async (req, res) => {
   }
 });
 
+orderController.delete("/:id", isUser(), async (req,res)=>{
+  try {
+    await orderService.deleteOrder(req.params.id);
+    res.json({message:'Successfully deleted'})
+  } catch (error) {
+    const errorMessage = errorParser(error);
+    res.status(400).json({ message: errorMessage });
+  }
+})
+
 module.exports = orderController;
