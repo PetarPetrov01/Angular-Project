@@ -1,35 +1,51 @@
 <section class="orders">
   <div class="container">
-
     <div class="wrapper">
       <div class="header">
         <h2>Orders</h2>
       </div>
 
-      <div class="orders-wrapper">
+      <div class="filler" *ngIf="orders.length > 0"></div>
 
+      <div class="orders-wrapper">
         <div class="no-products" *ngIf="orders.length < 1">
-            <h2>
-                No orders yet
-            </h2>
-            <p>You don't have any pending orders. Browse our products to order</p>
-            <a routerLink="/products">Products</a>
+          <h2>No orders yet</h2>
+          <p>You don't have any pending orders. Browse our products to order</p>
+          <a routerLink="/products">Products</a>
         </div>
 
         <ng-container *ngIf="orders.length > 0">
           <div class="order-card" *ngFor="let order of orders">
             <div class="order-heading">
-                <h3>Processing</h3>
-                <p>{{ order.createdAt }}</p>
+              <h3>Processing</h3>
+              <p>{{ order.createdAt | dateFormatter }}</p>
             </div>
-            <div *ngFor="let product of order.products">
-              <p>{{ product.product.name }}</p>
-              <p>{{ product.count }}</p>
+            <div *ngFor="let product of order.products" class="product-card">
+              <div class="media">
+                <img [src]="product.product.image" alt="" />
+              </div>
+              <div class="product-info">
+                <div class="main-info">
+                  <h2>{{ product.product.name }}</h2>
+                  <p>{{ product.product.category.join(", ") }}</p>
+                  <p>{{ product.product.material.join(", ") }}</p>
+                </div>
+                <div class="price">
+                  <p>${{ product.product.price }}</p>
+                  <p>x {{ product.count }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="order-controls">
+              <a href="">Delete order</a>
+              <h3>
+                Total: ${{ order.totalPrice | floorPrice }}
+                <span>{{ order.totalPrice | decimalSlice }}</span>
+              </h3>
             </div>
           </div>
         </ng-container>
       </div>
-
     </div>
   </div>
 </section>

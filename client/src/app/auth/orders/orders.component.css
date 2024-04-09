@@ -21,6 +21,17 @@
   position: relative;
 }
 
+.header::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: calc(5% / 2);
+  width: 95%;
+  height: 1px;
+  background: #d3d3d3;
+}
+
 .no-products {
   padding: 3em;
   background-color: #fff;
@@ -28,6 +39,12 @@
   flex-direction: column;
   gap: 1em;
   align-items: center;
+}
+
+.filler {
+  background-color: #fff;
+  height: 1em;
+  border-radius: 0 0 1em 1em;
 }
 
 .no-products a {
@@ -42,7 +59,46 @@
   background-color: #000;
 }
 
-.header::after {
+.orders-wrapper {
+  padding: 0 0 2.5em 0;
+}
+
+.order-card {
+  min-height: 200px;
+  background-color: #fff;
+  padding: 1.2em 1.5em;
+  display: flex;
+  flex-direction: column;
+  margin-top: 2em;
+  border-radius: 0.5em;
+}
+
+.order-heading {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding-bottom: 0.5em;
+}
+
+.order-heading::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #d3d3d3;
+}
+
+.product-card {
+  height: 180px;
+  display: flex;
+  padding: 1em 0;
+  position: relative;
+}
+
+.product-card::after {
   content: "";
   display: block;
   position: absolute;
@@ -53,20 +109,48 @@
   background: #d3d3d3;
 }
 
-.orders-wrapper {
-  background-color: #fff;
-  padding: 1em 1em 1em 2em;
+.product-card .media {
+  height: 95%;
+  width: auto;
+  aspect-ratio: 1/1;
+  flex: 0 0 20%;
+  overflow: hidden;
 }
 
-.order-card {
-  height: 220px;
-  background-color: #fff;
-  padding: 1.2em 1.5em;
+.media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.product-info {
+  flex: 0 0 80%;
   display: flex;
   flex-direction: column;
+justify-content: space-between;
 }
 
-.order-heading{
-    display: flex;
-    justify-content: space-between;
+.product-info h2 {
+  font-size: 1.3em;
+}
+
+.product-info .price {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 3em;
+}
+
+.order-controls {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.2em;
+}
+
+.order-controls h3 {
+  display: flex;
+  align-items: flex-start;
+}
+
+.order-controls h3 span {
+  font-size: 0.78em;
+  padding-top: 0.05em;
 }

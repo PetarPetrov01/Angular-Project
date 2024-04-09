@@ -15,5 +15,6 @@ export interface APIOrderProduct extends Omit<OrderProduct,'product'>{
 export interface APIOrder {
   _id: string;
   products: APIOrderProduct[];
+  totalPrice: number;
   createdAt: string;
 }
