@@ -11,7 +11,7 @@ import { User } from '../types/User';
 import { Store } from '@ngrx/store';
 
 import * as CartActions from '../auth/cart/cart.actions';
-import { Order } from '../types/Order';
+import { APIOrder, Order } from '../types/Order';
 
 @Injectable({
   providedIn: 'root',
@@ -88,6 +88,10 @@ export class AuthService implements OnDestroy {
 
   completeOrder(data: Order) {
     return this.http.post('/api/orders/create', { products: data });
+  }
+
+  getOrders(){
+    return this.http.get<APIOrder[]>('/api/orders');
   }
 
   setUserSubject(user: User) {

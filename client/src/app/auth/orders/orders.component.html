@@ -1,0 +1,11 @@
+<p>orders works!</p>
+<ng-container *ngIf="orders.length > 0">
+    <div *ngFor="let order of orders">
+        <p>{{order.createdAt}}</p>
+        <div *ngFor="let product of order.products">
+            <p>{{product.product.name}}</p>
+            <p>{{product.count}}</p>
+        </div>
+    </div>
+
+</ng-container>
