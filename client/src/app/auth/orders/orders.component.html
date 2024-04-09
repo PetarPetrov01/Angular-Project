@@ -1,11 +1,35 @@
-<p>orders works!</p>
-<ng-container *ngIf="orders.length > 0">
-    <div *ngFor="let order of orders">
-        <p>{{order.createdAt}}</p>
-        <div *ngFor="let product of order.products">
-            <p>{{product.product.name}}</p>
-            <p>{{product.count}}</p>
-        </div>
-    </div>
+<section class="orders">
+  <div class="container">
 
-</ng-container>
+    <div class="wrapper">
+      <div class="header">
+        <h2>Orders</h2>
+      </div>
+
+      <div class="orders-wrapper">
+
+        <div class="no-products" *ngIf="orders.length < 1">
+            <h2>
+                No orders yet
+            </h2>
+            <p>You don't have any pending orders. Browse our products to order</p>
+            <a routerLink="/products">Products</a>
+        </div>
+
+        <ng-container *ngIf="orders.length > 0">
+          <div class="order-card" *ngFor="let order of orders">
+            <div class="order-heading">
+                <h3>Processing</h3>
+                <p>{{ order.createdAt }}</p>
+            </div>
+            <div *ngFor="let product of order.products">
+              <p>{{ product.product.name }}</p>
+              <p>{{ product.count }}</p>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+    </div>
+  </div>
+</section>
