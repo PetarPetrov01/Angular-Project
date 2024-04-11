@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { CommonModule,  } from '@angular/common';
-import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Router, RouterLink } from '@angular/router';
 
 import { AuthService } from '../../shared/auth.service';
 
@@ -12,21 +12,27 @@ import { APIOrder } from '../../types/Order';
 @Component({
   selector: 'app-orders',
   standalone: true,
-  imports: [CommonModule, DateFormatterPipe, FloorPricePipe, DecimalSlicePipe],
+  imports: [
+    CommonModule,
+    DateFormatterPipe,
+    FloorPricePipe,
+    DecimalSlicePipe,
+    RouterLink,
+  ],
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.css',
 })
 export class OrdersComponent implements OnInit {
   orders: APIOrder[] | [] = [];
-  
+
   authService = inject(AuthService);
   router = inject(Router);
 
   ngOnInit(): void {
-    this.fetchOrders()
+    this.fetchOrders();
   }
 
-  fetchOrders(){
+  fetchOrders() {
     this.authService.getOrders().subscribe((orders) => {
       this.orders = orders;
     });
@@ -34,7 +40,7 @@ export class OrdersComponent implements OnInit {
 
   handleDelete(orderId: string) {
     this.authService.deleteOrder(orderId).subscribe((res) => {
-      this.fetchOrders()
+      this.fetchOrders();
     });
   }
 }

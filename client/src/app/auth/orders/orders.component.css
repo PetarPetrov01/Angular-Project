@@ -32,6 +32,12 @@
   background: #d3d3d3;
 }
 
+.header h2 span{
+  color: #666;
+  font-size: 0.6em;
+  padding-left: 1em;
+}
+
 .no-products {
   padding: 3em;
   background-color: #fff;
@@ -127,6 +133,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding-left: 1em;
 }
 
 .product-info h2 {
