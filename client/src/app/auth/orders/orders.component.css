@@ -97,6 +97,10 @@
   background: #d3d3d3;
 }
 
+.order-card .order-heading h3 span{
+  font-weight: bold;
+}
+
 .product-card {
   height: 180px;
   display: flex;
@@ -144,6 +148,11 @@
   display: flex;
   justify-content: space-between;
   padding-right: 2.5em;
+}
+
+.price p:last-child{
+  font-size: 1.2em;
+  font-family: 'PT Serif';
 }
 
 .order-controls {

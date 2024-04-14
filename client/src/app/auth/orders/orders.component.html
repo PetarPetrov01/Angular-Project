@@ -17,12 +17,14 @@
         <ng-container *ngIf="orders.length > 0">
           <div class="order-card" *ngFor="let order of orders">
             <div class="order-heading">
-              <h3>Processing</h3>
+              <h3><span>№ {{order._id.slice(-8)}}</span> - Processing</h3>
               <p>{{ order.createdAt | dateFormatter }}</p>
             </div>
             <div *ngFor="let product of order.products" class="product-card">
               <div class="media">
-                <img [src]="product.product.image" alt="" />
+                <a [routerLink]="'/products/' + product.product._id">
+                  <img [src]="product.product.image" alt="" />
+                </a>
               </div>
               <div class="product-info">
                 <div class="main-info">

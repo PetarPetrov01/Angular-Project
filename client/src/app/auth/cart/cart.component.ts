@@ -1,20 +1,22 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
 
 import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { MatDialog } from '@angular/material/dialog';
-
-import { CartState, StateProduct } from '../../types/State';
-import * as CartActions from '../cart/cart.actions';
-import { RemoveDialogComponent } from './remove-dialog/remove-dialog.component';
 
 import { AuthService } from '../../shared/auth.service';
 import { ApiService } from '../../shared/api.service';
+
 import { FloorPricePipe } from '../../shared/pipes/floor-price.pipe';
 import { DecimalSlicePipe } from '../../shared/pipes/decimal-slice.pipe';
-import { ClearDiaologComponent } from './clear-diaolog/clear-diaolog.component';
+
+import { RemoveDialogComponent } from './remove-dialog/remove-dialog.component';
+import { ClearDiaologComponent } from './clear-dialog/clear-dialog.component';
+
+import { CartState, StateProduct } from '../../types/State';
+import * as CartActions from '../cart/cart.actions';
 
 @Component({
   selector: 'app-cart',
