@@ -3,17 +3,18 @@ import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 import { ApiService } from '../../shared/api.service';
 import { AuthService } from '../../shared/auth.service';
 
-import { APIProduct, PopulatedProduct } from '../../types/Product';
-import { CartState } from '../../types/State';
-import { Store } from '@ngrx/store';
-
-import * as CartActions from '../cart/cart.actions';
 import { FloorPricePipe } from '../../shared/pipes/floor-price.pipe';
 import { DecimalSlicePipe } from '../../shared/pipes/decimal-slice.pipe';
+
+import { PopulatedProduct } from '../../types/Product';
+import { CartState } from '../../types/State';
+
+import * as CartActions from '../cart/cart.actions';
 
 @Component({
   selector: 'app-wishlist',

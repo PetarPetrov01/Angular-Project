@@ -7,6 +7,7 @@ import { AuthService } from '../../shared/auth.service';
 import { DateFormatterPipe } from '../../shared/pipes/date-formatter.pipe';
 import { DecimalSlicePipe } from '../../shared/pipes/decimal-slice.pipe';
 import { FloorPricePipe } from '../../shared/pipes/floor-price.pipe';
+
 import { APIOrder } from '../../types/Order';
 
 @Component({

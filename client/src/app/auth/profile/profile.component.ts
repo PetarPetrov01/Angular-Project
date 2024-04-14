@@ -9,7 +9,7 @@ import { User } from '../../types/User';
 import { Router, RouterLink } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
-import { DeleteDialogComponent } from '../../shared/delete-diaolog/delete-dialog.component';
+import { DeleteDialogComponent } from '../../shared/delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-profile',

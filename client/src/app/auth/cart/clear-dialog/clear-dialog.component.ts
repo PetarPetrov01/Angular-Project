@@ -14,8 +14,8 @@ import * as CartActions from '../cart.actions'
 
 @Component({
   selector: 'app-clear-dialog',
-  templateUrl: 'clear-diaolog.component.html',
-  styleUrl: 'clear-diaolog.component.css',
+  templateUrl: 'clear-dialog.component.html',
+  styleUrl: 'clear-dialog.component.css',
   standalone: true,
   imports: [
     MatButtonModule,
