@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 
 import { Subscription, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -10,14 +11,14 @@ import { ApiService } from '../../shared/api.service';
 import { AuthService } from '../../shared/auth.service';
 import { PopulatedProduct } from '../../types/Product';
 
-import { DeleteDialogComponent } from '../../shared/delete-dialog/delete-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
 import { CartComponent } from '../../auth/cart/cart.component';
+import { DeleteDialogComponent } from '../../shared/delete-dialog/delete-dialog.component';
 
-import * as CartActions from '../../auth/cart/cart.actions';
 import { DateFormatterPipe } from '../../shared/pipes/date-formatter.pipe';
 import { FloorPricePipe } from '../../shared/pipes/floor-price.pipe';
 import { DecimalSlicePipe } from '../../shared/pipes/decimal-slice.pipe';
+
+import * as CartActions from '../../auth/cart/cart.actions';
 
 @Component({
   selector: 'app-product-details',

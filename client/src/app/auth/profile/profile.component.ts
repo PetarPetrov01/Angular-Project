@@ -1,15 +1,16 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Subscription } from 'rxjs';
-
-import { AuthService } from '../../shared/auth.service';
-
-import { APIProduct, PopulatedProduct } from '../../types/Product';
-import { User } from '../../types/User';
 import { Router, RouterLink } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+
+import { Subscription } from 'rxjs';
+import { AuthService } from '../../shared/auth.service';
+
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { DeleteDialogComponent } from '../../shared/delete-dialog/delete-dialog.component';
+
+import { User } from '../../types/User';
+import { APIProduct } from '../../types/Product';
 
 @Component({
   selector: 'app-profile',
