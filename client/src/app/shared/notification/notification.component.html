@@ -1,10 +1,10 @@
-<div class="notification-container">
+<div class="notification-container" *ngIf="notification">
   <div class="notification">
     <i class="fa-solid fa-bell" id="bell-icon"></i>
     <div class="info">
-      <p>sdawdsa ds adw s the rs message goes here and is longer</p>
+      <p>{{notification}}</p>
     </div>
-    <div class="close">
+    <div class="close" (click)="clearNotification()">
         <i class="fa-solid fa-xmark"></i>
     </div>
   </div>

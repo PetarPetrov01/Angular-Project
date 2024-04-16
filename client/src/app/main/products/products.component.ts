@@ -12,6 +12,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { FormsModule } from '@angular/forms';
 import { FloorPricePipe } from '../../shared/pipes/floor-price.pipe';
 import { DecimalSlicePipe } from '../../shared/pipes/decimal-slice.pipe';
+import { NotificationService } from '../../shared/notification/notification.service';
 
 @Component({
   selector: 'app-products',
@@ -72,7 +73,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
   constructor(
     private apiService: ApiService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -92,7 +94,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
       }
     });
 
-    // this.categoryChange$.next('');
   }
 
   fetchProducts() {
@@ -102,6 +103,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       .subscribe((prods) => {
         this.isLoading = false;
         this.products = prods;
+        this.notificationService.setNotification('Products loaded successfully!')
       });
   }
 

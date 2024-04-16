@@ -9,7 +9,7 @@
   border-radius: 5px;
   border: 1px solid rgb(76, 178, 95);
   padding: 1em;
-  padding-right: 2.4em;
+  padding-right: 2.5em;
 }
 
 .notification {
@@ -17,6 +17,40 @@
   align-items: center;
   gap: 1em;
   position: relative;
+}
+
+#bell-icon {
+  color: rgb(37, 134, 43);
+  font-size: 1.5em;
+}
+
+.close {
+  position: absolute;
+  right: -1.9em;
+  width: 1.6em;
+  height: auto;
+  aspect-ratio: 1/1;
+  background-color: #acd8ac;
+  padding: 0.1em;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.close:hover{
+    background-color: #95dd95;
+
+}
+
+.close:hover i{
+    color: rgb(12, 78, 17);
+}
+
+.close i {
+  font-size: 1.2em;
+  color: rgb(33, 133, 40);
 }
 
 p {
