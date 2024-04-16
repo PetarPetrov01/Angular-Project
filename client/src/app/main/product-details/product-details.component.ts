@@ -19,6 +19,7 @@ import { FloorPricePipe } from '../../shared/pipes/floor-price.pipe';
 import { DecimalSlicePipe } from '../../shared/pipes/decimal-slice.pipe';
 
 import * as CartActions from '../../auth/cart/cart.actions';
+import { NotificationService } from '../../shared/notification/notification.service';
 
 @Component({
   selector: 'app-product-details',
@@ -46,6 +47,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     private activated: ActivatedRoute,
     private apiService: ApiService,
     private authService: AuthService,
+    private notificaionService: NotificationService,
     private matDialog: MatDialog,
     private router: Router,
     private store: Store<CartComponent>
@@ -113,6 +115,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
       this.store.dispatch(
         CartActions.addItem({ product: this.product, qty: this.buyQty })
       );
+      this.notificaionService.setNotification('Item added to cart successfully!')
     } else {
       return;
     }

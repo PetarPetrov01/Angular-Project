@@ -74,7 +74,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
     private apiService: ApiService,
     private router: Router,
     private route: ActivatedRoute,
-    private notificationService: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -103,7 +102,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
       .subscribe((prods) => {
         this.isLoading = false;
         this.products = prods;
-        this.notificationService.setNotification('Products loaded successfully!')
       });
   }
 

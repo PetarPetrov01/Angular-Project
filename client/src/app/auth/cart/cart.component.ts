@@ -17,6 +17,7 @@ import { ClearDiaologComponent } from './clear-dialog/clear-dialog.component';
 
 import { CartState, StateProduct } from '../../types/State';
 import * as CartActions from '../cart/cart.actions';
+import { NotificationService } from '../../shared/notification/notification.service';
 
 @Component({
   selector: 'app-cart',
@@ -36,6 +37,7 @@ export class CartComponent implements OnInit, OnDestroy {
     private matDialog: MatDialog,
     private authService: AuthService,
     private apiService: ApiService,
+    private notificationService: NotificationService,
     private router: Router
   ) {
     this.products$ = this.store.select('cart');
@@ -109,8 +111,9 @@ export class CartComponent implements OnInit, OnDestroy {
       }
     })
 
-    this.authService.completeOrder(order!).subscribe((message)=>{
+    this.authService.completeOrder(order!).subscribe((order)=>{
       this.store.dispatch(CartActions.resetState());
+      this.notificationService.setNotification(`Your order №${order._id.slice(-8)} has been approved.`)
     });
   }
 

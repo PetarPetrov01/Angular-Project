@@ -9,6 +9,7 @@ import { AuthService } from '../../shared/auth.service';
 import { EmailValidateDirective } from '../../shared/validators/email-validator.directive';
 import { LoaderComponent } from '../../shared/loader/loader.component';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { NotificationService } from '../../shared/notification/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     EmailValidateDirective,
     NgIf,
     LoaderComponent,
-    LazyLoadImageModule
+    LazyLoadImageModule,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
@@ -31,7 +32,8 @@ export class LoginComponent implements OnDestroy {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private notificationService: NotificationService
   ) {
     this.subscription = null;
   }
@@ -49,18 +51,21 @@ export class LoginComponent implements OnDestroy {
 
     const { email, password } = this.loginForm.value;
 
-    this.loginForm.reset()
+    this.loginForm.reset();
 
     this.authService.login(email!, password!).subscribe({
-      next: () => {
+      next: (user) => {
         this.router.navigate(['/']);
         this.isLoading = false;
+        this.notificationService.setNotification(
+          `Successfully logged in as ${user.username}`
+        );
       },
       error: () => {
         //mock delay to visualize loader
-        setTimeout(()=>{
+        setTimeout(() => {
           this.isLoading = false;
-        },2000)
+        }, 2000);
       },
     });
   }
