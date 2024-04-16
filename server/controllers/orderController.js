@@ -29,22 +29,23 @@ orderController.post("/create", isUser(), async (req, res) => {
     const data = req.body;
     data._ownerId = req.user._id;
 
-    await orderService.createOrder(data);
-    res.json({ message: "Successful order" });
+    const order = await orderService.createOrder(data);
+
+    res.json(order);
   } catch (error) {
     const errorMessage = errorParser(error);
     res.status(400).json({ message: errorMessage });
   }
 });
 
-orderController.delete("/:id", isUser(), async (req,res)=>{
+orderController.delete("/:id", isUser(), async (req, res) => {
   try {
     await orderService.deleteOrder(req.params.id);
-    res.json({message:'Successfully deleted'})
+    res.json({ message: "Successfully deleted" });
   } catch (error) {
     const errorMessage = errorParser(error);
     res.status(400).json({ message: errorMessage });
   }
-})
+});
 
 module.exports = orderController;
