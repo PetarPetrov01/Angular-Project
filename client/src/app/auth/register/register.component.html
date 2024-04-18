@@ -59,10 +59,10 @@
             #passwords="ngModelGroup"
             appMatchPasswords
           >
-            <div class="input-group">
+            <div class="input-group password">
               <label for="">Password</label>
               <input
-                type="password"
+                [type]="showPass ? 'text' : 'password'"
                 placeholder="Type your password"
                 name="password"
                 ngModel
@@ -82,10 +82,10 @@
               </div>
             </div>
 
-            <div class="input-group">
+            <div class="input-group password">
               <label for="">Repeat password</label>
               <input
-                type="password"
+                [type]="showPass ? 'text' : 'password'"
                 placeholder="Type your password again"
                 name="rePassword"
                 ngModel
@@ -93,6 +93,12 @@
                 required
                 [class]="passwords.getError('passwords') ? 'ng-invalid' : ''"
               />
+              <div class="show-pass" (click)="toggleShowPass()">
+                <i
+                  class="fa-solid"
+                  [ngClass]="showPass ? 'fa-eye' : 'fa-eye-slash'"
+                ></i>
+              </div>
               <div class="errors">
                 <ng-container *ngIf="password.touched && rePassword.touched">
                   <p class="error" *ngIf="passwords.getError('passwords')">
@@ -108,7 +114,12 @@
             [disabled]="registerForm.invalid ? true : false"
           >
             <p *ngIf="!isLoading">Register</p>
-            <app-loader *ngIf="isLoading" type="dots" diameter="14px" width="7px"></app-loader>
+            <app-loader
+              *ngIf="isLoading"
+              type="dots"
+              diameter="14px"
+              width="7px"
+            ></app-loader>
           </button>
         </form>
         <div class="login-redirect">

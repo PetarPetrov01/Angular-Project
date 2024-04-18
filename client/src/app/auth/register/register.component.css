@@ -56,6 +56,21 @@ form.register::after{
     gap: 0.2em;
 }
 
+.input-group.password{
+    position: relative;
+}
+
+.show-pass{
+    position: absolute;
+    top: 2.1em;
+    right: 0.5em;
+    cursor: pointer;
+}
+
+.show-pass i {
+    color: rgb(57, 106, 155);
+}
+
 h2{
     font-size: 2.5em;
     font-family: inherit;

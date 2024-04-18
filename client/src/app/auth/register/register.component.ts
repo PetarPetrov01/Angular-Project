@@ -30,6 +30,7 @@ export class RegisterComponent implements OnDestroy {
   subscription: Subscription | null;
 
   isLoading: boolean = false;
+  showPass: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) {
     this.subscription = null;
@@ -64,6 +65,10 @@ export class RegisterComponent implements OnDestroy {
           }, 2000);
         },
       });
+  }
+
+  toggleShowPass(){
+    this.showPass = !this.showPass;
   }
 
   ngOnDestroy(): void {
