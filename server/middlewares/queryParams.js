@@ -7,6 +7,14 @@ module.exports = () => (req, res, next) => {
                 [sortKey]: order == 'asc' ? 1 : -1
             };
         };
+        
+        if(req.query.priceRange) {
+            const [lower, upper] = req.query.priceRange.split(':');
+            req.query.priceRange = {
+                lower,
+                upper
+            }
+        }
     }
 
     next();

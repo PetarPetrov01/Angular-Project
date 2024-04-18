@@ -12,6 +12,12 @@ async function getProducts(query) {
     optionsArr.push({ name: { $regex: new RegExp(query.search, "i") } });
   }
 
+  if (query.priceRange) {
+    optionsArr.push({
+      price: { $gte: query.priceRange.lower || 0, $lte: query.priceRange.upper },
+    });
+  }
+
   const queryObj = optionsArr.length > 0 ? { $and: optionsArr } : {};
   products = await Product.find(queryObj)
     .sort(query.sort || null)
