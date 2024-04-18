@@ -2,17 +2,18 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 
-import { Subject, Subscription, debounceTime, fromEvent } from 'rxjs';
+import { Subject, Subscription, debounceTime } from 'rxjs';
 
 import { ApiService } from '../../shared/api.service';
 import { APIProduct } from '../../types/Product';
 import { LoaderCardComponent } from '../../shared/loader-card/loader-card.component';
 
 import { MatChipsModule } from '@angular/material/chips';
+import { MatSliderModule } from '@angular/material/slider';
+
 import { FormsModule } from '@angular/forms';
 import { FloorPricePipe } from '../../shared/pipes/floor-price.pipe';
 import { DecimalSlicePipe } from '../../shared/pipes/decimal-slice.pipe';
-import { NotificationService } from '../../shared/notification/notification.service';
 
 interface PriceRange {
   lower: number;
@@ -169,7 +170,31 @@ export class ProductsComponent implements OnInit, OnDestroy {
     }
 
     this.hasDebounced = false;
+    this.priceRange = {
+      lower: 50,
+      upper: 300,
+    };
     this.router.navigate(['/products']);
+  }
+
+  onPriceChange(caller?: string | null) {
+    if (this.priceRange.lower > this.priceRange.upper) {
+      console.log(caller);
+      if (caller == 'lower') {
+        this.priceRange.lower = this.priceRange.upper;
+      }
+      if (caller == 'upper') {
+        this.priceRange.upper = this.priceRange.lower;
+      }
+      return;
+    }
+
+    this.router.navigate(['/products'], {
+      queryParams: {
+        priceRange: `${this.priceRange.lower}:${this.priceRange.upper}`,
+      },
+      queryParamsHandling: 'merge',
+    });
   }
 
   get hasQueryParams() {

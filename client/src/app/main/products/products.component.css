@@ -58,6 +58,41 @@
   cursor: pointer;
 }
 
+.priceRange{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 0 0 30%;
+}
+
+mat-slider{
+  width: 80%;
+}
+
+.inputs{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  width: 100%;
+}
+
+.input-group{
+  width: 8ch;
+  display: flex;
+  align-items: center;
+}
+
+.inputs input{
+  width: 100%;
+  /* height: 1.4em; */
+  font-size: 1em;
+  border-radius: 0.2em;
+  padding: 0.3em;
+  outline: none;
+  border: 1px solid #ddd;
+}
+
 form.search{
   display: flex;
 }
