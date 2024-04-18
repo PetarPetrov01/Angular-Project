@@ -66,6 +66,42 @@
         </button>
       </ul>
       <div class="query-controls">
+        <div class="priceRange">
+          <mat-slider min="0" max="400" discrete="true">
+            <input
+              [(ngModel)]="priceRange.lower"
+              matSliderStartThumb
+              (change)="onPriceChange()"
+            />
+            <input
+              [(ngModel)]="priceRange.upper"
+              matSliderEndThumb
+              (change)="onPriceChange()"
+            />
+          </mat-slider>
+          <div class="inputs">
+            <div class="input-group">
+              <label for="">$</label
+              ><input
+                type="text"
+                [(ngModel)]="priceRange.lower"
+                (change)="onPriceChange('lower')"
+                min="0"
+                [max]="priceRange.upper"
+              />
+            </div>
+            <p>-</p>
+            <div class="input-group">
+              <label for="">$</label
+              ><input
+                type="text"
+                [(ngModel)]="priceRange.upper"
+                (change)="onPriceChange('upper')"
+                max="500"
+              />
+            </div>
+          </div>
+        </div>
         <form class="search" (ngSubmit)="onSearch()">
           <input
             id="search"

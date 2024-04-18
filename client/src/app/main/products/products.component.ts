@@ -14,6 +14,11 @@ import { FloorPricePipe } from '../../shared/pipes/floor-price.pipe';
 import { DecimalSlicePipe } from '../../shared/pipes/decimal-slice.pipe';
 import { NotificationService } from '../../shared/notification/notification.service';
 
+interface PriceRange {
+  lower: number;
+  upper: number;
+}
+
 @Component({
   selector: 'app-products',
   standalone: true,
@@ -22,6 +27,7 @@ import { NotificationService } from '../../shared/notification/notification.serv
     RouterLink,
     LoaderCardComponent,
     MatChipsModule,
+    MatSliderModule,
     FormsModule,
     FloorPricePipe,
     DecimalSlicePipe,
@@ -42,6 +48,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
   isLoading: boolean = false;
   search: string = '';
   sort: string = '';
+  priceRange: PriceRange = {
+    lower: 30,
+    upper: 350,
+  };
 
   sortOptions = [
     {
@@ -73,7 +83,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   constructor(
     private apiService: ApiService,
     private router: Router,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -92,7 +102,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
         this.fetchProducts();
       }
     });
-
   }
 
   fetchProducts() {
@@ -113,7 +122,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     const newCategory = category ? category : null;
     //If empty string is passed to the params, it still remains in the query, while passing null, complete removes it:
     //Passing '' => /products?category=
-    //Passing null => /products 
+    //Passing null => /products
 
     this.hasDebounced = true;
     //For the initial click (while its still false)
