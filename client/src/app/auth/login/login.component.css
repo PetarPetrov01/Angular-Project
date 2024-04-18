@@ -56,6 +56,21 @@ form.login::after {
   gap: 0.4em;
 }
 
+.input-group.password{
+  position: relative;
+}
+
+.input-group .show-pass{
+  position: absolute;
+  right: 0.5em;
+  top: 2.2em;
+  cursor: pointer;
+}
+
+.show-pass i{
+  color: #e8b677;
+}
+
 h2 {
   font-size: 2.5em;
   font-family: inherit;

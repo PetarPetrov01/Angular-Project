@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -18,7 +18,7 @@ import { NotificationService } from '../../shared/notification/notification.serv
     RouterLink,
     ReactiveFormsModule,
     EmailValidateDirective,
-    NgIf,
+    CommonModule,
     LoaderComponent,
     LazyLoadImageModule,
   ],
@@ -28,6 +28,7 @@ import { NotificationService } from '../../shared/notification/notification.serv
 export class LoginComponent implements OnDestroy {
   subscription: Subscription | null;
   isLoading: boolean = false;
+  showPass: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -68,6 +69,10 @@ export class LoginComponent implements OnDestroy {
         }, 2000);
       },
     });
+  }
+
+  toggleShowPass(){
+    this.showPass = !this.showPass;
   }
 
   ngOnDestroy(): void {

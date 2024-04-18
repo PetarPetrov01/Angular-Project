@@ -95,7 +95,6 @@ export class AuthService implements OnDestroy {
   }
 
   deleteOrder(orderId: string) {
-    console.log('trying delete')
     return this.http.delete(`/api/orders/${orderId}`);
   }
 

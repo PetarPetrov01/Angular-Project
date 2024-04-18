@@ -30,13 +30,19 @@
           </div>
         </div>
 
-        <div class="input-group">
+        <div class="input-group password">
           <label for="">Password</label>
           <input
-            type="password"
+            [type]="showPass ? 'text' : 'password'"
             placeholder="Type your password"
             formControlName="password"
           />
+          <div class="show-pass" (click)="toggleShowPass()">
+            <i
+              class="fa-solid"
+              [ngClass]="showPass ? 'fa-eye' : 'fa-eye-slash'"
+            ></i>
+          </div>
           <div class="errors">
             <ng-container *ngIf="loginForm.get('password')?.touched">
               <p
@@ -69,7 +75,11 @@
       </div>
     </article>
     <article class="media">
-      <img src="assets/images/login-side2-small.jpg" lazyLoad="assets/images/login-side2.jpg" alt="" />
+      <img
+        src="assets/images/login-side2-small.jpg"
+        lazyLoad="assets/images/login-side2.jpg"
+        alt=""
+      />
     </article>
   </section>
 </div>
