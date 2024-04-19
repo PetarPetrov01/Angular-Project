@@ -51,7 +51,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   sort: string = '';
   priceRange: PriceRange = {
     lower: 30,
-    upper: 350,
+    upper: 380,
   };
 
   sortOptions = [
@@ -171,8 +171,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
     this.hasDebounced = false;
     this.priceRange = {
-      lower: 50,
-      upper: 300,
+      lower: 30,
+      upper: 380,
     };
     this.router.navigate(['/products']);
   }

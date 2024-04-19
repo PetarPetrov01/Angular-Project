@@ -265,18 +265,22 @@ a:hover img {
   .products-wrapper{
     gap: 4%;
   }
-
+  
   .card
   {
     flex-basis: 48%;
   }
-}
 
-@media (max-width: 450px) {
   .query-controls{
     flex-wrap: wrap;
     align-items: center;
     gap: 0.5em;
+  }
+}
+
+@media (max-width: 450px) {
+  .priceRange{
+    flex: 0 0 70%;
   }
 
   .filler{
