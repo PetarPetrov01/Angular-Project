@@ -4,6 +4,25 @@ This document serves as the API reference guide for the REST API. This API provi
 
 For the purpose of SoftUni's Angular course, this REST API is currently deployed on render - cloud application hosting. For the managment of the data, MongoDB Atlas is utilized as the database solution.
 
+## Content table
+
+| Content table                                                   |
+| --------------------------------------------------------------- |
+| [Starting the server](#running-the-server-locally)              |
+| [Authentication](#authentication)                               |
+| [Authentication endpoints](#authentication-endpoints)           |
+| <ul><li>[Register](#register)</li><li>[Login](#login)</li></ul> |
+| [Session](#session)                                             |
+| [Route guards](#route-guards)                                   |
+| [Error response](#error-responses)                              |
+| [Products endpoints](#products-service-endpoints)               |
+| <ul><li>[Get all](#get-all-products)</li><li>[Get a product](#get-a-single-product)</li><li>[Create a product](#create-a-new-product)</li><li>[Edit a product](#edit-a-product)</li><li>[Delete a product](#delete-a-product)</li></ul> |
+|Profile|
+|<ul><li>[Get profile](#get-profile)</li><li>[Edit profile](#edit-profile)</li></ul>|
+|Wishlist|
+|<ul><li>[Get wishlist](#get-wishlist)</li><li>[Add to wishlist](#add-item-to-wishlist)</li></ul>|
+
+
 ## Running the server locally
 
 To run the server successfully, MongoDB must be installed on your machine. Once it's installed, follow these steps to start the server:
@@ -114,18 +133,21 @@ To keep the session of the user the server uses a middleware function which look
 To control the access to certain routes, some middlewares that serve as guards are implemented. These route guards serve to enforce specific access permissions based on the user's authentication status and ownership.
 
 **isUser** - Allows access only to authenticated users. The following routes utilize this guard:
-- [Get profile](#get-profile) - `GET /auth/profile` 
+
+- [Get profile](#get-profile) - `GET /auth/profile`
 - [Edit profile](#edit-profile) - `PATCH /auth/profile`
 - [Create a product](#create-a-new-product) - `POST /products`
 - [Get posted products](#get-posted-products) - `GET /auth/posts`
 - [Get wishlist](#get-wishlist) - `GET /auth/wishlist`
 - [Add to wishlist](#add-item-to-wishlist) - `POST /products/{productId}/wishlist`
-  
+
 **isGuest** - Allows access only to unauthenticated (guest) users. Routes utulizing the guard:
+
 - [Register](#register) - `POST /auth/register`
 - [Login](#login) - `POST /auth/login`
 
 **isOwner** - Allows access to routes based on ownership criteria. In order for this guard to effectively determine ownership of a resource, additional middleware named 'preload' is used. This middleware is responsible for fetching relevant data from the database and setting it in the `res.locals` object. By doing so, the data is accessible in the guard itself. The following routes utilize the guard:
+
 - [Edit product](#edit-a-product) - `PUT /products/{productId}`
 - [Delete product](#delete-a-product) - `DELETE /products/{productId}`
 
@@ -243,6 +265,7 @@ The owner of the product can delete it by sending an autorized `DELETE` request 
 ## Get profile
 
 To get information for the user's profile send a `GET` request to `/auth/profile`. The server responds with an object that has the following data types:
+
 ```ts
 {
     email: string,
@@ -262,11 +285,8 @@ To get all products the current user has created, sent a `GET` request to `/auth
 
 ## Get wishlist
 
-To get the user's current wishlist, send a `GET` request to `/auth/wishlist`. The server responds with an array that holds populated products, where the _ownerId is also populated (The same as getting a [single product](#get-a-single-product))
+To get the user's current wishlist, send a `GET` request to `/auth/wishlist`. The server responds with an array that holds populated products, where the \_ownerId is also populated (The same as getting a [single product](#get-a-single-product))
 
 ## Add item to wishlist
 
 To add an item to the current user's wishlist send a `POST` request to `/products/{productId}/wishlist`, where `productId` is the product you want to add to the current user's wishlist.
-
-
-
