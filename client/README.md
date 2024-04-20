@@ -225,6 +225,18 @@ The cart utilizes the ngrx store to keep the state of the user's cart. Additiona
 
 ![cart empty](./screenshots/cart-empty.PNG)
 
+### Orders page
+
+On this page, authenticated users gain access to a comprehensive overview of their order history, enabling them to conveniently view, track, and manage each order they have completed.
+
+#### Orders view
+
+---
+
+#### Orders - empty view
+
+---
+
 ## Protected routes
 
 Within the application, protected routes are established utilizing route guards, ensuring the secure accessibility of sensitive content and features. These routes require authentication or authorization before granting user access.
