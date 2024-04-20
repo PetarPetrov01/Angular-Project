@@ -67,7 +67,7 @@ The header component servers as the main navigation of the application, providin
 - Users (logged in)
   - Home
   - Products
-  - Profile (icon) - Clicking the button reveals a dropdown menu with profile page and wishlist links and an option to logout.
+  - Profile (icon) - Clicking the button reveals a dropdown menu with profile page, orders page and wishlist links and an option to logout.
   - Cart (icon) - Directs to the user's cart. If the user has items in the cart, their total count is showed in the upper right corner
 
 ![Header user](./screenshots/header-user.PNG)
