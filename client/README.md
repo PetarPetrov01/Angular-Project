@@ -233,9 +233,13 @@ On this page, authenticated users gain access to a comprehensive overview of the
 
 ---
 
+![orders](./screenshots/orders.PNG)
+
 #### Orders - empty view
 
 ---
+
+![orders empty](./screenshots/orders-empty.PNG)
 
 ## Protected routes
 
