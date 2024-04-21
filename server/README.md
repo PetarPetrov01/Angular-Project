@@ -6,22 +6,21 @@ For the purpose of SoftUni's Angular course, this REST API is currently deployed
 
 ## Content table
 
-| Content table                                                   |
-| --------------------------------------------------------------- |
-| [Starting the server](#running-the-server-locally)              |
-| [Authentication](#authentication)                               |
-| [Authentication endpoints](#authentication-endpoints)           |
-| <ul><li>[Register](#register)</li><li>[Login](#login)</li></ul> |
-| [Session](#session)                                             |
-| [Route guards](#route-guards)                                   |
-| [Error response](#error-responses)                              |
-| [Products endpoints](#products-service-endpoints)               |
+| Content table                                                                                                                                                                                                                           |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Starting the server](#running-the-server-locally)                                                                                                                                                                                      |
+| [Authentication](#authentication)                                                                                                                                                                                                       |
+| [Authentication endpoints](#authentication-endpoints)                                                                                                                                                                                   |
+| <ul><li>[Register](#register)</li><li>[Login](#login)</li></ul>                                                                                                                                                                         |
+| [Session](#session)                                                                                                                                                                                                                     |
+| [Route guards](#route-guards)                                                                                                                                                                                                           |
+| [Error response](#error-responses)                                                                                                                                                                                                      |
+| [Products endpoints](#products-service-endpoints)                                                                                                                                                                                       |
 | <ul><li>[Get all](#get-all-products)</li><li>[Get a product](#get-a-single-product)</li><li>[Create a product](#create-a-new-product)</li><li>[Edit a product](#edit-a-product)</li><li>[Delete a product](#delete-a-product)</li></ul> |
-|Profile|
-|<ul><li>[Get profile](#get-profile)</li><li>[Edit profile](#edit-profile)</li></ul>|
-|Wishlist|
-|<ul><li>[Get wishlist](#get-wishlist)</li><li>[Add to wishlist](#add-item-to-wishlist)</li></ul>|
-
+| Profile                                                                                                                                                                                                                                 |
+| <ul><li>[Get profile](#get-profile)</li><li>[Edit profile](#edit-profile)</li></ul>                                                                                                                                                     |
+| Wishlist                                                                                                                                                                                                                                |
+| <ul><li>[Get wishlist](#get-wishlist)</li><li>[Add to wishlist](#add-item-to-wishlist)</li></ul>                                                                                                                                        |
 
 ## Running the server locally
 
@@ -296,14 +295,35 @@ To add an item to the current user's wishlist send a `POST` request to `/product
 To create an order send a `POST` request to `/orders/create`, providing an array of objects where each object represents a product (with its id) and its quantity (count). As seen below:
 
 ```ts
-    products: [
-        {
-            product: string,
-            count: number
-        },
-        {
-            product: string,
-            count: number
-        }
-    ]
+products: [
+  {
+    product: string,
+    count: number,
+  },
+  {
+    product: string,
+    count: number,
+  },
+];
 ```
+
+Information about the order is stored in the database and can be later fetched.
+
+## Get all orders
+
+To get all orders for the current user send a `GET` request to `/orders`. The server responds with an array containing all orders which are populated with the corresponding objects:
+
+```ts
+{
+  _id: string,
+  products: [
+      {
+          product: Product
+      }
+  ],
+  totalPrice: number,
+  createdAt: string
+}
+```
+
+Where `Product` corresponds to the object in [Get all products](#get-all-products)
