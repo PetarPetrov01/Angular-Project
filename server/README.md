@@ -311,19 +311,29 @@ Information about the order is stored in the database and can be later fetched.
 
 ## Get all orders
 
-To get all orders for the current user send a `GET` request to `/orders`. The server responds with an array containing all orders which are populated with the corresponding objects:
+To get all orders for the current user send `GET` request to `/orders`. The server responds with an array containing all orders which are populated with the corresponding objects:
 
 ```ts
-{
-  _id: string,
-  products: [
+[
+  {
+    _id: string,
+    products: [
       {
-          product: Product
-      }
-  ],
-  totalPrice: number,
-  createdAt: string
-}
+        product: Product,
+      },
+    ],
+    totalPrice: number,
+    createdAt: string,
+  },
+];
 ```
 
 Where `Product` corresponds to the object in [Get all products](#get-all-products)
+
+## Get a single order
+
+To get detailed information about an order send `GET` request to `/orders/{id}`, where `id` corresponds to the order Id. The server returns and object similar to the objects in the array of [getting all orders](#get-all-orders).
+
+## Delete an order
+
+To delete an order send a `DELETE` request to `/orders/{id}`, where `id` corresponds to the order Id. The server reponds with a message for a successful deletion. 
