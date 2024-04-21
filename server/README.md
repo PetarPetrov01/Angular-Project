@@ -281,7 +281,7 @@ To edit the profile information (email and username), send a `PATCH` request to 
 
 ## Get posted products
 
-To get all products the current user has created, sent a `GET` request to `/auth/posts`. The server returns an array containing all products in objects similar to [getting all products](#get-all-products).
+To get all products the current user has created, send a `GET` request to `/auth/posts`. The server returns an array containing all products in objects similar to [getting all products](#get-all-products).
 
 ## Get wishlist
 
@@ -290,3 +290,20 @@ To get the user's current wishlist, send a `GET` request to `/auth/wishlist`. Th
 ## Add item to wishlist
 
 To add an item to the current user's wishlist send a `POST` request to `/products/{productId}/wishlist`, where `productId` is the product you want to add to the current user's wishlist.
+
+## Create an order
+
+To create an order send a `POST` request to `/orders/create`, providing an array of objects where each object represents a product (with its id) and its quantity (count). As seen below:
+
+```ts
+    products: [
+        {
+            product: string,
+            count: number
+        },
+        {
+            product: string,
+            count: number
+        }
+    ]
+```
