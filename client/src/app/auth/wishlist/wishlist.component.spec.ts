@@ -12,11 +12,12 @@ import { ApiService } from '../../shared/api.service';
 import { FloorPricePipe } from '../../shared/pipes/floor-price.pipe';
 import { DecimalSlicePipe } from '../../shared/pipes/decimal-slice.pipe';
 import { AuthService } from '../../shared/auth.service';
-import { EMPTY, of } from 'rxjs';
+import { EMPTY } from 'rxjs';
 
 describe('WishlistComponent', () => {
   let component: WishlistComponent;
   let fixture: ComponentFixture<WishlistComponent>;
+  
   let authServiceMock: jasmine.SpyObj<AuthService>;
   let apiServiceMock: jasmine.SpyObj<ApiService>;
   let storeMock: jasmine.SpyObj<Store>;
