@@ -4,7 +4,6 @@ import {
   Router,
   RouterLink,
   RouterLinkActive,
-  UrlSegment,
 } from '@angular/router';
 
 import { Store } from '@ngrx/store';
