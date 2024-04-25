@@ -1,12 +1,11 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClient } from '@angular/common/http';
+
+import { EMPTY, of } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 import { AuthService } from './auth.service';
-// import { User } from '../types/User';
-import { Store } from '@ngrx/store';
-import { HttpClient } from '@angular/common/http';
 import { User } from '../types/User';
-import { EMPTY, of } from 'rxjs';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -14,11 +13,11 @@ describe('AuthService', () => {
   let storeMock: jasmine.SpyObj<Store>;
 
   beforeEach(() => {
-    httpMock = jasmine.createSpyObj('HttpClient', ['post','get']);
+    httpMock = jasmine.createSpyObj('HttpClient', ['post', 'get']);
     storeMock = jasmine.createSpyObj('Store', ['dispatch']);
 
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [],
       providers: [
         AuthService,
         { provide: Store, useValue: storeMock },
@@ -103,7 +102,7 @@ describe('AuthService', () => {
     //Set a mock user
     service.setUserStorage(mockUser);
     service.setUserSubject(mockUser);
-    
+
     httpMock.get.and.returnValue(EMPTY);
     service.clearUserSession();
     expect(service.isLogged).toBeFalsy();
