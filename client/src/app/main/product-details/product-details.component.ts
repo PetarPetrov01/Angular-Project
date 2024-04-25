@@ -115,7 +115,9 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
       this.store.dispatch(
         CartActions.addItem({ product: this.product, qty: this.buyQty })
       );
-      this.notificaionService.setNotification('Item added to cart successfully!')
+      this.notificaionService.setNotification(
+        'Item added to cart successfully!'
+      );
     } else {
       return;
     }

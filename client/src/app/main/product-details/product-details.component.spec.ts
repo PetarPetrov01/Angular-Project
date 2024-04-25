@@ -6,6 +6,9 @@ import { ApiService } from '../../shared/api.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AuthService } from '../../shared/auth.service';
 import { Store } from '@ngrx/store';
+import { APIProduct, PopulatedProduct } from '../../types/Product';
+import { of } from 'rxjs';
+import { User } from '../../types/User';
 
 describe('ProductDetailsComponent', () => {
   let component: ProductDetailsComponent;
@@ -14,9 +17,45 @@ describe('ProductDetailsComponent', () => {
   let authServiceMock: jasmine.SpyObj<AuthService>;
   let storeMock: jasmine.SpyObj<Store>;
 
+  const mockPopulatedProduct: PopulatedProduct = {
+    _id: '123',
+    name: '',
+    description: '',
+    image: '',
+    category: [''],
+    style: '',
+    dimensions: {
+      height: 1,
+      width: 1,
+      depth: 1,
+    },
+    material: [''],
+    color: '',
+    price: 1,
+    __v: '1',
+    _ownerId: {
+      _id: '123',
+      email: 'test@mail.com',
+      username: 'Test1',
+      wishlist: [],
+    },
+    createdAt: '2024-03-10T11:27:12.452+00:00',
+  };
+
+  const mockUser: User = {
+    _id: '123',
+    email: 'test@mail.com',
+    username: 'Test1',
+    wishlist: [],
+  };
+
   beforeEach(async () => {
     apiServiceMock = jasmine.createSpyObj('ApiService', ['getProduct']);
-    authServiceMock = jasmine.createSpyObj('AuthService', ['']);
+    authServiceMock = jasmine.createSpyObj('AuthService', [
+      'isLogged',
+      'setUserStorage',
+      'setUserSubject'
+    ]);
     storeMock = jasmine.createSpyObj('Store', ['']);
 
     await TestBed.configureTestingModule({
@@ -28,6 +67,8 @@ describe('ProductDetailsComponent', () => {
       ],
     }).compileComponents();
 
+    apiServiceMock.getProduct.and.returnValue(of(mockPopulatedProduct));
+
     fixture = TestBed.createComponent(ProductDetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -36,4 +77,22 @@ describe('ProductDetailsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should set the product', () => {
+    expect(component.product).toEqual(mockPopulatedProduct);
+  });
+
+  it('should return true if the user is authorized', (done) => {
+    authServiceMock.setUserStorage(mockUser);
+    authServiceMock.setUserSubject(mockUser);
+    expect(component.isUser).toBeTruthy();
+    done();
+  });
+
+  // it('should return true for the owner', (done) => {
+  //   authServiceMock.setUserStorage({ ...mockUser, _id: '123' });
+  //   authServiceMock.setUserSubject({ ...mockUser, _id: '123' });
+    
+  //   expect(component.isOwner).toBeTruthy();
+  // });
 });
