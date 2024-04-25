@@ -8,7 +8,7 @@ import { of } from 'rxjs';
 describe('ApiService', () => {
   let service: ApiService;
   let httpMock: jasmine.SpyObj<HttpClient>;
-  const mockProduct = {
+  const mockProduct: APIProduct = {
     _id: '123',
     name: '',
     description: '',
@@ -71,7 +71,18 @@ describe('ApiService', () => {
 
     service.getProduct('123').subscribe((prod) => {
       expect(prod).toEqual(populatedMockProduct);
-      done()
+      done();
+    });
+  });
+
+  it('addProduct should return the right product', (done) => {
+    httpMock.post
+      .withArgs('/api/products', mockProduct)
+      .and.returnValue(of(mockProduct));
+
+    service.addProduct(mockProduct).subscribe((prod) => {
+      expect(prod).toEqual(mockProduct);
+      done();
     });
   });
 });

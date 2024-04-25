@@ -108,8 +108,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
   fetchProducts() {
     this.isLoading = true;
     this.apiSubscription = this.apiService
-      .getProducts(this.queryParams)
-      .subscribe((prods) => {
+    .getProducts(this.queryParams)
+    .subscribe((prods) => {
         this.isLoading = false;
         this.products = prods;
       });
