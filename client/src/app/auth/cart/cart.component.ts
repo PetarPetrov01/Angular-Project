@@ -90,30 +90,32 @@ export class CartComponent implements OnInit, OnDestroy {
     });
   }
 
-  handleClearCart(){
-    this.matDialog.open(ClearDiaologComponent), {
-      width: '300px',
-      enterAnimationDuration: '300ms',
-      exitAnimationDuration: '200ms',
-    }
+  handleClearCart() {
+    this.matDialog.open(ClearDiaologComponent),
+      {
+        width: '300px',
+        enterAnimationDuration: '300ms',
+        exitAnimationDuration: '200ms',
+      };
   }
 
-  handleCompleteOrder(){
-    
-    if(!this.products || this.products?.length == 0){
+  handleCompleteOrder() {
+    if (!this.products || this.products?.length == 0) {
       return;
     }
 
-    const order = this.products?.map((prod)=>{
+    const order = this.products?.map((prod) => {
       return {
         product: prod._id,
-        count: prod.quantity
-      }
-    })
+        count: prod.quantity,
+      };
+    });
 
-    this.authService.completeOrder(order!).subscribe((order)=>{
+    this.authService.completeOrder(order!).subscribe((order) => {
       this.store.dispatch(CartActions.resetState());
-      this.notificationService.setNotification(`Your order №${order._id.slice(-8)} has been approved.`)
+      this.notificationService.setNotification(
+        `Your order №${order._id.slice(-8)} has been approved.`
+      );
     });
   }
 
@@ -125,7 +127,7 @@ export class CartComponent implements OnInit, OnDestroy {
     return this.products?.reduce(
       (acc, prod) => acc + prod.quantity * prod.price,
       0
-    )
+    );
   }
 
   isInWishList(product: StateProduct) {
