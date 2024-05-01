@@ -28,7 +28,6 @@ constructor (private apiService: ApiService){
     this.isLoading = true;
     
     this.subscription = this.apiService.getProducts({limit: 3, sort: 'createdAt:asc'}).subscribe(products=>{
-      
       setTimeout(()=>{
         this.products = products;
         this.isLoading = false;
