@@ -65,16 +65,24 @@ describe('ProductsComponent', () => {
   });
 
   it('should create', () => {
-    queryParamsSubject.next({})
+    queryParamsSubject.next({});
     expect(component).toBeTruthy();
 
     expect(apiServiceMock.getProducts).toHaveBeenCalledWith({});
   });
 
   it('should call getProducts with queryParams on fetchProducts', () => {
-    queryParamsSubject.next(mockQueryParams)
+    queryParamsSubject.next(mockQueryParams);
 
     component.fetchProducts();
     expect(apiServiceMock.getProducts).toHaveBeenCalledWith(mockQueryParams);
+  });
+
+  it('Should load the products',()=>{
+    apiServiceMock.getProducts.and.returnValue(of(mockProducts));
+
+    component.fetchProducts()
+
+    expect(component.products).toEqual(mockProducts);
   });
 });

@@ -59,7 +59,6 @@ describe('HomeComponent', () => {
   });
 
   it('Should load the products', fakeAsync(async () => {
-    tick(2000);
     await fixture.whenStable();
 
     expect(apiServiceMock.getProducts).toHaveBeenCalledWith({
@@ -67,5 +66,11 @@ describe('HomeComponent', () => {
       sort: 'createdAt:asc',
     });
     expect(component.products.length).toBeGreaterThan(0);
+  }));
+
+  it('Should stop loading', fakeAsync(async () => {
+    await fixture.whenStable();
+
+    expect(component.isLoading).toBeFalse();
   }));
 });
