@@ -7,7 +7,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AuthService } from '../../shared/auth.service';
 import { Store } from '@ngrx/store';
 import { APIProduct, PopulatedProduct } from '../../types/Product';
-import { of } from 'rxjs';
+import { EMPTY, of } from 'rxjs';
 import { User } from '../../types/User';
 
 describe('ProductDetailsComponent', () => {
@@ -54,7 +54,7 @@ describe('ProductDetailsComponent', () => {
     authServiceMock = jasmine.createSpyObj('AuthService', [
       'isLogged',
       'setUserStorage',
-      'setUserSubject'
+      'setUserSubject',
     ]);
     storeMock = jasmine.createSpyObj('Store', ['']);
 
@@ -67,7 +67,7 @@ describe('ProductDetailsComponent', () => {
       ],
     }).compileComponents();
 
-    apiServiceMock.getProduct.and.returnValue(of(mockPopulatedProduct));
+    apiServiceMock.getProduct.and.returnValue(EMPTY);
 
     fixture = TestBed.createComponent(ProductDetailsComponent);
     component = fixture.componentInstance;
@@ -78,21 +78,35 @@ describe('ProductDetailsComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('product should be null', () => {
+    expect(component.product).toBeFalsy();
+  });
+
   it('should set the product', () => {
+    apiServiceMock.getProduct.and.returnValue(of(mockPopulatedProduct));
+    component.ngOnInit();
     expect(component.product).toEqual(mockPopulatedProduct);
   });
 
-  it('should return true if the user is authorized', (done) => {
+  it('should return false if the user is not logged in', () => {
+    expect(component.isUser).toBeTruthy();
+  });
+  
+  it('should return true if the user is authorized', () => {
+    apiServiceMock.getProduct.and.returnValue(of(mockPopulatedProduct));
+    
     authServiceMock.setUserStorage(mockUser);
     authServiceMock.setUserSubject(mockUser);
     expect(component.isUser).toBeTruthy();
-    done();
   });
 
-  // it('should return true for the owner', (done) => {
-  //   authServiceMock.setUserStorage({ ...mockUser, _id: '123' });
-  //   authServiceMock.setUserSubject({ ...mockUser, _id: '123' });
-    
-  //   expect(component.isOwner).toBeTruthy();
-  // });
+  it('should return true for the owner of the product', (done) => {
+    apiServiceMock.getProduct.and.returnValue(of(mockPopulatedProduct));
+
+    authServiceMock.setUserStorage({ ...mockUser, _id: '123' });
+    authServiceMock.setUserSubject({ ...mockUser, _id: '123' });
+
+    expect(component.isOwner).toBeTruthy();
+    done();
+  });
 });
