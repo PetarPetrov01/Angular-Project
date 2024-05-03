@@ -23,33 +23,33 @@ describe('CartComponent', () => {
 
   const productsSubjectMock = new BehaviorSubject<StateProduct[]>([]);
 
-  const mockCartState: StateProduct[] = [
-    {
-      _id: '123',
-      name: '',
-      description: '',
-      image: '',
-      category: [''],
-      style: '',
-      dimensions: {
-        height: 1,
-        width: 1,
-        depth: 1,
-      },
-      material: [''],
-      color: '',
-      price: 1,
-      __v: '1',
-      _ownerId: {
-        _id: '123',
-        email: 'test@mail.com',
-        username: 'Test1',
-        wishlist: [],
-      },
-      quantity: 1,
-      createdAt: '2024-03-10T11:27:12.452+00:00',
+  const mockProduct: StateProduct = {
+    _id: '123',
+    name: '',
+    description: '',
+    image: '',
+    category: [''],
+    style: '',
+    dimensions: {
+      height: 1,
+      width: 1,
+      depth: 1,
     },
-  ];
+    material: [''],
+    color: '',
+    price: 1,
+    __v: '1',
+    _ownerId: {
+      _id: '123',
+      email: 'test@mail.com',
+      username: 'Test1',
+      wishlist: [],
+    },
+    quantity: 1,
+    createdAt: '2024-03-10T11:27:12.452+00:00',
+  };
+
+  const mockCartState: StateProduct[] = [mockProduct];
 
   beforeEach(async () => {
     authServiceMock = jasmine.createSpyObj('AuthService', [
@@ -88,5 +88,15 @@ describe('CartComponent', () => {
     productsSubjectMock.next(mockCartState);
     expect(component.products).toBeTruthy();
     expect(component.products).toEqual(mockCartState);
+  });
+
+  it('Should return total count', () => {
+    productsSubjectMock.next(new Array(3).fill(mockProduct));
+    expect(component.totalCount).toEqual(3);
+  });
+
+  it('Should return total price', () => {
+    productsSubjectMock.next([{...mockProduct, price: 10},{...mockProduct, price: 20}])
+    expect(component.totalPrice).toEqual(30)
   });
 });
