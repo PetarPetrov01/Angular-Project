@@ -55,6 +55,7 @@ describe('CartComponent', () => {
     authServiceMock = jasmine.createSpyObj('AuthService', [
       'setUserStorage',
       'setUserSubject',
+      'completeOrder'
     ]);
     apiServiceMock = jasmine.createSpyObj('ApiService', ['toggleWishlist']);
     storeMock = jasmine.createSpyObj('Store', ['dispatch', 'select']);
@@ -96,7 +97,26 @@ describe('CartComponent', () => {
   });
 
   it('Should return total price', () => {
-    productsSubjectMock.next([{...mockProduct, price: 10},{...mockProduct, price: 20}])
-    expect(component.totalPrice).toEqual(30)
+    productsSubjectMock.next([
+      { ...mockProduct, price: 10 },
+      { ...mockProduct, price: 20 },
+    ]);
+    expect(component.totalPrice).toEqual(30);
   });
+
+  it('Should not complete the order with no products', () => {
+    productsSubjectMock.next([]);
+  
+    component.handleCompleteOrder();
+    expect(authServiceMock.completeOrder).not.toHaveBeenCalled();
+  });
+  
+  it('Should complete the order',()=>{
+    productsSubjectMock.next(mockCartState);
+  
+    authServiceMock.completeOrder.and.returnValue(EMPTY);
+    component.handleCompleteOrder();
+    expect(authServiceMock.completeOrder).toHaveBeenCalled();
+
+  })
 });
