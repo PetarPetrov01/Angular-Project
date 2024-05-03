@@ -13,6 +13,8 @@ import { CartState, StateProduct } from '../../types/State';
 import { BehaviorSubject, EMPTY, Observable, of } from 'rxjs';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatDialog } from '@angular/material/dialog';
+import { User } from '../../types/User';
+import { NgZone } from '@angular/core';
 
 describe('CartComponent', () => {
   let component: CartComponent;
@@ -24,6 +26,13 @@ describe('CartComponent', () => {
   let matDiaologMock: jasmine.SpyObj<MatDialog>;
 
   const productsSubjectMock = new BehaviorSubject<StateProduct[]>([]);
+
+  const mockUser: User = {
+    _id: '123',
+    email: 'test@mail.com',
+    username: 'Test1',
+    wishlist: [],
+  };
 
   const mockProduct: StateProduct = {
     _id: '123',
@@ -41,12 +50,7 @@ describe('CartComponent', () => {
     color: '',
     price: 1,
     __v: '1',
-    _ownerId: {
-      _id: '123',
-      email: 'test@mail.com',
-      username: 'Test1',
-      wishlist: [],
-    },
+    _ownerId: mockUser,
     quantity: 1,
     createdAt: '2024-03-10T11:27:12.452+00:00',
   };
@@ -58,13 +62,19 @@ describe('CartComponent', () => {
       'setUserStorage',
       'setUserSubject',
       'completeOrder',
+      'user'
     ]);
-    apiServiceMock = jasmine.createSpyObj('ApiService', ['toggleWishlist']);
+    apiServiceMock = jasmine.createSpyObj('ApiService', ['toggleWishList']);
     storeMock = jasmine.createSpyObj('Store', ['dispatch', 'select']);
     matDiaologMock = jasmine.createSpyObj('MatDiaolog', ['open']);
 
     await TestBed.configureTestingModule({
-      imports: [CartComponent, RouterTestingModule],
+      imports: [
+        CartComponent,
+        RouterTestingModule.withRoutes([
+          { path: 'cart', component: CartComponent },
+        ]),
+      ],
       providers: [
         { provide: AuthService, useValue: authServiceMock },
         { provide: ApiService, useValue: apiServiceMock },
@@ -108,6 +118,26 @@ describe('CartComponent', () => {
   it('Should open modal on quantity decrease (when quantity <=1)', () => {
     component.handleDecreaseQuantity(mockProduct);
     expect(matDiaologMock.open).toHaveBeenCalled();
+  });
+
+  it('Should dispatch on wish list toggle', () => {
+    apiServiceMock.toggleWishList.and.returnValue(EMPTY);
+
+    component.toggleWishlist(mockProduct);
+
+    expect(apiServiceMock.toggleWishList).toHaveBeenCalled();
+  });
+
+  it("Should set the product in the user's wishlist",  () => {
+    const ngZone = TestBed.inject(NgZone);
+
+    apiServiceMock.toggleWishList.and.returnValue(
+      of({ ...mockUser, wishlist: ['123'] })
+    );
+    ngZone.run(() => component.toggleWishlist(mockProduct));
+
+    expect(authServiceMock.setUserStorage).toHaveBeenCalledWith({ ...mockUser, wishlist: ['123'] })
+    expect(authServiceMock.setUserSubject).toHaveBeenCalledWith({ ...mockUser, wishlist: ['123'] })
   });
 
   it('Should open modal on cart clear', () => {
