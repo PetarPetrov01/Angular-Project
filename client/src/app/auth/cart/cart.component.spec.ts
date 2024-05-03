@@ -12,6 +12,7 @@ import { ApiService } from '../../shared/api.service';
 import { CartState, StateProduct } from '../../types/State';
 import { BehaviorSubject, EMPTY, Observable, of } from 'rxjs';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MatDialog } from '@angular/material/dialog';
 
 describe('CartComponent', () => {
   let component: CartComponent;
@@ -20,6 +21,7 @@ describe('CartComponent', () => {
   let authServiceMock: jasmine.SpyObj<AuthService>;
   let apiServiceMock: jasmine.SpyObj<ApiService>;
   let storeMock: jasmine.SpyObj<Store>;
+  let matDiaologMock: jasmine.SpyObj<MatDialog>;
 
   const productsSubjectMock = new BehaviorSubject<StateProduct[]>([]);
 
@@ -55,10 +57,11 @@ describe('CartComponent', () => {
     authServiceMock = jasmine.createSpyObj('AuthService', [
       'setUserStorage',
       'setUserSubject',
-      'completeOrder'
+      'completeOrder',
     ]);
     apiServiceMock = jasmine.createSpyObj('ApiService', ['toggleWishlist']);
     storeMock = jasmine.createSpyObj('Store', ['dispatch', 'select']);
+    matDiaologMock = jasmine.createSpyObj('MatDiaolog', ['open']);
 
     await TestBed.configureTestingModule({
       imports: [CartComponent, RouterTestingModule],
@@ -66,6 +69,7 @@ describe('CartComponent', () => {
         { provide: AuthService, useValue: authServiceMock },
         { provide: ApiService, useValue: apiServiceMock },
         { provide: Store, useValue: storeMock },
+        { provide: MatDialog, useValue: matDiaologMock },
       ],
     }).compileComponents();
 
@@ -91,6 +95,26 @@ describe('CartComponent', () => {
     expect(component.products).toEqual(mockCartState);
   });
 
+  it('Should dispatch on quantity increase', () => {
+    component.handleIncreaseQuantity(mockProduct);
+    expect(storeMock.dispatch).toHaveBeenCalled();
+  });
+
+  it('Should dispatch on quantity decrease (quantity > 1)', () => {
+    component.handleDecreaseQuantity({ ...mockProduct, quantity: 2 });
+    expect(storeMock.dispatch).toHaveBeenCalled();
+  });
+
+  it('Should open modal on quantity decrease (when quantity <=1)', () => {
+    component.handleDecreaseQuantity(mockProduct);
+    expect(matDiaologMock.open).toHaveBeenCalled();
+  });
+
+  it('Should open modal on cart clear', () => {
+    component.handleClearCart();
+    expect(matDiaologMock.open).toHaveBeenCalled();
+  });
+
   it('Should return total count', () => {
     productsSubjectMock.next(new Array(3).fill(mockProduct));
     expect(component.totalCount).toEqual(3);
@@ -106,17 +130,16 @@ describe('CartComponent', () => {
 
   it('Should not complete the order with no products', () => {
     productsSubjectMock.next([]);
-  
+
     component.handleCompleteOrder();
     expect(authServiceMock.completeOrder).not.toHaveBeenCalled();
   });
-  
-  it('Should complete the order',()=>{
+
+  it('Should complete the order', () => {
     productsSubjectMock.next(mockCartState);
-  
+
     authServiceMock.completeOrder.and.returnValue(EMPTY);
     component.handleCompleteOrder();
     expect(authServiceMock.completeOrder).toHaveBeenCalled();
-
-  })
+  });
 });
