@@ -12,12 +12,14 @@ import { ApiService } from '../../shared/api.service';
 import { FloorPricePipe } from '../../shared/pipes/floor-price.pipe';
 import { DecimalSlicePipe } from '../../shared/pipes/decimal-slice.pipe';
 import { AuthService } from '../../shared/auth.service';
-import { EMPTY } from 'rxjs';
+import { BehaviorSubject, EMPTY, of } from 'rxjs';
+import { PopulatedProduct } from '../../types/Product';
+import { User } from '../../types/User';
 
 describe('WishlistComponent', () => {
   let component: WishlistComponent;
   let fixture: ComponentFixture<WishlistComponent>;
-  
+
   let authServiceMock: jasmine.SpyObj<AuthService>;
   let apiServiceMock: jasmine.SpyObj<ApiService>;
   let storeMock: jasmine.SpyObj<Store>;
@@ -73,11 +75,12 @@ describe('WishlistComponent', () => {
         { provide: Store, useValue: storeMock },
       ],
     }).compileComponents();
-
   });
 
   beforeEach(() => {
-    authServiceMock.getWishlist.and.returnValue(EMPTY)
+    authServiceMock.getWishlist.and.returnValue(
+      wishlistSubjectMock.asObservable()
+    );
 
     fixture = TestBed.createComponent(WishlistComponent);
     component = fixture.componentInstance;
@@ -87,4 +90,24 @@ describe('WishlistComponent', () => {
   it('Test config', () => {
     expect(true).toBeTruthy();
   });
+
+  it('Should fetch wish list on init', () => {
+    wishlistSubjectMock.next([]);
+    component.ngOnInit();
+    expect(authServiceMock.getWishlist).toHaveBeenCalled();
+  });
+
+  it('Wishlist should be empty', () => {
+    wishlistSubjectMock.next([]);
+    expect(component.wishlist.length).toBeFalsy();
+  });
+
+  it('Should set the wishlist', () => {
+    wishlistSubjectMock.next(new Array(3).fill(mockProduct));
+
+    component.fetchWishList();
+    expect(component.wishlist.length).toEqual(3);
+    expect(component.wishlist[0]).toEqual(mockProduct);
+  });
+
 });
