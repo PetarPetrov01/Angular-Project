@@ -110,4 +110,25 @@ describe('WishlistComponent', () => {
     expect(component.wishlist[0]).toEqual(mockProduct);
   });
 
+  it('Removing should set the returned user with removed item', () => {
+    apiServiceMock.toggleWishList.and.returnValue(
+      of({ ...mockUser, wishlist: [] })
+    );
+
+    component.onRemove('123');
+    expect(apiServiceMock.toggleWishList).toHaveBeenCalledWith('123');
+    expect(authServiceMock.setUserStorage).toHaveBeenCalledWith({
+      ...mockUser,
+      wishlist: [],
+    });
+    expect(authServiceMock.setUserSubject).toHaveBeenCalledWith({
+      ...mockUser,
+      wishlist: [],
+    });
+  });
+
+  it('Add to cart should dispatch the store', () => {
+    component.onAddToCart(mockProduct);
+    expect(storeMock.dispatch).toHaveBeenCalled();
+  });
 });
