@@ -150,6 +150,11 @@ describe('CartComponent', () => {
     expect(matDiaologMock.open).toHaveBeenCalled();
   });
 
+  it('Should open modal on product remove', () => {
+    component.handleRemove(mockProduct);
+    expect(matDiaologMock.open).toHaveBeenCalled();
+  });
+
   it('Should return total count', () => {
     productsSubjectMock.next(new Array(3).fill(mockProduct));
     expect(component.totalCount).toEqual(3);

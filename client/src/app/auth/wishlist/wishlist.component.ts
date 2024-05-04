@@ -31,7 +31,7 @@ export class WishlistComponent implements OnInit, OnDestroy {
   router = inject(Router);
 
   subscription: Subscription | null = null;
-  wishlist: [PopulatedProduct] | [] = [];
+  wishlist: PopulatedProduct[] | [] = [];
 
   ngOnInit(): void {
     this.subscription = this.fetchWishList();

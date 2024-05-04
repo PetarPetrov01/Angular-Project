@@ -79,7 +79,7 @@ export class AuthService implements OnDestroy {
   }
 
   getWishlist() {
-    return this.http.get<[PopulatedProduct]>('/api/auth/wishlist');
+    return this.http.get<PopulatedProduct[]>('/api/auth/wishlist');
   }
 
   getOwnProducts() {

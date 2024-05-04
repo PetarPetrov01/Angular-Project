@@ -22,6 +22,35 @@ describe('WishlistComponent', () => {
   let apiServiceMock: jasmine.SpyObj<ApiService>;
   let storeMock: jasmine.SpyObj<Store>;
 
+  const wishlistSubjectMock = new BehaviorSubject<PopulatedProduct[]>([]);
+
+  const mockUser: User = {
+    _id: '123',
+    email: 'test@mail.com',
+    username: 'Test1',
+    wishlist: [],
+  };
+
+  const mockProduct: PopulatedProduct = {
+    _id: '123',
+    name: '',
+    description: '',
+    image: '',
+    category: [''],
+    style: '',
+    dimensions: {
+      height: 1,
+      width: 1,
+      depth: 1,
+    },
+    material: [''],
+    color: '',
+    price: 1,
+    __v: '1',
+    _ownerId: mockUser,
+    createdAt: '2024-03-10T11:27:12.452+00:00',
+  };
+
   beforeEach(async () => {
     authServiceMock = jasmine.createSpyObj('AuthService', [
       'getWishlist',
