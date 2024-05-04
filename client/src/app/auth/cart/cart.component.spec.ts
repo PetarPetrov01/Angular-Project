@@ -58,12 +58,11 @@ describe('CartComponent', () => {
   const mockCartState: StateProduct[] = [mockProduct];
 
   beforeEach(async () => {
-    authServiceMock = jasmine.createSpyObj('AuthService', [
-      'setUserStorage',
-      'setUserSubject',
-      'completeOrder',
-      'user'
-    ]);
+    authServiceMock = jasmine.createSpyObj(
+      'AuthService',
+      ['setUserStorage', 'setUserSubject', 'completeOrder'],
+      { user: {} }
+    );
     apiServiceMock = jasmine.createSpyObj('ApiService', ['toggleWishList']);
     storeMock = jasmine.createSpyObj('Store', ['dispatch', 'select']);
     matDiaologMock = jasmine.createSpyObj('MatDiaolog', ['open']);
@@ -128,7 +127,7 @@ describe('CartComponent', () => {
     expect(apiServiceMock.toggleWishList).toHaveBeenCalled();
   });
 
-  it("Should set the product in the user's wishlist",  () => {
+  it("Should set the product in the user's wishlist", () => {
     const ngZone = TestBed.inject(NgZone);
 
     apiServiceMock.toggleWishList.and.returnValue(
@@ -136,8 +135,14 @@ describe('CartComponent', () => {
     );
     ngZone.run(() => component.toggleWishlist(mockProduct));
 
-    expect(authServiceMock.setUserStorage).toHaveBeenCalledWith({ ...mockUser, wishlist: ['123'] })
-    expect(authServiceMock.setUserSubject).toHaveBeenCalledWith({ ...mockUser, wishlist: ['123'] })
+    expect(authServiceMock.setUserStorage).toHaveBeenCalledWith({
+      ...mockUser,
+      wishlist: ['123'],
+    });
+    expect(authServiceMock.setUserSubject).toHaveBeenCalledWith({
+      ...mockUser,
+      wishlist: ['123'],
+    });
   });
 
   it('Should open modal on cart clear', () => {
