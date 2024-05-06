@@ -105,4 +105,30 @@ describe('ProfileComponent', () => {
     expect(component.products[0]).toEqual(mockProduct);
   });
 
+  it('Should open modal on "edit profile" click', () => {
+    component.onEditProfile();
+    expect(matDialogMock.open).toHaveBeenCalled();
+  });
+
+  it('Should clear session on logout', () => {
+    const ngZone = TestBed.inject(NgZone);
+    ngZone.run(() => component.handleLogout());
+
+    expect(authServiceMock.clearUserSession).toHaveBeenCalled();
+  });
+
+  it('Should navigate to home on logout', () => {
+    const ngZone = TestBed.inject(NgZone);
+    const routerMock = TestBed.inject(Router);
+    spyOn(routerMock, 'navigate');
+
+    ngZone.run(() => component.handleLogout());
+
+    expect(routerMock.navigate).toHaveBeenCalledWith(['/']);
+  });
+
+  it('Should open modal on delete',()=>{
+    component.onDelete(mockProduct, '100','100')
+    expect(matDialogMock.open).toHaveBeenCalled();
+  })
 });
