@@ -82,4 +82,17 @@ describe('EditProfileComponent', () => {
 
     expect(component.editForm.get('email')?.hasError('email')).toBeTruthy();
   })
+
+  it('Should call editProfile on valid form submission',  () => {
+    component.editForm.setValue({
+      username: 'testUser',
+      email: 'testex@example.com',
+    });
+
+    component.onConfirm();
+    expect(authServiceMock.editProfile).toHaveBeenCalledWith(
+      'testUser',
+      'testex@example.com'
+    );
+  });
 });
