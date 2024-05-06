@@ -1,4 +1,3 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { EditProfileComponent } from './edit-profile.component';
@@ -58,7 +57,29 @@ describe('EditProfileComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('Should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('Should create edit form with required fields', () => {
+    expect(component.editForm instanceof FormGroup).toBeTrue();
+  });
+
+  it('Should not call editProfile on invalid form', () => {
+    component.onConfirm();
+    expect(authServiceMock.editProfile).not.toHaveBeenCalled();
+  });
+
+  it('Edit form should be invalid if empty', () => {
+    expect(component.editForm.invalid).toBeTruthy();
+  });
+
+  it('Email should be invalid ',()=>{
+    component.editForm.setValue({
+      username: 'testUser',
+      email: 'invalid@email-com',
+    });
+
+    expect(component.editForm.get('email')?.hasError('email')).toBeTruthy();
+  })
 });
