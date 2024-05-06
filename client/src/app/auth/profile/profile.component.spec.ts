@@ -2,11 +2,15 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProfileComponent } from './profile.component';
 import { AuthService } from '../../shared/auth.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router, provideRouter } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CommonModule } from '@angular/common';
-import { EMPTY, of } from 'rxjs';
+import { BehaviorSubject, EMPTY, Observable, of } from 'rxjs';
+import { APIProduct } from '../../types/Product';
+import { NgZone } from '@angular/core';
+import { routes } from '../../app.routes';
+import { HomeComponent } from '../../main/home/home.component';
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
@@ -15,6 +19,35 @@ describe('ProfileComponent', () => {
   let matDialogMock: jasmine.SpyObj<MatDialog>;
   let routerMock: jasmine.SpyObj<Router>;
 
+  const userMock = {
+    _id: '',
+    username: '',
+    email: '',
+    password: '',
+    wishlist: [],
+  };
+
+  const mockProduct: APIProduct = {
+    _id: '123',
+    name: '',
+    description: '',
+    image: '',
+    category: [''],
+    style: '',
+    dimensions: {
+      height: 1,
+      width: 1,
+      depth: 1,
+    },
+    material: [''],
+    color: '',
+    price: 1,
+    __v: '1',
+    _ownerId: '123',
+    createdAt: '2024-03-10T11:27:12.452+00:00',
+  };
+  const productsMockSubject = new BehaviorSubject<APIProduct[]>([]);
+
   beforeEach(async () => {
     authServiceMock = jasmine.createSpyObj('AuthService', [
       'user$',
@@ -22,24 +55,31 @@ describe('ProfileComponent', () => {
       'clearUserSession',
     ]);
     matDialogMock = jasmine.createSpyObj('MatDialog', ['open']);
-    routerMock = jasmine.createSpyObj('Router', ['navigate']);
+    routerMock = jasmine.createSpyObj('Router', ['navigate', 'ActivatedRoute']);
 
     await TestBed.configureTestingModule({
-      imports: [ProfileComponent, RouterTestingModule, CommonModule],
+      imports: [
+        ProfileComponent,
+        CommonModule,
+        RouterTestingModule.withRoutes([
+          { path: '', component: HomeComponent },
+        ]),
+      ],
       providers: [
         { provide: AuthService, useValue: authServiceMock },
         { provide: MatDialog, useValue: matDialogMock },
+        // { provide: Router, useValue: routerMock },
+        // {provide: ActivatedRoute, useValue: {
+        //   params: of([{id: 1}])
+        // }}
+        // provideRouter([{path: '', component: HomeComponent}])
       ],
     }).compileComponents();
 
-    authServiceMock.user$ = of({
-      _id: '',
-      username: '',
-      email: '',
-      password: '',
-      wishlist: [],
-    });
-    authServiceMock.getOwnProducts.and.returnValue(EMPTY);
+    authServiceMock.user$ = of(userMock);
+    authServiceMock.getOwnProducts.and.returnValue(
+      productsMockSubject.asObservable()
+    );
 
     fixture = TestBed.createComponent(ProfileComponent);
     component = fixture.componentInstance;
