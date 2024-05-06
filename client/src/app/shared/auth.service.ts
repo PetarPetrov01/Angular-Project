@@ -83,7 +83,7 @@ export class AuthService implements OnDestroy {
   }
 
   getOwnProducts() {
-    return this.http.get<[APIProduct]>('/api/auth/posts');
+    return this.http.get<APIProduct[]>('/api/auth/posts');
   }
 
   completeOrder(data: Order) {

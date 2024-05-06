@@ -89,4 +89,20 @@ describe('ProfileComponent', () => {
   it('should create', () => {
     expect(true).toBeTruthy();
   });
+
+  it('Should load the user', () => {
+    expect(component.user).toEqual(userMock);
+  });
+
+  it('Products should be empty', () => {
+    productsMockSubject.next([]);
+    expect(component.products.length).toBeFalsy();
+  });
+
+  it('Should set all products', () => {
+    productsMockSubject.next(new Array(3).fill(mockProduct));
+    expect(component.products.length).toEqual(3);
+    expect(component.products[0]).toEqual(mockProduct);
+  });
+
 });
