@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RemoveDialogComponent } from './remove-dialog.component';
 import { Store } from '@ngrx/store';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 describe('RemoveDialogComponent', () => {
   let component: RemoveDialogComponent;
@@ -18,6 +19,7 @@ describe('RemoveDialogComponent', () => {
           provide: Store,
           useValue: storeMock,
         },
+        { provide: MAT_DIALOG_DATA, useValue: {} },
       ],
     }).compileComponents();
 
@@ -30,8 +32,8 @@ describe('RemoveDialogComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('Should dispatch store onConfirm',()=>{
-    component.onConfirm()
+  it('Should dispatch store onConfirm', () => {
+    component.onConfirm();
     expect(storeMock.dispatch).toHaveBeenCalled();
-  })
+  });
 });
