@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AuthComponent } from './auth.component';
 import { AuthService } from '../shared/auth.service';
 import { CookieService } from 'ngx-cookie-service';
+import { of } from 'rxjs';
 
 describe('AuthComponent', () => {
   let component: AuthComponent;
@@ -34,5 +35,12 @@ describe('AuthComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('Should get the user on init', () => {
+    authServiceMock.getUserStorage.and.returnValue({});
+    
+    component.ngOnInit();
+    expect(authServiceMock.getUserStorage).toHaveBeenCalled();
   });
 });

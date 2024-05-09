@@ -16,7 +16,7 @@ export const cookieName = 'auth-cookie';
 export class AuthComponent implements OnInit {
   constructor(
     private cookieService: CookieService,
-    private authService: AuthService,
+    private authService: AuthService
   ) {}
   ngOnInit(): void {
     const user = this.authService.getUserStorage();
@@ -26,10 +26,10 @@ export class AuthComponent implements OnInit {
       //Both credentials intact
 
       this.authService.setUserSubject(user);
-    } else if(authCookie){
+    } else if (authCookie) {
       //No user in the storage, but token is intact, needs to be verified
 
-      this.authService.getProfile()
+      this.authService.getProfile();
     } else {
       //Either the cookie is missing or both are missing
 
