@@ -1,17 +1,14 @@
-import { ComponentFixture, TestBed, fakeAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { RegisterComponent } from './register.component';
 import { AuthService } from '../../shared/auth.service';
-import { keyframes } from '@angular/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import { NgForm } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
   let authServiceMock: jasmine.SpyObj<AuthService>;
-  let mockForm: NgForm;
 
   beforeEach(async () => {
     authServiceMock = jasmine.createSpyObj('AuthService', ['register']);
@@ -53,7 +50,26 @@ describe('RegisterComponent', () => {
     );
 
     expect(emailErrors.children[0].textContent).toContain('Email is required!');
-    expect(usernameErrors.nativeElement.children[0].textContent).toContain('Username is required!');
+    expect(usernameErrors.nativeElement.children[0].textContent).toContain(
+      'Username is required'
+    );
   }));
 
+  // it('email should be invalid', fakeAsync(async () => {
+  //   const usernameInput = fixture.debugElement.queryAll(
+  //     By.css('input[name="email"]')
+  //   )[0];
+
+  //   // usernameInput.nativeElement.value = 'us';
+  //   usernameInput.triggerEventHandler('blur');
+
+  //   fixture.detectChanges();
+
+  //   await fixture.whenStable();
+  //   const usernameErrors = fixture.debugElement.nativeElement.querySelector(
+  //     'input[name="username"]~.errors'
+  //   );
+
+  //   expect(usernameErrors.children[0].textContent).toContain('Username must be atleast 5 characters long!');
+  // }));
 });
