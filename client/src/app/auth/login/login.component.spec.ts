@@ -46,4 +46,12 @@ describe('LoginComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should create loginForm', () => {
+    expect(component.loginForm).toBeTruthy();
+  });
+
+  it('loginForm should be invalid', () => {
+    expect(component.loginForm.invalid).toBeTrue();
+  });
 });
