@@ -33,18 +33,20 @@ describe('RegisterComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should validate email and username fields (required)', fakeAsync(async () => {
+  it('should validate email, username and password fields (required)', fakeAsync(async () => {
     const emailInput = fixture.debugElement.queryAll(
       By.css('input[name="email"]')
     )[0];
     const usernameInput = fixture.debugElement.query(
       By.css('input[name="username"]')
     );
-    emailInput.nativeElement.value = '';
-    emailInput.triggerEventHandler('blur');
+    const passwordInput = fixture.debugElement.query(
+      By.css('input[name="password"]')
+    );
 
-    usernameInput.nativeElement.value = '';
+    emailInput.triggerEventHandler('blur');
     usernameInput.triggerEventHandler('blur');
+    passwordInput.triggerEventHandler('blur');
     fixture.detectChanges();
 
     await fixture.whenStable();
@@ -54,12 +56,18 @@ describe('RegisterComponent', () => {
     const usernameErrors = fixture.debugElement.query(
       By.css('input[name="username"]~.errors')
     );
+    const paswordErrors = fixture.debugElement.query(
+      By.css('input[name="password"]~.errors')
+    );
 
     expect(emailErrors.nativeElement.children[0].textContent).toContain(
       'Email is required!'
     );
     expect(usernameErrors.nativeElement.children[0].textContent).toContain(
       'Username is required'
+    );
+    expect(paswordErrors.nativeElement.children[0].textContent).toContain(
+      'Password is required'
     );
   }));
 
@@ -105,5 +113,32 @@ describe('RegisterComponent', () => {
     expect(usernameErrors.nativeElement.children[0].textContent).toContain(
       'Username must be atleast 5 characters long!'
     );
+  });
+
+  it('should validate password length', async ()=>{
+    const passwordInput = fixture.debugElement.query(
+      By.css('input[name="password"]')
+    );
+
+    passwordInput.nativeElement.value = '12';
+    passwordInput.triggerEventHandler('input', {
+      target: passwordInput.nativeElement,
+    });
+    passwordInput.triggerEventHandler('blur');
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const usernameErrors = fixture.debugElement.query(
+      By.css('input[name="password"]~.errors')
+    );
+
+    expect(usernameErrors.nativeElement.children[0].textContent).toContain(
+      'Password must be atleast 6 characters long'
+    );
+  })
+
+  it('', () => {
+    // component.handleRegister()
   });
 });
