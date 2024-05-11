@@ -1,9 +1,15 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  TestBed,
+  fakeAsync,
+  tick,
+} from '@angular/core/testing';
 
 import { RegisterComponent } from './register.component';
 import { AuthService } from '../../shared/auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
+import { transition } from '@angular/animations';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -42,23 +48,21 @@ describe('RegisterComponent', () => {
     fixture.detectChanges();
 
     await fixture.whenStable();
-    const emailErrors = fixture.debugElement.nativeElement.querySelector(
-      'input[name="email"]~.errors'
+    const emailErrors = fixture.debugElement.query(
+      By.css('input[name="email"]~.errors')
     );
     const usernameErrors = fixture.debugElement.query(
       By.css('input[name="username"]~.errors')
     );
 
-    expect(emailErrors.children[0].textContent).toContain('Email is required!');
+    expect(emailErrors.nativeElement.children[0].textContent).toContain(
+      'Email is required!'
+    );
     expect(usernameErrors.nativeElement.children[0].textContent).toContain(
       'Username is required'
     );
   }));
 
-  // it('email should be invalid', fakeAsync(async () => {
-  //   const usernameInput = fixture.debugElement.queryAll(
-  //     By.css('input[name="email"]')
-  //   )[0];
   it('should validate email', () => {
     const emailInput = fixture.debugElement.query(
       By.css('input[name="email"]')
@@ -85,16 +89,21 @@ describe('RegisterComponent', () => {
       By.css('input[name="username"]')
     );
 
-  //   // usernameInput.nativeElement.value = 'us';
-  //   usernameInput.triggerEventHandler('blur');
+    usernameInput.nativeElement.value = 'sd';
+    usernameInput.triggerEventHandler('input', {
+      target: usernameInput.nativeElement,
+    });
+    usernameInput.triggerEventHandler('blur');
 
-  //   fixture.detectChanges();
+    fixture.detectChanges();
+    await fixture.whenStable();
 
-  //   await fixture.whenStable();
-  //   const usernameErrors = fixture.debugElement.nativeElement.querySelector(
-  //     'input[name="username"]~.errors'
-  //   );
+    const usernameErrors = fixture.debugElement.query(
+      By.css('input[name="username"]~.errors')
+    );
 
-  //   expect(usernameErrors.children[0].textContent).toContain('Username must be atleast 5 characters long!');
-  // }));
+    expect(usernameErrors.nativeElement.children[0].textContent).toContain(
+      'Username must be atleast 5 characters long!'
+    );
+  });
 });
