@@ -39,7 +39,6 @@ describe('LoginComponent', () => {
     ]);
 
     await TestBed.configureTestingModule({
-      imports: [LoginComponent, RouterTestingModule],
       imports: [
         LoginComponent,
         RouterTestingModule.withRoutes([

@@ -1,23 +1,24 @@
+import { RouterTestingModule } from '@angular/router/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { NgZone } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+
+import { BehaviorSubject, of } from 'rxjs';
 
 import { ProfileComponent } from './profile.component';
-import { AuthService } from '../../shared/auth.service';
-import { ActivatedRoute, Router, provideRouter } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
-import { RouterTestingModule } from '@angular/router/testing';
-import { CommonModule } from '@angular/common';
-import { BehaviorSubject, EMPTY, Observable, of } from 'rxjs';
-import { APIProduct } from '../../types/Product';
-import { NgZone } from '@angular/core';
-import { routes } from '../../app.routes';
 import { HomeComponent } from '../../main/home/home.component';
+
+import { AuthService } from '../../shared/auth.service';
+
+import { APIProduct } from '../../types/Product';
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
   let fixture: ComponentFixture<ProfileComponent>;
   let authServiceMock: jasmine.SpyObj<AuthService>;
   let matDialogMock: jasmine.SpyObj<MatDialog>;
-  let routerMock: jasmine.SpyObj<Router>;
 
   const userMock = {
     _id: '',
@@ -55,7 +56,6 @@ describe('ProfileComponent', () => {
       'clearUserSession',
     ]);
     matDialogMock = jasmine.createSpyObj('MatDialog', ['open']);
-    routerMock = jasmine.createSpyObj('Router', ['navigate', 'ActivatedRoute']);
 
     await TestBed.configureTestingModule({
       imports: [
@@ -68,11 +68,6 @@ describe('ProfileComponent', () => {
       providers: [
         { provide: AuthService, useValue: authServiceMock },
         { provide: MatDialog, useValue: matDialogMock },
-        // { provide: Router, useValue: routerMock },
-        // {provide: ActivatedRoute, useValue: {
-        //   params: of([{id: 1}])
-        // }}
-        // provideRouter([{path: '', component: HomeComponent}])
       ],
     }).compileComponents();
 
@@ -127,8 +122,8 @@ describe('ProfileComponent', () => {
     expect(routerMock.navigate).toHaveBeenCalledWith(['/']);
   });
 
-  it('Should open modal on delete',()=>{
-    component.onDelete(mockProduct, '100','100')
+  it('Should open modal on delete', () => {
+    component.onDelete(mockProduct, '100', '100');
     expect(matDialogMock.open).toHaveBeenCalled();
-  })
+  });
 });

@@ -59,6 +59,31 @@ describe('RegisterComponent', () => {
   //   const usernameInput = fixture.debugElement.queryAll(
   //     By.css('input[name="email"]')
   //   )[0];
+  it('should validate email', () => {
+    const emailInput = fixture.debugElement.query(
+      By.css('input[name="email"]')
+    );
+
+    emailInput.nativeElement.value = 'invalid@email';
+    emailInput.triggerEventHandler('input', {
+      target: emailInput.nativeElement,
+    });
+    emailInput.triggerEventHandler('blur');
+
+    fixture.detectChanges();
+
+    const emailErrors = fixture.debugElement.query(
+      By.css('input[name="email"]~.errors')
+    );
+    expect(emailErrors.nativeElement.children[0].textContent).toContain(
+      'Invalid email'
+    );
+  });
+
+  it('should validate username length', async () => {
+    const usernameInput = fixture.debugElement.query(
+      By.css('input[name="username"]')
+    );
 
   //   // usernameInput.nativeElement.value = 'us';
   //   usernameInput.triggerEventHandler('blur');
