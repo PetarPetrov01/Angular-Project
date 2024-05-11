@@ -101,4 +101,52 @@ describe('LoginComponent', () => {
 
     expect(authServiceMock.login).not.toHaveBeenCalled();
   });
+
+  it('should call authService login', () => {
+    const ngZone = TestBed.inject(NgZone);
+
+    component.loginForm.patchValue({
+      email: 'testemail@gmail.com',
+      password: '123456',
+    });
+
+    ngZone.run(() => component.handleLoginSubmit());
+
+    expect(authServiceMock.login).toHaveBeenCalledWith(
+      mockUser.email,
+      '123456'
+    );
+    expect(component.isLoading).toBeFalse();
+  });
+
+  it('should set the right user in the notificaion', () => {
+    const ngZone = TestBed.inject(NgZone);
+
+    component.loginForm.patchValue({
+      email: 'testemail@gmail.com',
+      password: '123456',
+    });
+
+    ngZone.run(() => component.handleLoginSubmit());
+
+    expect(notificationServiceMock.setNotification).toHaveBeenCalledWith(
+      `Successfully logged in as ${mockUser.username}`
+    );
+    expect(component.isLoading).toBeFalse();
+  });
+
+  it('should navigate to home on successful login', () => {
+    const ngZone = TestBed.inject(NgZone);
+    const routerMock = TestBed.inject(Router);
+    spyOn(routerMock, 'navigate');
+
+    component.loginForm.patchValue({
+      email: 'testemail@gmail.com',
+      password: '123456',
+    });
+
+    ngZone.run(() => component.handleLoginSubmit());
+    expect(routerMock.navigate).toHaveBeenCalledWith(['/']);
+    expect(component.isLoading).toBeFalse();
+  });
 });
