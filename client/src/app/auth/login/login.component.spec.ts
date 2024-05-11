@@ -9,25 +9,47 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { User } from '../../types/User';
+import { of } from 'rxjs';
+import { NgZone } from '@angular/core';
+import { NotificationService } from '../../shared/notification/notification.service';
+import { Router } from '@angular/router';
+import { HomeComponent } from '../../main/home/home.component';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let authServiceMock: jasmine.SpyObj<AuthService>;
+  let notificationServiceMock: jasmine.SpyObj<NotificationService>;
+
   let fb: jasmine.SpyObj<FormBuilder>;
+
+  const mockUser: User = {
+    _id: '123',
+    email: 'testemail@gmail.com',
+    username: 'testUser',
+    wishlist: [],
+  };
 
   beforeEach(async () => {
     authServiceMock = jasmine.createSpyObj('AuthService', ['login']);
     fb = jasmine.createSpyObj('FormBuilder', ['group']);
+    notificationServiceMock = jasmine.createSpyObj('NotificaionService', [
+      'setNotification',
+    ]);
 
     await TestBed.configureTestingModule({
       imports: [LoginComponent, RouterTestingModule],
+      imports: [
+        LoginComponent,
+        RouterTestingModule.withRoutes([
+          { path: '', component: HomeComponent },
+        ]),
+      ],
       providers: [
         { provide: AuthService, useValue: authServiceMock },
-        {
-          provide: FormBuilder,
-          useValue: fb,
-        },
+        { provide: FormBuilder, useValue: fb },
+        { provide: NotificationService, useValue: notificationServiceMock },
       ],
     }).compileComponents();
 
@@ -37,6 +59,7 @@ describe('LoginComponent', () => {
         password: new FormControl('', Validators.required),
       })
     );
+    authServiceMock.login.and.returnValue(of(mockUser));
 
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
