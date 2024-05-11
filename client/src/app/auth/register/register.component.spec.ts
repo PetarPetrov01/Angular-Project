@@ -33,7 +33,7 @@ describe('RegisterComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should validate email, username and password fields (required)', fakeAsync(async () => {
+  it('should validate email, username and password fields (required)', () => {
     const emailInput = fixture.debugElement.queryAll(
       By.css('input[name="email"]')
     )[0];
@@ -49,7 +49,6 @@ describe('RegisterComponent', () => {
     passwordInput.triggerEventHandler('blur');
     fixture.detectChanges();
 
-    await fixture.whenStable();
     const emailErrors = fixture.debugElement.query(
       By.css('input[name="email"]~.errors')
     );
@@ -69,7 +68,7 @@ describe('RegisterComponent', () => {
     expect(paswordErrors.nativeElement.children[0].textContent).toContain(
       'Password is required'
     );
-  }));
+  });
 
   it('should validate email', () => {
     const emailInput = fixture.debugElement.query(
@@ -92,7 +91,7 @@ describe('RegisterComponent', () => {
     );
   });
 
-  it('should validate username length', async () => {
+  it('should validate username length', () => {
     const usernameInput = fixture.debugElement.query(
       By.css('input[name="username"]')
     );
@@ -104,7 +103,6 @@ describe('RegisterComponent', () => {
     usernameInput.triggerEventHandler('blur');
 
     fixture.detectChanges();
-    await fixture.whenStable();
 
     const usernameErrors = fixture.debugElement.query(
       By.css('input[name="username"]~.errors')
@@ -115,7 +113,7 @@ describe('RegisterComponent', () => {
     );
   });
 
-  it('should validate password length', async ()=>{
+  it('should validate password length', () => {
     const passwordInput = fixture.debugElement.query(
       By.css('input[name="password"]')
     );
@@ -127,7 +125,6 @@ describe('RegisterComponent', () => {
     passwordInput.triggerEventHandler('blur');
 
     fixture.detectChanges();
-    await fixture.whenStable();
 
     const usernameErrors = fixture.debugElement.query(
       By.css('input[name="password"]~.errors')
@@ -136,9 +133,40 @@ describe('RegisterComponent', () => {
     expect(usernameErrors.nativeElement.children[0].textContent).toContain(
       'Password must be atleast 6 characters long'
     );
-  })
+  });
 
-  it('', () => {
-    // component.handleRegister()
+  it('should validate matching passwords', () => {
+    const passwordInput = fixture.debugElement.query(
+      By.css('input[name="password"]')
+    );
+    const rePasswordInput = fixture.debugElement.query(
+      By.css('input[name="rePassword"]')
+    );
+
+    passwordInput.triggerEventHandler('focus');
+    rePasswordInput.triggerEventHandler('focus');
+
+    passwordInput.nativeElement.value = '12';
+    rePasswordInput.nativeElement.value = '00';
+
+    passwordInput.triggerEventHandler('input', {
+      target: passwordInput.nativeElement,
+    });
+    rePasswordInput.triggerEventHandler('input', {
+      target: rePasswordInput.nativeElement,
+    });
+
+    passwordInput.triggerEventHandler('blur');
+    rePasswordInput.triggerEventHandler('blur');
+
+    fixture.detectChanges();
+
+    const rePasswordError = fixture.debugElement.query(
+      By.css('input[name="rePassword"]~.errors')
+    );
+
+    expect(rePasswordError.nativeElement.children[0].textContent).toContain(
+      'Passwords do not match!'
+    );
   });
 });
