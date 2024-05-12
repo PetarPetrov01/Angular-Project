@@ -1,20 +1,18 @@
-import {
-  ComponentFixture,
-  TestBed,
-  fakeAsync,
-  tick,
-} from '@angular/core/testing';
-
-import { CartComponent } from './cart.component';
-import { AuthService } from '../../shared/auth.service';
-import { Store } from '@ngrx/store';
-import { ApiService } from '../../shared/api.service';
-import { CartState, StateProduct } from '../../types/State';
-import { BehaviorSubject, EMPTY, Observable, of } from 'rxjs';
-import { RouterTestingModule } from '@angular/router/testing';
-import { MatDialog } from '@angular/material/dialog';
-import { User } from '../../types/User';
 import { NgZone } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+
+import { BehaviorSubject, EMPTY, of } from 'rxjs';
+import { Store } from '@ngrx/store';
+
+import { MatDialog } from '@angular/material/dialog';
+
+import { AuthService } from '../../shared/auth.service';
+import { ApiService } from '../../shared/api.service';
+import { CartComponent } from './cart.component';
+
+import { User } from '../../types/User';
+import { StateProduct } from '../../types/State';
 
 describe('CartComponent', () => {
   let component: CartComponent;

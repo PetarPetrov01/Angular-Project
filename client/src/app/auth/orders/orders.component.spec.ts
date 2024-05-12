@@ -89,7 +89,7 @@ describe('OrdersComponent', () => {
     component.orders = [mockOrder];
 
     component.handleDelete('123')
-    await tick(2000);
+    tick(2000);
     await fixture.whenStable();
     expect(component.orders.length).toBeFalsy();
   }))

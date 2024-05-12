@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AuthComponent } from './auth.component';
-import { AuthService } from '../shared/auth.service';
 import { CookieService } from 'ngx-cookie-service';
-import { of } from 'rxjs';
+import { AuthService } from '../shared/auth.service';
+
+import { AuthComponent } from './auth.component';
 
 describe('AuthComponent', () => {
   let component: AuthComponent;

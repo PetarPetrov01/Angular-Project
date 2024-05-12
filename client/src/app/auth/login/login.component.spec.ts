@@ -1,7 +1,6 @@
+import { NgZone } from '@angular/core';
+import { Router } from '@angular/router';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { LoginComponent } from './login.component';
-import { AuthService } from '../../shared/auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import {
   FormBuilder,
@@ -9,12 +8,15 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { User } from '../../types/User';
+
 import { of } from 'rxjs';
-import { NgZone } from '@angular/core';
+
+import { AuthService } from '../../shared/auth.service';
 import { NotificationService } from '../../shared/notification/notification.service';
-import { Router } from '@angular/router';
+
+import { LoginComponent } from './login.component';
 import { HomeComponent } from '../../main/home/home.component';
+import { User } from '../../types/User';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;

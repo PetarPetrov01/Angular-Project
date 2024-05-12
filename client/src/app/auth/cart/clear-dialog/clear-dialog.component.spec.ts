@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ClearDiaologComponent } from './clear-dialog.component';
 import { Store } from '@ngrx/store';
+import { ClearDiaologComponent } from './clear-dialog.component';
 
 describe('ClearDiaologComponent', () => {
   let component: ClearDiaologComponent;

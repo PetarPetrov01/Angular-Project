@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { RemoveDialogComponent } from './remove-dialog.component';
 import { Store } from '@ngrx/store';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+import { RemoveDialogComponent } from './remove-dialog.component';
 
 describe('RemoveDialogComponent', () => {
   let component: RemoveDialogComponent;
