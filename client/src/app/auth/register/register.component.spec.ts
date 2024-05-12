@@ -246,5 +246,28 @@ describe('RegisterComponent', () => {
       fixture.detectChanges();
     });
 
+    it('should call the service', async () => {
+      ngZone.run(() => component.handleRegister());
+
+      expect(component.isLoading).toBeTrue();
+      expect(authServiceMock.register).toHaveBeenCalledWith(
+        mockUser.email,
+        mockUser.username,
+        '123456'
+      );
+    });
+
+    it('should set timeout on error', fakeAsync(async () => {
+      authServiceMock.register.and.returnValue(
+        throwError(() => new Error('Error!'))
+      );
+
+      ngZone.run(() => component.handleRegister());
+
+      expect(component.isLoading).toBeTrue();
+      tick(2000);
+      expect(component.isLoading).toBeFalse();
+    }));
+
   });
 });
