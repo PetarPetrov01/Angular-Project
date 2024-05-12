@@ -194,4 +194,57 @@ describe('RegisterComponent', () => {
     expect(component.showPass).toBeTrue();
   });
 
+  //Fill the form with valid data
+  describe('Correctly filled form', () => {
+    let ngZone: NgZone;
+    let routerMock: Router;
+    let emailInput;
+    let usernameInput;
+    let passwordInput;
+    let rePasswordInput;
+    let controlsArr;
+
+    beforeEach(() => {
+      ngZone = TestBed.inject(NgZone);
+      routerMock = TestBed.inject(Router);
+      spyOn(routerMock, 'navigate');
+
+      emailInput = fixture.debugElement.queryAll(
+        By.css('input[name="email"]')
+      )[0];
+      usernameInput = fixture.debugElement.query(
+        By.css('input[name="username"]')
+      );
+      passwordInput = fixture.debugElement.query(
+        By.css('input[name="password"]')
+      );
+      rePasswordInput = fixture.debugElement.query(
+        By.css('input[name="rePassword"]')
+      );
+
+      emailInput.triggerEventHandler('focus');
+      usernameInput.triggerEventHandler('focus');
+      passwordInput.triggerEventHandler('focus');
+      rePasswordInput.triggerEventHandler('focus');
+
+      emailInput.nativeElement.value = mockUser.email;
+      usernameInput.nativeElement.value = mockUser.username;
+      passwordInput.nativeElement.value = '123456';
+      rePasswordInput.nativeElement.value = '123456';
+
+      controlsArr = [emailInput, usernameInput, passwordInput, rePasswordInput];
+
+      controlsArr.forEach((input) => {
+        input.triggerEventHandler('input', { target: input.nativeElement });
+      });
+
+      emailInput.triggerEventHandler('blur');
+      usernameInput.triggerEventHandler('blur');
+      passwordInput.triggerEventHandler('blur');
+      rePasswordInput.triggerEventHandler('blur');
+
+      fixture.detectChanges();
+    });
+
+  });
 });
