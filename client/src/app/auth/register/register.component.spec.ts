@@ -9,7 +9,6 @@ import { RegisterComponent } from './register.component';
 import { AuthService } from '../../shared/auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
-import { transition } from '@angular/animations';
 import { NgZone } from '@angular/core';
 import { EMPTY, of, throwError } from 'rxjs';
 import { User } from '../../types/User';
@@ -269,5 +268,31 @@ describe('RegisterComponent', () => {
       expect(component.isLoading).toBeFalse();
     }));
 
+    it('should navigate and set isLoading to false', async () => {
+      authServiceMock.register.and.returnValue(of(mockUser));
+
+      ngZone.run(() => component.handleRegister());
+
+      expect(component.isLoading).toBeFalse();
+      expect(routerMock.navigate).toHaveBeenCalledWith(['/']);
+    });
+
+    it('should unsubscribe from the service', () => {
+      authServiceMock.register.and.returnValue(of(mockUser));
+      ngZone.run(() => component.handleRegister());
+
+      expect(component.subscription).toBeTruthy();
+
+      if (
+        component.subscription &&
+        typeof component.subscription.unsubscribe === 'function'
+      ) {
+        spyOn(component.subscription, 'unsubscribe');
+        component.ngOnDestroy();
+        expect(component.subscription.unsubscribe).toHaveBeenCalled();
+      } else {
+        fail('Subscription or unsubscribe method is not defined.');
+      }
+    });
   });
 });
