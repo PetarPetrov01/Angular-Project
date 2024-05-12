@@ -1,18 +1,20 @@
+import { NgZone } from '@angular/core';
+import { Router } from '@angular/router';
+
 import {
   ComponentFixture,
   TestBed,
   fakeAsync,
   tick,
 } from '@angular/core/testing';
-
-import { RegisterComponent } from './register.component';
-import { AuthService } from '../../shared/auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
-import { NgZone } from '@angular/core';
+
 import { EMPTY, of, throwError } from 'rxjs';
+
+import { AuthService } from '../../shared/auth.service';
+import { RegisterComponent } from './register.component';
 import { User } from '../../types/User';
-import { Route, Router } from '@angular/router';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
