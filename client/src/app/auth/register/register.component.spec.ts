@@ -10,11 +10,22 @@ import { AuthService } from '../../shared/auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { transition } from '@angular/animations';
+import { NgZone } from '@angular/core';
+import { EMPTY, of, throwError } from 'rxjs';
+import { User } from '../../types/User';
+import { Route, Router } from '@angular/router';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
   let authServiceMock: jasmine.SpyObj<AuthService>;
+
+  const mockUser: User = {
+    _id: '123',
+    email: 'testemail@gmail.com',
+    username: 'testUser',
+    wishlist: [],
+  };
 
   beforeEach(async () => {
     authServiceMock = jasmine.createSpyObj('AuthService', ['register']);
@@ -23,6 +34,8 @@ describe('RegisterComponent', () => {
       imports: [RegisterComponent, RouterTestingModule],
       providers: [{ provide: AuthService, useValue: authServiceMock }],
     }).compileComponents();
+
+    authServiceMock.register.and.returnValue(EMPTY);
 
     fixture = TestBed.createComponent(RegisterComponent);
     component = fixture.componentInstance;
@@ -169,4 +182,16 @@ describe('RegisterComponent', () => {
       'Passwords do not match!'
     );
   });
+
+  it('should not call authService when form is invalid ', async () => {
+    component.handleRegister();
+    expect(authServiceMock.register).not.toHaveBeenCalled();
+  });
+
+  it('should toggle showpass', () => {
+    expect(component.showPass).toBeFalse();
+    component.toggleShowPass();
+    expect(component.showPass).toBeTrue();
+  });
+
 });

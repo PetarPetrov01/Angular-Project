@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -21,12 +21,13 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     EmailValidateDirective,
     CommonModule,
     LoaderComponent,
-    LazyLoadImageModule
+    LazyLoadImageModule,
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
 export class RegisterComponent implements OnDestroy {
+  @ViewChild('registerForm') registerForm: NgForm | undefined;
   subscription: Subscription | null;
 
   isLoading: boolean = false;
@@ -36,18 +37,21 @@ export class RegisterComponent implements OnDestroy {
     this.subscription = null;
   }
 
-  handleRegister(form: NgForm) {
-    if (form.invalid) {
+  handleRegister() {
+    if (this.registerForm == undefined || this.registerForm.invalid) {
       return;
     }
     const {
       email,
       username,
       passwords: { password },
-    } = form.value;
+    } = this.registerForm.value;
 
-    form.controls['passwords'].setValue({ password: '', rePassword: '' });
-    form.controls['passwords'].markAsUntouched();
+    this.registerForm.controls['passwords'].setValue({
+      password: '',
+      rePassword: '',
+    });
+    this.registerForm.controls['passwords'].markAsUntouched();
 
     this.isLoading = true;
 
@@ -59,7 +63,7 @@ export class RegisterComponent implements OnDestroy {
           this.isLoading = false;
         },
         error: (err) => {
-        //mock delay to visualize loader
+          //mock delay to visualize loader
           setTimeout(() => {
             this.isLoading = false;
           }, 2000);
@@ -67,7 +71,7 @@ export class RegisterComponent implements OnDestroy {
       });
   }
 
-  toggleShowPass(){
+  toggleShowPass() {
     this.showPass = !this.showPass;
   }
 
