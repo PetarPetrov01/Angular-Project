@@ -101,7 +101,7 @@ Request body:
 
 ### Login
 
-To log in as an already created user send `POST` request to `/users/login`. The service authenticates the user and returns the same object as in the register response
+To log in as an already created user send `POST` request to `/auth/login`. The service authenticates the user and returns the same object as in the register response
 
 #### Example login request
 
