@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
 import { NgIf, Location } from '@angular/common';
-import {
-  Router,
-  RouterLink,
-  RouterLinkActive,
-} from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 import { Store } from '@ngrx/store';
 
@@ -31,15 +27,12 @@ export class HeaderComponent {
     private store: Store<CartState>,
     public location: Location
   ) {
-    this.store
-      .select('cart')
-      .subscribe(
-        (prods) =>
-          (this.cartQuantity = prods.reduce(
-            (acc, prod) => (acc += prod.quantity),
-            0
-          ))
+    this.store.select('cart').subscribe((prods) => {
+      this.cartQuantity = prods.reduce(
+        (acc, prod) => (acc += prod.quantity),
+        0
       );
+    });
   }
 
   get isLogged() {
