@@ -2,7 +2,7 @@
 
 The whole application is currently deployed at https://dream-furniture-1e92c.web.app
 
-Dream furniture is a full-stack web application, built for the purpose of SoftUni's Angular course. This repository contains both the client side and server-side needed to run the application.
+Dream furniture is a full-stack web application, built for the purpose of SoftUni's Angular course. Initially developed as a learning project, it has since been further enhanced with additional features and optimizations. This repository contains both the client side and server-side needed to run the application.
 The application provides a user-friendly platform for customers to browse, discover, and purchase furniture items. It aims to simplify the furniture shopping experience by offering the following functionalities:
 
 * Convenient Product Exploration: Users can browse a wide selection of furniture products categorized and searchable for easy navigation.
